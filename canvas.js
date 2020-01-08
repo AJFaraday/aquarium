@@ -33,14 +33,21 @@ Canvas = {
     Canvas.update_loop = setInterval(Canvas.update, 100);
   },
 
-  stop: function() {
-    Canvas.health.draw();
-    Canvas.ctx.fillStyle = "#ff0000";
-    Canvas.ctx.font = ("100px Arial");
-    Canvas.ctx.fillText("YOU LOSE!", 250, 200);
-    Canvas.ctx.fillText("FINAL SCORE: " + Canvas.score.value, 120, 300);
+  stop: function () {
     clearInterval(Canvas.draw_loop);
     clearInterval(Canvas.update_loop);
+
+    setTimeout(
+      function () {
+        Canvas.draw();
+        Canvas.health.draw();
+        Canvas.ctx.fillStyle = "#ff0000";
+        Canvas.ctx.font = ("100px Arial");
+        Canvas.ctx.fillText("YOU LOSE!", 250, 200);
+        Canvas.ctx.fillText("FINAL SCORE: " + Canvas.score.value, 120, 300);
+      },
+      500
+    )
   },
 
   update: function () {
