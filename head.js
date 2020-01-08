@@ -6,7 +6,7 @@ Head = function (target) {
   this.size = 40;
 
   this.turn_speed = 40; // up to 100
-  this.speed = 10;
+  this.speed = 20;
   this.angle = 0;
 
   this.update = function () {
@@ -47,5 +47,11 @@ Head = function (target) {
       360
     );
     Canvas.ctx.stroke();
+  }
+
+  //////////////
+
+  this.increase_difficulty = function() {
+    this.speed += 0.5;
   }
 };

@@ -18,24 +18,39 @@ Canvas = {
     Canvas.head = new Head(new MoveTarget());
 
     Canvas.score = new Score();
+    Canvas.health = new Health();
 
     Canvas.goals = [];
     Canvas.add_goals();
+    Canvas.obstacles = [];
 
-    setInterval(
+    Canvas.draw_loop = setInterval(
       function () {
         requestAnimationFrame(Canvas.draw)
       },
       10
     );
-    setInterval(Canvas.update, 100);
+    Canvas.update_loop = setInterval(Canvas.update, 100);
+  },
+
+  stop: function() {
+    Canvas.health.draw();
+    Canvas.ctx.fillStyle = "#ff0000";
+    Canvas.ctx.font = ("100px Arial");
+    Canvas.ctx.fillText("YOU LOSE!", 250, 200);
+    Canvas.ctx.fillText("FINAL SCORE: " + Canvas.score.value, 120, 300);
+    clearInterval(Canvas.draw_loop);
+    clearInterval(Canvas.update_loop);
   },
 
   update: function () {
     Canvas.head.update();
-    Canvas.head.draw();
+
     for (var goal in Canvas.goals) {
       Canvas.goals[goal].check()
+    }
+    for (var obstacle in Canvas.obstacles) {
+      Canvas.obstacles[obstacle].check()
     }
   },
 
@@ -46,9 +61,15 @@ Canvas = {
     // important
     Canvas.head.draw();
     Canvas.score.draw();
+    Canvas.health.draw();
     Canvas.goals.forEach(
       function (goal) {
         goal.draw();
+      }
+    );
+    Canvas.obstacles.forEach(
+      function (obstacle) {
+        obstacle.draw();
       }
     );
   },
@@ -56,10 +77,20 @@ Canvas = {
   ////////////////////////////
 
   add_goals: function () {
-    var no_to_add = Math.floor(Canvas.score.value / 10) + 1;
+    if (Canvas.goals.length == 0) {
+      var no_to_add = Math.floor(Canvas.score.value / 10) + 1;
+      for (var x = no_to_add; x > 0; x--) {
+        Canvas.goals.push(new Goal())
+      }
+    }
+  },
+
+  add_obstacles: function () {
+    var no_to_add = Math.floor(Canvas.score.value / 20);
     for (var x = no_to_add; x > 0; x--) {
-      Canvas.goals.push(new Goal())
+      Canvas.obstacles.push(new Obstacle())
     }
   }
+
 
 };

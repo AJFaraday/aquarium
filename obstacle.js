@@ -1,10 +1,9 @@
-Goal = function () {
+Obstacle = function () {
   this.x = Math.floor(Math.random() * 1024);
   this.y = Math.floor(Math.random() * 768);
-  this.size = 20;
 
   this.draw = function () {
-    Canvas.ctx.strokeStyle = 'rgba(0, 256, 256, 0.8)';
+    Canvas.ctx.strokeStyle = 'rgba(256, 0, 0, 0.8)';
     Canvas.ctx.strokeRect(
       (this.x - 3),
       (this.y - 3),
@@ -17,10 +16,9 @@ Goal = function () {
     if(this.caught()) {
       // increase score
       this.remove();
-      Canvas.score.increment();
-      Canvas.add_goals();
-      Canvas.add_obstacles();
+
       Canvas.head.increase_difficulty();
+      Canvas.health.decrement();
     }
   };
 
@@ -30,6 +28,6 @@ Goal = function () {
   };
 
   this.remove = function () {
-    Canvas.goals.splice(Canvas.goals.indexOf(this), 1);
+    Canvas.obstacles.splice(Canvas.obstacles.indexOf(this), 1);
   };
 };
