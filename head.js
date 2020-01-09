@@ -8,30 +8,25 @@ Head = function (target) {
   this.turn_speed = 40; // up to 100
   this.speed = 20;
   this.angle = 0;
+  this.tail_segments = [];
+  this.history = [];
 
-  this.update = function () {
-    this.target.update();
 
-    this.get_angle();
-    this.x = Math.cos(this.angle * Math.PI / 180) * this.speed + this.x;
-    this.y = Math.sin(this.angle * Math.PI / 180) * this.speed + this.y;
-  };
-
-  this.get_angle = function () {
-    var angle_difference = Utils.angleDifference(this.angle_to_target(), this.angle);
-
-    this.angle -= (angle_difference / (200 / this.turn_speed));
-  };
-
-  this.angle_to_target = function () {
-    return Utils.angleBetweenPoints(this.x, this.y, target.x, target.y);
-  };
+  Object.assign(this, Follower);
 
   this.debug_draw = function () {
     this.target.draw();
 
     Utils.drawPolygon(this.x, this.y, 3, 20, 2, 'rgb(0,0,128)', 'rgb(0,0,128)', this.angle_to_target());
     Utils.drawPolygon(this.x, this.y, 3, 20, 2, 'rgb(0,128,0)', 'rgb(0,128,0)', this.angle);
+  };
+
+  this.update = function() {
+    this.target.update();
+    this.move();
+    for (var segment in this.tail_segments) {
+      this.tail_segments[segment].move();
+    }
   };
 
   this.draw = function () {
@@ -47,11 +42,28 @@ Head = function (target) {
       360
     );
     Canvas.ctx.stroke();
-  }
+    for (var segment in this.tail_segments) {
+      this.tail_segments[segment].draw();
+    }
+  };
 
   //////////////
 
-  this.increase_difficulty = function() {
+  this.grow_tail = function () {
+    var target = this.tail_segments[this.tail_segments.length - 1];
+    if (target == null) {
+      target = this;
+    }
+    this.tail_segments.push(new TailSegment(target, this));
+  };
+
+  this.increase_difficulty = function () {
     this.speed += 0.5;
-  }
+  };
+
+  this.check = function() {
+    for (var segment in this.tail_segments) {
+      this.tail_segments[segment].check();
+    }
+  };
 };

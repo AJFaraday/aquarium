@@ -54,11 +54,12 @@ Canvas = {
     Canvas.head.update();
 
     for (var goal in Canvas.goals) {
-      Canvas.goals[goal].check()
+      Canvas.goals[goal].check();
     }
     for (var obstacle in Canvas.obstacles) {
-      Canvas.obstacles[obstacle].check()
+      Canvas.obstacles[obstacle].check();
     }
+    Canvas.head.check();
   },
 
   draw: function () {
@@ -93,9 +94,11 @@ Canvas = {
   },
 
   add_obstacles: function () {
-    var no_to_add = Math.floor(Canvas.score.value / 20);
-    for (var x = no_to_add; x > 0; x--) {
-      Canvas.obstacles.push(new Obstacle())
+    if (Canvas.goals.length == 1) {
+      var no_to_add = Math.floor(Canvas.score.value / 20);
+      for (var x = no_to_add; x > 0; x--) {
+        Canvas.obstacles.push(new Obstacle())
+      }
     }
   }
 

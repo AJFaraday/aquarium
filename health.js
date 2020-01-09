@@ -1,5 +1,5 @@
 function Health() {
-  this.value = 5;
+  this.value = 10;
 
   this.increment = function () {
     this.value += 5;

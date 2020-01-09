@@ -21,6 +21,7 @@ Goal = function () {
       Canvas.add_goals();
       Canvas.add_obstacles();
       Canvas.head.increase_difficulty();
+      Canvas.head.grow_tail();
     }
   };
 
