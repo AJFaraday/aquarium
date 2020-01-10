@@ -28,6 +28,7 @@ Obstacle = function () {
   };
 
   this.remove = function () {
-    Canvas.obstacles.splice(Canvas.obstacles.indexOf(this), 1);
+    Canvas.checkables.splice(Canvas.checkables.indexOf(this), 1);
+    Canvas.drawables.splice(Canvas.drawables.indexOf(this), 1);
   };
 };

@@ -31,6 +31,8 @@ Goal = function () {
   };
 
   this.remove = function () {
+    Canvas.checkables.splice(Canvas.checkables.indexOf(this), 1);
+    Canvas.drawables.splice(Canvas.drawables.indexOf(this), 1);
     Canvas.goals.splice(Canvas.goals.indexOf(this), 1);
   };
 };

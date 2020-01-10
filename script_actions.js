@@ -4,12 +4,15 @@ ScriptActions = {
   },
 
   show_help: function(args) {
-    Canvas.ctx.font = ("30px Arial");
+    Canvas.ctx.font = "30px Arial";
+    Canvas.ctx.fillStyle = "#000000";
     Canvas.ctx.textAlign = "center";
     Canvas.ctx.fillText(args.message, 512, (650 + (args.index * 32)));
   },
 
-  oneshot_test: function(args) {
-    console.log('doing one shot action');
+  add_chaser: function(args) {
+    var new_chaser = new Chaser();
+    Canvas.drawables.push(new_chaser);
+    Canvas.checkables.push(new_chaser);
   }
 };

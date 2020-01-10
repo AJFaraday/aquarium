@@ -25,9 +25,12 @@ Canvas = {
     Canvas.score = new Score();
     Canvas.health = new Health();
 
+    Canvas.drawables = [];
+    Canvas.checkables = [];
+
     Canvas.goals = [];
     Canvas.add_goals();
-    Canvas.obstacles = [];
+    //Canvas.obstacles = [];
 
     Canvas.draw_loop = setInterval(
       function () {
@@ -59,31 +62,23 @@ Canvas = {
   update: function () {
     Canvas.head.update();
 
-    for (var goal in Canvas.goals) {
-      Canvas.goals[goal].check();
-    }
-    for (var obstacle in Canvas.obstacles) {
-      Canvas.obstacles[obstacle].check();
-    }
+    Canvas.checkables.forEach(
+      function(checkable) {
+        checkable.check();
+      }
+    );
     Canvas.head.check();
   },
 
   draw: function () {
     Canvas.ctx.clearRect(0, 0, 1024, 768);
-    // debugging
-    //Canvas.head.debug_draw();
-    // important
+
     Canvas.head.draw();
     Canvas.score.draw();
     Canvas.health.draw();
-    Canvas.goals.forEach(
-      function (goal) {
-        goal.draw();
-      }
-    );
-    Canvas.obstacles.forEach(
-      function (obstacle) {
-        obstacle.draw();
+    Canvas.drawables.forEach(
+      function (drawable) {
+        drawable.draw();
       }
     );
     Canvas.do_script_actions()
@@ -106,7 +101,10 @@ Canvas = {
     if (Canvas.goals.length == 0) {
       var no_to_add = Math.floor(Canvas.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
-        Canvas.goals.push(new Goal())
+        var new_goal = new Goal();
+        Canvas.drawables.push(new_goal);
+        Canvas.checkables.push(new_goal);
+        Canvas.goals.push(new_goal);
       }
     }
   },
@@ -115,7 +113,9 @@ Canvas = {
     if (Canvas.goals.length == 1) {
       var no_to_add = Math.floor(Canvas.score.value / 20);
       for (var x = no_to_add; x > 0; x--) {
-        Canvas.obstacles.push(new Obstacle())
+        var new_obstacle = new Obstacle();
+        Canvas.drawables.push(new_obstacle);
+        Canvas.checkables.push(new_obstacle);
       }
     }
   }

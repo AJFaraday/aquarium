@@ -12,8 +12,12 @@ Chaser = function () {
 
   Object.assign(this, Follower);
 
-  this.update = function () {
+  this.check = function () {
     this.move();
+  };
+
+  this.get_speed = function() {
+    return this.speed;
   };
 
   this.draw = function () {
@@ -30,6 +34,5 @@ Chaser = function () {
     );
     Canvas.ctx.fill();
   };
-
 
 };

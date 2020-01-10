@@ -7,8 +7,8 @@ Script = {
     {func: 'show_help', message: 'The snake will follow your mouse pointer.', index: 0},
     {func: 'show_help', message: 'Try to catch the light blue goals.', index: 1}
   ],
-  5: [
-    {func: 'oneshot_test', type: 'oneshot'}
+  1: [
+    //{func: 'add_chaser', type: 'oneshot'}
   ],
   7: [
     {func: 'show_help', message: 'Be careful not to bite your tail!', index: 0},

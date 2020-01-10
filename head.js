@@ -13,13 +13,6 @@ Head = function (target) {
 
   Object.assign(this, Follower);
 
-  this.debug_draw = function () {
-    this.target.draw();
-
-    Utils.drawPolygon(this.x, this.y, 3, 20, 2, 'rgb(0,0,128)', 'rgb(0,0,128)', this.angle_to_target());
-    Utils.drawPolygon(this.x, this.y, 3, 20, 2, 'rgb(0,128,0)', 'rgb(0,128,0)', this.angle);
-  };
-
   this.update = function() {
     this.target.update();
     this.move();
