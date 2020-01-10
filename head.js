@@ -11,7 +11,6 @@ Head = function (target) {
   this.tail_segments = [];
   this.history = [];
 
-
   Object.assign(this, Follower);
 
   this.debug_draw = function () {
@@ -31,7 +30,7 @@ Head = function (target) {
 
   this.draw = function () {
     Canvas.ctx.lineWidth = 5;
-    Canvas.ctx.strokeStyle = 'rgba(0,256,128)';
+    Canvas.ctx.fillStyle = 'rgba(0,256,128, 0.3)';
     Canvas.ctx.beginPath();
 
     Canvas.ctx.arc(
@@ -41,10 +40,14 @@ Head = function (target) {
       0,
       360
     );
-    Canvas.ctx.stroke();
+    Canvas.ctx.fill();
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].draw();
     }
+  };
+
+  this.get_speed = function() {
+    return this.speed;
   };
 
   //////////////

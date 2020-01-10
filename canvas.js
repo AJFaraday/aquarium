@@ -12,7 +12,12 @@ Canvas = {
       var rect = canvas.getBoundingClientRect();
       Canvas.mouse.x = e.clientX - rect.left;
       Canvas.mouse.y = e.clientY - rect.top;
+    };
 
+    window.onmouseup = function (e) {
+      var rect = canvas.getBoundingClientRect();
+      Canvas.mouse.x = e.clientX - rect.left;
+      Canvas.mouse.y = e.clientY - rect.top;
     };
 
     Canvas.head = new Head(new MoveTarget());
@@ -42,9 +47,10 @@ Canvas = {
         Canvas.draw();
         Canvas.health.draw();
         Canvas.ctx.fillStyle = "#ff0000";
+        Canvas.ctx.textAlign = "center";
         Canvas.ctx.font = ("100px Arial");
-        Canvas.ctx.fillText("YOU LOSE!", 250, 200);
-        Canvas.ctx.fillText("FINAL SCORE: " + Canvas.score.value, 120, 300);
+        Canvas.ctx.fillText("GAME OVER!", 512, 200);
+        Canvas.ctx.fillText("FINAL SCORE: " + Canvas.score.value, 512, 300);
       },
       500
     )
@@ -80,8 +86,20 @@ Canvas = {
         obstacle.draw();
       }
     );
+    Canvas.do_script_actions()
   },
 
+
+  do_script_actions: function () {
+    var actions = ScriptActions.for_score(Canvas.score.value);
+    if (actions) {
+      actions.forEach(function (action) {
+        if (!action.type) {
+          ScriptActions[action.func](action)
+        }
+      });
+    }
+  },
   ////////////////////////////
 
   add_goals: function () {

@@ -15,11 +15,11 @@ And it's applied to another object with
 Follower = {
   move: function () {
     this.get_angle();
-    this.x = Math.cos(this.angle * Math.PI / 180) * this.speed + this.x;
-    this.y = Math.sin(this.angle * Math.PI / 180) * this.speed + this.y;
+    this.x = Math.cos(this.angle * Math.PI / 180) * this.get_speed() + this.x;
+    this.y = Math.sin(this.angle * Math.PI / 180) * this.get_speed() + this.y;
 
     this.history.push({x: this.x, y: this.y});
-    if (this.history.length >= 5) {
+    if (this.history.length >= 3) {
       this.history.shift();
     }
   },

@@ -10,7 +10,7 @@ TailSegment = function (previous, head) {
   this.target = previous;
   this.size = 30;
   this.history = [];
-  this.active = true;
+  this.active = (head.tail_segments.length > 2);
 
   Object.assign(this, Follower);
 
@@ -31,6 +31,10 @@ TailSegment = function (previous, head) {
       360
     );
     Canvas.ctx.fill();
+  };
+
+  this.get_speed = function() {
+    return this.head.speed;
   };
 
   this.check = function () {
