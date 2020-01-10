@@ -14,7 +14,7 @@ Canvas = {
       Canvas.mouse.y = e.clientY - rect.top;
     };
 
-    window.onmouseup = function (e) {
+    window.onclick = function (e) {
       var rect = canvas.getBoundingClientRect();
       Canvas.mouse.x = e.clientX - rect.left;
       Canvas.mouse.y = e.clientY - rect.top;
