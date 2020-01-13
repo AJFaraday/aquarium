@@ -10,10 +10,15 @@ Chaser = function () {
   this.angle = 0;
   this.history = [];
 
-  Object.assign(this, Follower);
+  Object.assign(this, Concerns.Follower);
+  Object.assign(this, Concerns.Catchable);
 
   this.check = function () {
     this.move();
+    if (this.caught()) {
+      Canvas.health.decrement(2);
+      this.remove();
+    }
   };
 
   this.get_speed = function() {

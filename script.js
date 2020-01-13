@@ -8,7 +8,8 @@ Script = {
     {func: 'show_help', message: 'Try to catch the light blue goals.', index: 1}
   ],
   1: [
-    //{func: 'add_chaser', type: 'oneshot'}
+    {func: 'show_help', message: "What's THAT?!?", index: 1},
+    {func: 'add_chaser', type: 'oneshot'}
   ],
   7: [
     {func: 'show_help', message: 'Be careful not to bite your tail!', index: 0},
@@ -17,6 +18,11 @@ Script = {
     {func: 'show_help', message: 'Nice job! Ten points!', index: 0},
     {func: 'show_help', message: "You get 5 more health every ten points you get.", index: 1},
     {func: 'show_help', message: "You'll start to see more goals, too.", index: 2}
+  ],
+  15: [
+    {func: 'show_help', message: "Your tail's getting pretty long now.", index: 0},
+    {func: 'show_help', message: "If you bite off a little at the end, you only get a little bit hurt.", index: 1},
+    {func: 'show_help', message: "But if you bite it all off...", index: 2},
   ],
   20: [
     {func: 'show_help', message: "Woo! Even more goals!", index: 0}

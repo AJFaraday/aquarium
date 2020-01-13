@@ -11,10 +11,9 @@ Head = function (target) {
   this.tail_segments = [];
   this.history = [];
 
-  Object.assign(this, Follower);
+  Object.assign(this, Concerns.Follower);
 
   this.update = function() {
-    this.target.update();
     this.move();
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].move();

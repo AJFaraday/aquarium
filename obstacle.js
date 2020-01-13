@@ -2,6 +2,8 @@ Obstacle = function () {
   this.x = Math.floor(Math.random() * 1024);
   this.y = Math.floor(Math.random() * 768);
 
+  Object.assign(this, Concerns.Catchable);
+
   this.draw = function () {
     Canvas.ctx.strokeStyle = 'rgba(256, 0, 0, 0.8)';
     Canvas.ctx.strokeRect(
@@ -22,13 +24,4 @@ Obstacle = function () {
     }
   };
 
-  this.caught = function () {
-    var distance_to_head = Utils.distanceBetweenPoints(this.x, this.y, Canvas.head.x, Canvas.head.y);
-    return (distance_to_head <= Canvas.head.size);
-  };
-
-  this.remove = function () {
-    Canvas.checkables.splice(Canvas.checkables.indexOf(this), 1);
-    Canvas.drawables.splice(Canvas.drawables.indexOf(this), 1);
-  };
 };

@@ -12,7 +12,7 @@ TailSegment = function (previous, head) {
   this.history = [];
   this.active = (head.tail_segments.length > 2);
 
-  Object.assign(this, Follower);
+  Object.assign(this, Concerns.Follower);
 
   this.update = function () {
     this.move();

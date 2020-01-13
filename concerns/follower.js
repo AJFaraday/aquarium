@@ -1,3 +1,5 @@
+if (typeof Concerns === 'undefined') {Concerns = {}}
+
 /*
 A follower will have
 
@@ -13,7 +15,7 @@ And it's applied to another object with
   Object.assign(this, Follower);
 
  */
-Follower = {
+Concerns.Follower = {
   move: function () {
     this.get_angle();
     this.x = Math.cos(this.angle * Math.PI / 180) * (this.get_speed() / 7) + this.x;

@@ -3,6 +3,8 @@ Goal = function () {
   this.y = Math.floor(Math.random() * 768);
   this.size = 20;
 
+  Object.assign(this, Concerns.Catchable);
+
   this.draw = function () {
     Canvas.ctx.strokeStyle = 'rgba(0, 256, 256, 0.8)';
     Canvas.ctx.strokeRect(
@@ -23,11 +25,6 @@ Goal = function () {
       Canvas.head.increase_difficulty();
       Canvas.head.grow_tail();
     }
-  };
-
-  this.caught = function () {
-    var distance_to_head = Utils.distanceBetweenPoints(this.x, this.y, Canvas.head.x, Canvas.head.y);
-    return (distance_to_head <= Canvas.head.size);
   };
 
   this.remove = function () {

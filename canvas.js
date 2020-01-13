@@ -3,30 +3,12 @@ Canvas = {
     var canvas = document.getElementById('canvas');
     Canvas.ctx = canvas.getContext('2d');
 
-    Canvas.mouse = {
-      x: innerWidth / 2,
-      y: innerHeight / 2
-    };
 
-    window.onmousemove = function (e) {
-      var rect = canvas.getBoundingClientRect();
-      Canvas.mouse.x = e.clientX - rect.left;
-      Canvas.mouse.y = e.clientY - rect.top;
-    };
+    window.onmousemove = Canvas.follow_event;
+    window.ontouchend =Canvas.follow_event;
+    window.ontouchmove = Canvas.follow_event;
 
-    window.ontouchend = function (e) {
-      e.preventDefault();
-      var rect = canvas.getBoundingClientRect();
-      Canvas.mouse.x = e.clientX - rect.left;
-      Canvas.mouse.y = e.clientY - rect.top;
-    };
 
-    window.ontouchmove = function (e) {
-      e.preventDefault();
-      var rect = canvas.getBoundingClientRect();
-      Canvas.mouse.x = e.clientX - rect.left;
-      Canvas.mouse.y = e.clientY - rect.top;
-    };
 
     Canvas.head = new Head(new MoveTarget());
 
@@ -126,6 +108,13 @@ Canvas = {
         Canvas.checkables.push(new_obstacle);
       }
     }
+  },
+
+  follow_event: function(e) {
+    e.preventDefault();
+    var rect = canvas.getBoundingClientRect();
+    Canvas.head.target.x = e.clientX - rect.left;
+    Canvas.head.target.y = e.clientY - rect.top;
   }
 
 
