@@ -7,9 +7,9 @@ Script = {
     {func: 'show_help', message: 'The snake will follow your mouse pointer.', index: 0},
     {func: 'show_help', message: 'Try to catch the light blue goals.', index: 1}
   ],
-  1: [
+  5: [
     {func: 'show_help', message: "What's THAT?!?", index: 1},
-    {func: 'add_chaser', type: 'oneshot'}
+    {func: 'add_chaser', type: 'oneshot', x: 512, y: 768}
   ],
   7: [
     {func: 'show_help', message: 'Be careful not to bite your tail!', index: 0},
@@ -30,6 +30,13 @@ Script = {
   22: [
     {func: 'show_help', message: "Oh no! What's that?!?", index: 0},
     {func: 'show_help', message: "Steer clear of the red marks!", index: 1}
+  ],
+  30: [
+    {func: 'show_help', message: "NOOOOOOOOOOOO!", index: 0},
+    {func: 'add_chaser', type: 'oneshot', x: 0, y: 0},
+    {func: 'add_chaser', type: 'oneshot', x: 0, y: 768},
+    {func: 'add_chaser', type: 'oneshot', x: 1024, y: 768},
+    {func: 'add_chaser', type: 'oneshot', x: 1024, y: 0}
   ]
 
 };
