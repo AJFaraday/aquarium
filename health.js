@@ -5,8 +5,8 @@ function Health() {
     this.value += 5;
   };
 
-  this.decrement = function () {
-    this.value -= 1;
+  this.decrement = function (damage) {
+    this.value -= damage;
     if (this.value <= 0) {
       Canvas.stop();
     }

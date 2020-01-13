@@ -38,7 +38,7 @@ Canvas = {
       },
       10
     );
-    Canvas.update_loop = setInterval(Canvas.update, 100);
+    Canvas.update_loop = setInterval(Canvas.update, 10);
   },
 
   stop: function () {

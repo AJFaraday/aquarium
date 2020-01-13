@@ -18,7 +18,7 @@ Obstacle = function () {
       this.remove();
 
       Canvas.head.increase_difficulty();
-      Canvas.health.decrement();
+      Canvas.health.decrement(1);
     }
   };
 

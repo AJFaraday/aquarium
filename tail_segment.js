@@ -33,31 +33,18 @@ TailSegment = function (previous, head) {
     Canvas.ctx.fill();
   };
 
-  this.get_speed = function() {
+  this.get_speed = function () {
     return this.head.speed;
   };
 
   this.check = function () {
     if (this.caught() && this.active) {
-      var the_rest_of_the_tail = this.head.tail_segments.slice(
+      Canvas.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
+      this.head.tail_segments.splice(
         this.head.tail_segments.indexOf(this),
-        (this.head.tail_segments.length - 1)
+        this.head.tail_segments.length - 1
       );
-      for (var segment in the_rest_of_the_tail) {
-        the_rest_of_the_tail[segment].active = false;
-        setTimeout(
-          function () {
-            the_rest_of_the_tail[segment].get_bitten();
-          },
-          (50 * segment)
-        );
-      }
     }
-  };
-
-  this.get_bitten = function () {
-    this.head.tail_segments.splice(this.head.tail_segments.indexOf(this), 1);
-    Canvas.health.decrement();
   };
 
   this.caught = function () {
