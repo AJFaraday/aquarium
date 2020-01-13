@@ -8,19 +8,16 @@ Canvas = {
     window.ontouchend =Canvas.follow_event;
     window.ontouchmove = Canvas.follow_event;
 
-
-
     Canvas.head = new Head(new MoveTarget());
 
     Canvas.score = new Score();
     Canvas.health = new Health();
 
     Canvas.drawables = [];
-    Canvas.checkables = [];
+    Canvas.checkables = [Canvas.head];
 
     Canvas.goals = [];
     Canvas.add_goals();
-    //Canvas.obstacles = [];
 
     Canvas.draw_loop = setInterval(
       function () {
@@ -50,14 +47,11 @@ Canvas = {
   },
 
   update: function () {
-    Canvas.head.update();
-
     Canvas.checkables.forEach(
       function(checkable) {
         checkable.check();
       }
     );
-    Canvas.head.check();
   },
 
   draw: function () {
@@ -91,7 +85,7 @@ Canvas = {
     if (Canvas.goals.length == 0) {
       var no_to_add = Math.floor(Canvas.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
-        var new_goal = new Goal();
+        var new_goal = new Static.Goal();
         Canvas.drawables.push(new_goal);
         Canvas.checkables.push(new_goal);
         Canvas.goals.push(new_goal);
@@ -103,7 +97,7 @@ Canvas = {
     if (Canvas.goals.length == 1) {
       var no_to_add = Math.floor(Canvas.score.value / 20);
       for (var x = no_to_add; x > 0; x--) {
-        var new_obstacle = new Obstacle();
+        var new_obstacle = new Static.Obstacle();
         Canvas.drawables.push(new_obstacle);
         Canvas.checkables.push(new_obstacle);
       }

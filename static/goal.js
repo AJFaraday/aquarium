@@ -1,4 +1,6 @@
-Goal = function () {
+if (typeof Static === 'undefined') {Static = {}}
+
+Static.Goal = function () {
   this.x = Math.floor(Math.random() * 1024);
   this.y = Math.floor(Math.random() * 768);
   this.size = 20;

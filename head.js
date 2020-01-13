@@ -12,9 +12,11 @@ Head = function (target) {
   this.history = [];
 
   Object.assign(this, Concerns.Follower);
+  Object.assign(this, Concerns.TailBiter);
 
-  this.update = function() {
+  this.check = function() {
     this.move();
+    this.bite_tail();
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].move();
     }
@@ -56,9 +58,8 @@ Head = function (target) {
     this.speed += 0.5;
   };
 
-  this.check = function() {
-    for (var segment in this.tail_segments) {
-      this.tail_segments[segment].check();
-    }
-  };
+  this.remove = function() {
+    // Player head can never be removed
+    // Called in Concerns.TailBiter
+  }
 };

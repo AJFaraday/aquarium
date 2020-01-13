@@ -13,10 +13,7 @@ TailSegment = function (previous, head) {
   this.active = (head.tail_segments.length > 2);
 
   Object.assign(this, Concerns.Follower);
-
-  this.update = function () {
-    this.move();
-  };
+  Object.assign(this, Concerns.Catchable);
 
   this.draw = function () {
     Canvas.ctx.lineWidth = 5;
@@ -39,16 +36,16 @@ TailSegment = function (previous, head) {
 
   this.check = function () {
     if (this.caught() && this.active) {
-      Canvas.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
-      this.head.tail_segments.splice(
-        this.head.tail_segments.indexOf(this),
-        this.head.tail_segments.length - 1
-      );
+      this.get_bitten()
     }
   };
 
-  this.caught = function () {
-    var distance_to_head = Utils.distanceBetweenPoints(this.x, this.y, Canvas.head.x, Canvas.head.y);
-    return (distance_to_head <= Canvas.head.size);
-  };
+  this.get_bitten = function() {
+    Canvas.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
+    this.head.tail_segments.splice(
+      this.head.tail_segments.indexOf(this),
+      this.head.tail_segments.length - 1
+    );
+  }
+
 };

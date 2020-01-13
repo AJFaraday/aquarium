@@ -1,5 +1,5 @@
 Chaser = function () {
-  this.target = new MoveTarget();
+  this.target = Canvas.head;
 
   this.x = (1024 / 2);
   this.y = (768 / 2);
@@ -12,13 +12,10 @@ Chaser = function () {
 
   Object.assign(this, Concerns.Follower);
   Object.assign(this, Concerns.Catchable);
+  Object.assign(this, Concerns.TailBiter);
 
   this.check = function () {
-    this.move();
-    if (this.caught()) {
-      Canvas.health.decrement(2);
-      this.remove();
-    }
+    this.bite_tail();
   };
 
   this.get_speed = function() {
