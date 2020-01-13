@@ -13,7 +13,6 @@ TailSegment = function (previous, head) {
   this.active = (head.tail_segments.length > 2);
 
   Object.assign(this, Concerns.Follower);
-  Object.assign(this, Concerns.Catchable);
 
   this.draw = function () {
     Canvas.ctx.lineWidth = 5;
@@ -35,9 +34,7 @@ TailSegment = function (previous, head) {
   };
 
   this.check = function () {
-    if (this.caught() && this.active) {
-      this.get_bitten()
-    }
+
   };
 
   this.get_bitten = function() {
