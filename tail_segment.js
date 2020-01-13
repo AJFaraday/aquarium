@@ -10,7 +10,7 @@ TailSegment = function (previous, head) {
   this.target = previous;
   this.size = 30;
   this.history = [];
-  this.active = (head.tail_segments.length > 2);
+  this.active = (head.tail_segments.length > 1);
 
   Object.assign(this, Concerns.Follower);
 
