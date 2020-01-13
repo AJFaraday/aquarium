@@ -14,7 +14,15 @@ Canvas = {
       Canvas.mouse.y = e.clientY - rect.top;
     };
 
-    window.onclick = function (e) {
+    window.ontouchend = function (e) {
+      e.preventDefault();
+      var rect = canvas.getBoundingClientRect();
+      Canvas.mouse.x = e.clientX - rect.left;
+      Canvas.mouse.y = e.clientY - rect.top;
+    };
+
+    window.ontouchmove = function (e) {
+      e.preventDefault();
       var rect = canvas.getBoundingClientRect();
       Canvas.mouse.x = e.clientX - rect.left;
       Canvas.mouse.y = e.clientY - rect.top;
