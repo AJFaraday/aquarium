@@ -38,7 +38,7 @@ TailSegment = function (previous, head) {
   };
 
   this.get_bitten = function() {
-    Canvas.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
+    Game.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
     this.head.tail_segments.splice(
       this.head.tail_segments.indexOf(this),
       this.head.tail_segments.length - 1

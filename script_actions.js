@@ -12,7 +12,7 @@ ScriptActions = {
 
   add_chaser: function(args) {
     var new_chaser = new Chaser(args.x, args.y);
-    Canvas.drawables.push(new_chaser);
-    Canvas.checkables.push(new_chaser);
+    Game.drawables.push(new_chaser);
+    Game.checkables.push(new_chaser);
   }
 };

@@ -4,9 +4,9 @@ function Score() {
   this.increment = function () {
     this.value += 1;
     if (this.value % 10 == 0) {
-      Canvas.health.increment();
+      Game.health.increment();
     }
-    var actions = ScriptActions.for_score(Canvas.score.value);
+    var actions = ScriptActions.for_score(Game.score.value);
     if (actions) {
       actions.forEach(function (action) {
         if (action.type == 'oneshot') {

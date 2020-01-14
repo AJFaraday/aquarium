@@ -1,5 +1,5 @@
 Chaser = function (x, y) {
-  this.target = Canvas.head;
+  this.target = Game.head;
 
   this.x = x;
   this.y = y;
@@ -7,7 +7,7 @@ Chaser = function (x, y) {
 
   this.turn_speed = 20; // up to 100
   this.speed = 20;
-  this.angle = Utils.angleBetweenPoints(this.x, this.y, Canvas.head.x, Canvas.head.y);
+  this.angle = Utils.angleBetweenPoints(this.x, this.y, Game.head.x, Game.head.y);
   this.history = [];
 
   Object.assign(this, Concerns.Follower);
@@ -18,7 +18,7 @@ Chaser = function (x, y) {
     this.move();
     this.bite_tail();
     if (this.caught()) {
-      Canvas.health.decrement(5);
+      Game.health.decrement(5);
       this.remove();
     }
   };

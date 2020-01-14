@@ -8,7 +8,7 @@ function Health() {
   this.decrement = function (damage) {
     this.value -= damage;
     if (this.value <= 0) {
-      Canvas.stop();
+      Game.end();
     }
   };
 

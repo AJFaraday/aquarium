@@ -1,0 +1,18 @@
+Utils to assume objects with x and y
+
+methods on canvas
+- draw_circle
+- draw_square
+- draw text
+
+globally change
+- check > update
+- checkable > updatable
+
+Create 'player' space
+head
+tail_segment
+score
+health
+
+

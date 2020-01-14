@@ -5,7 +5,7 @@ if (typeof Concerns === 'undefined') {
 Concerns.TailBiter = {
   bite_tail: function () {
     var me = this;
-    Canvas.head.tail_segments.forEach(
+    Game.head.tail_segments.forEach(
       function (segment) {
         var distance_to_segment = Utils.distanceBetweenPoints(me.x, me.y, segment.x, segment.y);
         if (distance_to_segment <= segment.size && segment.active) {

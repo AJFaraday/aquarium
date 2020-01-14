@@ -21,17 +21,17 @@ Static.Goal = function () {
     if(this.caught()) {
       // increase score
       this.remove();
-      Canvas.score.increment();
-      Canvas.add_goals();
-      Canvas.add_obstacles();
-      Canvas.head.increase_difficulty();
-      Canvas.head.grow_tail();
+      Game.score.increment();
+      Game.add_goals();
+      Game.add_obstacles();
+      Game.head.increase_difficulty();
+      Game.head.grow_tail();
     }
   };
 
   this.remove = function () {
-    Canvas.checkables.splice(Canvas.checkables.indexOf(this), 1);
-    Canvas.drawables.splice(Canvas.drawables.indexOf(this), 1);
-    Canvas.goals.splice(Canvas.goals.indexOf(this), 1);
+    Game.checkables.splice(Game.checkables.indexOf(this), 1);
+    Game.drawables.splice(Game.drawables.indexOf(this), 1);
+    Game.goals.splice(Game.goals.indexOf(this), 1);
   };
 };
