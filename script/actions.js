@@ -1,6 +1,10 @@
-ScriptActions = {
+if (typeof Script === 'undefined') {
+  Script = {}
+}
+
+Script.Actions = {
   for_score: function(score) {
-    return Script[score];
+    return Script.Steps[score];
   },
 
   show_help: function(args) {
@@ -15,7 +19,7 @@ ScriptActions = {
   },
 
   add_chaser: function(args) {
-    var new_chaser = new Chaser(args.x, args.y);
+    var new_chaser = new Enemies.Chaser(args.x, args.y);
     Game.drawables.push(new_chaser);
     Game.updatables.push(new_chaser);
   }

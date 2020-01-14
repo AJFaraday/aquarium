@@ -1,5 +1,9 @@
+if (typeof Player === 'undefined') {
+  Player = {}
+}
+
 // Previous could be a head, or the next closest tail segment to the head.
-TailSegment = function (previous, head) {
+Player.TailSegment = function (previous, head) {
   this.head = head;
 
   this.x = previous.history[0].x;

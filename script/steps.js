@@ -1,8 +1,12 @@
+if (typeof Script === 'undefined') {
+  Script = {}
+}
+
 // The key is the score number
 // it has an array of objects with func and args in them
 // by default, these will be called on every frame until the score changes
 // use type = 'once' for a one-shot action
-Script = {
+Script.Steps = {
   0: [
     {func: 'show_help', message: 'The snake will follow your mouse pointer.', index: 0},
     {func: 'show_help', message: 'Try to catch the light blue goals.', index: 1}

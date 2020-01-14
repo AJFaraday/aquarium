@@ -70,11 +70,11 @@ Game = {
   },
 
   do_script_actions: function () {
-    var actions = ScriptActions.for_score(Player.score.value);
+    var actions = Script.Actions.for_score(Player.score.value);
     if (actions) {
       actions.forEach(function (action) {
         if (!action.type) {
-          ScriptActions[action.func](action)
+          Script.Actions[action.func](action)
         }
       });
     }

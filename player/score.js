@@ -10,11 +10,11 @@ Player.Score = function() {
     if (this.value % 10 == 0) {
       Player.health.increment();
     }
-    var actions = ScriptActions.for_score(Player.score.value);
+    var actions = Script.Actions.for_score(Player.score.value);
     if (actions) {
       actions.forEach(function (action) {
         if (action.type == 'oneshot') {
-          ScriptActions[action.func](action)
+          Script.Actions[action.func](action)
         }
       });
     }

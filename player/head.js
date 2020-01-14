@@ -45,7 +45,7 @@ Player.Head = function () {
     if (target == null) {
       target = this;
     }
-    this.tail_segments.push(new TailSegment(target, this));
+    this.tail_segments.push(new Player.TailSegment(target, this));
   };
 
   this.increase_difficulty = function () {

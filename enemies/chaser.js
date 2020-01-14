@@ -1,4 +1,8 @@
-Chaser = function (x, y) {
+if (typeof Enemies === 'undefined') {
+  Enemies = {}
+}
+
+Enemies.Chaser = function (x, y) {
   this.target = Player.head;
 
   this.x = x;

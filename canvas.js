@@ -22,7 +22,7 @@ Canvas = {
 
   // source will have x, y, size and colour
   draw_square: function(source) {
-    Canvas.ctx.strokeStyle = 'rgba(0, 256, 256, 0.8)';
+    Canvas.ctx.strokeStyle = source.colour;
     Canvas.ctx.strokeRect(
       (source.x - (source.size/2)),
       (source.y - (source.size/2)),
