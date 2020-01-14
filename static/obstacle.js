@@ -14,7 +14,7 @@ Static.Obstacle = function () {
     Canvas.draw_square(this);
   };
 
-  this.check = function () {
+  this.update = function () {
     if (this.caught()) {
       // increase score
       this.remove();

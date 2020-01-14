@@ -15,7 +15,7 @@ Head = function (target) {
   Object.assign(this, Concerns.Follower);
   Object.assign(this, Concerns.TailBiter);
 
-  this.check = function() {
+  this.update = function() {
     this.move();
     this.bite_tail();
     for (var segment in this.tail_segments) {

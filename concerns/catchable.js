@@ -3,7 +3,7 @@ if (typeof Concerns === 'undefined') {Concerns = {}}
 Concerns.Catchable = {
 
   remove: function () {
-    Game.checkables.splice(Game.checkables.indexOf(this), 1);
+    Game.updatables.splice(Game.updatables.indexOf(this), 1);
     Game.drawables.splice(Game.drawables.indexOf(this), 1);
   },
 

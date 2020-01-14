@@ -12,7 +12,7 @@ Game = {
     Game.health = new Health();
 
     Game.drawables = [Game.head, Game.score, Game.health];
-    Game.checkables = [Game.head];
+    Game.updatables = [Game.head];
 
     Game.goals = [];
     Game.add_goals();
@@ -27,9 +27,9 @@ Game = {
   },
 
   update: function () {
-    Game.checkables.forEach(
-      function (checkable) {
-        checkable.check();
+    Game.updatables.forEach(
+      function (updatable) {
+        updatable.update();
       }
     );
   },
@@ -57,7 +57,7 @@ Game = {
       for (var x = no_to_add; x > 0; x--) {
         var new_goal = new Static.Goal();
         Game.drawables.push(new_goal);
-        Game.checkables.push(new_goal);
+        Game.updatables.push(new_goal);
         Game.goals.push(new_goal);
       }
     }
@@ -69,7 +69,7 @@ Game = {
       for (var x = no_to_add; x > 0; x--) {
         var new_obstacle = new Static.Obstacle();
         Game.drawables.push(new_obstacle);
-        Game.checkables.push(new_obstacle);
+        Game.updatables.push(new_obstacle);
       }
     }
   },

@@ -1,13 +1,5 @@
-Utils to assume objects with x and y
-
-globally change
-- check > update
-- checkable > updatable
-
 Create 'player' space
 head
 tail_segment
 score
 health
-
-

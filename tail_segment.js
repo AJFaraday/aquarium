@@ -24,7 +24,7 @@ TailSegment = function (previous, head) {
     return this.head.speed;
   };
 
-  this.check = function () {
+  this.update = function () {
 
   };
 

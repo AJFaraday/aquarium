@@ -15,7 +15,7 @@ Chaser = function (x, y) {
   Object.assign(this, Concerns.Catchable);
   Object.assign(this, Concerns.TailBiter);
 
-  this.check = function () {
+  this.update = function () {
     this.move();
     this.bite_tail();
     if (this.caught()) {

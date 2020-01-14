@@ -17,6 +17,6 @@ ScriptActions = {
   add_chaser: function(args) {
     var new_chaser = new Chaser(args.x, args.y);
     Game.drawables.push(new_chaser);
-    Game.checkables.push(new_chaser);
+    Game.updatables.push(new_chaser);
   }
 };
