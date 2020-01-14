@@ -4,6 +4,7 @@ Chaser = function (x, y) {
   this.x = x;
   this.y = y;
   this.size = 10;
+  this.colour = 'rgba(256, 0,0, 0.5)';
 
   this.turn_speed = 20; // up to 100
   this.speed = 20;
@@ -28,18 +29,7 @@ Chaser = function (x, y) {
   };
 
   this.draw = function () {
-    Canvas.ctx.lineWidth = 5;
-    Canvas.ctx.fillStyle = 'rgba(256, 0,0, 0.5)';
-    Canvas.ctx.beginPath();
-
-    Canvas.ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      360
-    );
-    Canvas.ctx.fill();
+    Canvas.draw_circle(this);
   };
 
 };

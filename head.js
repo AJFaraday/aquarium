@@ -4,6 +4,7 @@ Head = function (target) {
   this.x = (1024 / 2);
   this.y = (768 / 2);
   this.size = 40;
+  this.colour = 'rgba(0,256,128, 0.3)';
 
   this.turn_speed = 40; // up to 100
   this.speed = 20;
@@ -23,18 +24,7 @@ Head = function (target) {
   };
 
   this.draw = function () {
-    Canvas.ctx.lineWidth = 5;
-    Canvas.ctx.fillStyle = 'rgba(0,256,128, 0.3)';
-    Canvas.ctx.beginPath();
-
-    Canvas.ctx.arc(
-      this.x,
-      this.y,
-      this.size,
-      0,
-      360
-    );
-    Canvas.ctx.fill();
+    Canvas.draw_circle(this);
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].draw();
     }

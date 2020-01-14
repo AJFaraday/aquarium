@@ -13,9 +13,13 @@ function Health() {
   };
 
   this.draw = function () {
-    Canvas.ctx.font = ("30px Arial");
-    Canvas.ctx.textAlign = "left";
-    Canvas.ctx.fillStyle = 'rgba(0,0,0,1)';
-    Canvas.ctx.fillText("Health: " + this.value, 20, 55);
+    Canvas.draw_text(
+      "Health: " + this.value,
+      20,
+      55,
+      'rgba(0,0,0,1)',
+      'left',
+      30
+    );
   };
 };

@@ -1,24 +1,21 @@
-if (typeof Static === 'undefined') {Static = {}}
+if (typeof Static === 'undefined') {
+  Static = {}
+}
 
 Static.Obstacle = function () {
   this.x = Math.floor(Math.random() * 1024);
   this.y = Math.floor(Math.random() * 768);
-  this.size = 20;
+  this.size = 6;
+  this.colour = 'rgba(256, 0, 0, 0.8)';
 
   Object.assign(this, Concerns.Catchable);
 
   this.draw = function () {
-    Canvas.ctx.strokeStyle = 'rgba(256, 0, 0, 0.8)';
-    Canvas.ctx.strokeRect(
-      (this.x - 3),
-      (this.y - 3),
-      6,
-      6
-    );
+    Canvas.draw_square(this);
   };
 
   this.check = function () {
-    if(this.caught()) {
+    if (this.caught()) {
       // increase score
       this.remove();
 

@@ -31,7 +31,7 @@ Script = {
     {func: 'show_help', message: "Oh no! What's that?!?", index: 0},
     {func: 'show_help', message: "Steer clear of the red marks!", index: 1}
   ],
-  30: [
+  40: [
     {func: 'show_help', message: "NOOOOOOOOOOOO!", index: 0},
     {func: 'add_chaser', type: 'oneshot', x: 0, y: 0},
     {func: 'add_chaser', type: 'oneshot', x: 0, y: 768},

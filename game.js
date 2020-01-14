@@ -93,11 +93,22 @@ Game = {
       function () {
         Game.draw();
         Game.health.draw();
-        Canvas.ctx.fillStyle = "#ff0000";
-        Canvas.ctx.textAlign = "center";
-        Canvas.ctx.font = ("100px Arial");
-        Canvas.ctx.fillText("GAME OVER!", 512, 200);
-        Canvas.ctx.fillText("FINAL SCORE: " + Game.score.value, 512, 300);
+        Canvas.draw_text(
+          "GAME OVER!",
+          512,
+          200,
+          "#ff0000" ,
+          "center",
+          100
+        );
+        Canvas.draw_text(
+          "FINAL SCORE: " + Game.score.value,
+          512,
+          300,
+          "#ff0000" ,
+          "center",
+          100
+        );
       },
       500
     )

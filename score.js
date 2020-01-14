@@ -21,9 +21,13 @@ function Score() {
   };
 
   this.draw = function () {
-    Canvas.ctx.font = ("30px Arial");
-    Canvas.ctx.textAlign = "left";
-    Canvas.ctx.fillStyle = 'rgba(0,0,0,1)';
-    Canvas.ctx.fillText("Score: " + this.value, 20, 25);
+    Canvas.draw_text(
+      "Score: " + this.value,
+      20,
+      25,
+      'rgba(0,0,0,1)',
+      'left',
+      30
+    );
   };
 };

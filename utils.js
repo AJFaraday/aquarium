@@ -26,7 +26,6 @@ Utils = {
 
   touching: function(thing_one, thing_two) {
     var distance_to_head = Utils.distanceBetweenPoints(thing_one, thing_two);
-    console.log(distance_to_head)
     return (distance_to_head <= thing_two.size);
   }
 };

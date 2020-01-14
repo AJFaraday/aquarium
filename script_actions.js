@@ -4,10 +4,14 @@ ScriptActions = {
   },
 
   show_help: function(args) {
-    Canvas.ctx.font = "30px Arial";
-    Canvas.ctx.fillStyle = "#000000";
-    Canvas.ctx.textAlign = "center";
-    Canvas.ctx.fillText(args.message, 512, (650 + (args.index * 32)));
+    Canvas.draw_text(
+      args.message,
+      512,
+      (650 + (args.index * 32)),
+      '#000000',
+      'center',
+      30
+    );
   },
 
   add_chaser: function(args) {
