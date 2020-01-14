@@ -1,12 +1,16 @@
-function Score() {
+if (typeof Player === 'undefined') {
+  Player = {}
+}
+
+Player.Score = function() {
   this.value = 0;
 
   this.increment = function () {
     this.value += 1;
     if (this.value % 10 == 0) {
-      Game.health.increment();
+      Player.health.increment();
     }
-    var actions = ScriptActions.for_score(Game.score.value);
+    var actions = ScriptActions.for_score(Player.score.value);
     if (actions) {
       actions.forEach(function (action) {
         if (action.type == 'oneshot') {

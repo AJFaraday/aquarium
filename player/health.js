@@ -1,4 +1,8 @@
-function Health() {
+if (typeof Player === 'undefined') {
+  Player = {}
+}
+
+Player.Health = function() {
   this.value = 10;
 
   this.increment = function () {

@@ -1,5 +1,1 @@
-Create 'player' space
-head
-tail_segment
-score
-health
+

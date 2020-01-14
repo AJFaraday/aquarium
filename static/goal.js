@@ -18,11 +18,11 @@ Static.Goal = function () {
     if (this.caught()) {
       // increase score
       this.remove();
-      Game.score.increment();
+      Player.score.increment();
       Game.add_goals();
       Game.add_obstacles();
-      Game.head.increase_difficulty();
-      Game.head.grow_tail();
+      Player.head.increase_difficulty();
+      Player.head.grow_tail();
     }
   };
 

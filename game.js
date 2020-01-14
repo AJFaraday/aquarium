@@ -6,13 +6,10 @@ Game = {
     window.ontouchend = Game.follow_event;
     window.ontouchmove = Game.follow_event;
 
-    Game.head = new Head(new MoveTarget());
+    Player.init();
 
-    Game.score = new Score();
-    Game.health = new Health();
-
-    Game.drawables = [Game.head, Game.score, Game.health];
-    Game.updatables = [Game.head];
+    Game.drawables = [Player.head, Player.score, Player.health];
+    Game.updatables = [Player.head];
 
     Game.goals = [];
     Game.add_goals();
@@ -46,14 +43,12 @@ Game = {
 
   follow_event: function (e) {
     e.preventDefault();
-    var rect = Canvas.canvas.getBoundingClientRect();
-    Game.head.target.x = e.clientX - rect.left;
-    Game.head.target.y = e.clientY - rect.top;
+    Player.set_target(e.clientX, e.clientY);
   },
 
   add_goals: function () {
     if (Game.goals.length == 0) {
-      var no_to_add = Math.floor(Game.score.value / 10) + 1;
+      var no_to_add = Math.floor(Player.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
         var new_goal = new Static.Goal();
         Game.drawables.push(new_goal);
@@ -65,7 +60,7 @@ Game = {
 
   add_obstacles: function () {
     if (Game.goals.length == 1) {
-      var no_to_add = Math.floor(Game.score.value / 20);
+      var no_to_add = Math.floor(Player.score.value / 20);
       for (var x = no_to_add; x > 0; x--) {
         var new_obstacle = new Static.Obstacle();
         Game.drawables.push(new_obstacle);
@@ -75,7 +70,7 @@ Game = {
   },
 
   do_script_actions: function () {
-    var actions = ScriptActions.for_score(Game.score.value);
+    var actions = ScriptActions.for_score(Player.score.value);
     if (actions) {
       actions.forEach(function (action) {
         if (!action.type) {
@@ -92,7 +87,7 @@ Game = {
     setTimeout(
       function () {
         Game.draw();
-        Game.health.draw();
+        Player.health.draw();
         Canvas.draw_text(
           "GAME OVER!",
           512,
@@ -102,7 +97,7 @@ Game = {
           100
         );
         Canvas.draw_text(
-          "FINAL SCORE: " + Game.score.value,
+          "FINAL SCORE: " + Player.score.value,
           512,
           300,
           "#ff0000" ,

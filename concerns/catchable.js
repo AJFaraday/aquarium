@@ -8,7 +8,7 @@ Concerns.Catchable = {
   },
 
   caught: function () {
-    return Utils.touching(this, Game.head);
+    return Utils.touching(this, Player.head);
   }
 
 };

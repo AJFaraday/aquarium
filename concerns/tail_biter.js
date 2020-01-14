@@ -5,7 +5,7 @@ if (typeof Concerns === 'undefined') {
 Concerns.TailBiter = {
   bite_tail: function () {
     var me = this;
-    Game.head.tail_segments.forEach(
+    Player.head.tail_segments.forEach(
       function (segment) {
         if (Utils.touching(me, segment) && segment.active) {
           segment.get_bitten();

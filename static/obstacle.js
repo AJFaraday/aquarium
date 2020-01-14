@@ -19,8 +19,8 @@ Static.Obstacle = function () {
       // increase score
       this.remove();
 
-      Game.head.increase_difficulty();
-      Game.health.decrement(1);
+      Player.head.increase_difficulty();
+      Player.health.decrement(1);
     }
   };
 

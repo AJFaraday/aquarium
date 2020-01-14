@@ -1,5 +1,9 @@
-Head = function (target) {
-  this.target = target;
+if (typeof Player === 'undefined') {
+  Player = {}
+}
+
+Player.Head = function () {
+  this.target = new Player.MoveTarget();
 
   this.x = (1024 / 2);
   this.y = (768 / 2);
