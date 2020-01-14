@@ -1,24 +1,5 @@
 Utils = {
 
-  drawPolygon: function (centerX, centerY, sideCount, size, strokeWidth, strokeColor, fillColor, rotationDegrees) {
-    var radians = rotationDegrees * Math.PI / 180;
-    Canvas.ctx.translate(centerX, centerY);
-    Canvas.ctx.rotate(radians);
-    Canvas.ctx.beginPath();
-    Canvas.ctx.moveTo(size * Math.cos(0), size * Math.sin(0));
-    for (var i = 1; i <= sideCount; i += 1) {
-      Canvas.ctx.lineTo(size * Math.cos(i * 2 * Math.PI / sideCount), size * Math.sin(i * 2 * Math.PI / sideCount));
-    }
-    Canvas.ctx.closePath();
-    Canvas.ctx.fillStyle = fillColor;
-    Canvas.ctx.strokeStyle = strokeColor;
-    Canvas.ctx.lineWidth = strokeWidth;
-    Canvas.ctx.stroke();
-    Canvas.ctx.fill();
-    Canvas.ctx.rotate(-radians);
-    Canvas.ctx.translate(-centerX, -centerY);
-  },
-
   angleDifference: function(angle1, angle2) {
     var diff = ( angle2 - angle1 + 180 ) % 360 - 180;
     if (diff < -180) {
@@ -28,14 +9,24 @@ Utils = {
     }
   },
 
-  angleBetweenPoints: function(x1, y1, x2, y2) {
-    return ((Math.atan2(y1 - y2, x1 - x2) * 180 / Math.PI) + 180);
+  // Note: Things always have an x and a y component
+
+  angleBetweenPoints: function(thing_one, thing_two) {
+    return ((Math.atan2(thing_one.y - thing_two.y, thing_one.x - thing_two.x) * 180 / Math.PI) + 180);
   },
 
-  distanceBetweenPoints: function(x1, y1, x2, y2) {
-    var a = x1 - x2;
-    var b = y1 - y2;
+  distanceBetweenPoints: function(thing_one, thing_two) {
+    var a = thing_one.x - thing_two.x;
+    var b = thing_one.y - thing_two.y;
 
     return Math.sqrt( a*a + b*b );
+  },
+
+  // for this, things need size, too
+
+  touching: function(thing_one, thing_two) {
+    var distance_to_head = Utils.distanceBetweenPoints(thing_one, thing_two);
+    console.log(distance_to_head)
+    return (distance_to_head <= thing_two.size);
   }
 };

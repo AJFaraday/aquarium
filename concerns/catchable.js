@@ -8,8 +8,7 @@ Concerns.Catchable = {
   },
 
   caught: function () {
-    var distance_to_head = Utils.distanceBetweenPoints(this.x, this.y, Game.head.x, Game.head.y);
-    return (distance_to_head <= Game.head.size);
+    return Utils.touching(this, Game.head);
   }
 
 };

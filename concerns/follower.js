@@ -33,7 +33,7 @@ Concerns.Follower = {
   },
 
   angle_to_target: function () {
-    return Utils.angleBetweenPoints(this.x, this.y, this.target.x, this.target.y);
+    return Utils.angleBetweenPoints(this, this.target);
   }
 
 };

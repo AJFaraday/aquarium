@@ -3,6 +3,7 @@ if (typeof Static === 'undefined') {Static = {}}
 Static.Obstacle = function () {
   this.x = Math.floor(Math.random() * 1024);
   this.y = Math.floor(Math.random() * 768);
+  this.size = 20;
 
   Object.assign(this, Concerns.Catchable);
 

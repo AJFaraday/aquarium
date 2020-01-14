@@ -7,7 +7,7 @@ Chaser = function (x, y) {
 
   this.turn_speed = 20; // up to 100
   this.speed = 20;
-  this.angle = Utils.angleBetweenPoints(this.x, this.y, Game.head.x, Game.head.y);
+  this.angle = Utils.angleBetweenPoints(this, Game.head);
   this.history = [];
 
   Object.assign(this, Concerns.Follower);
