@@ -28,7 +28,7 @@ Player.Head = function () {
   };
 
   this.draw = function () {
-    Canvas.draw_circle(this);
+    Game.canvas.draw_circle(this);
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].draw();
     }

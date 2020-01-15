@@ -21,7 +21,7 @@ Player.TailSegment = function (previous, head) {
   Object.assign(this, Concerns.Follower);
 
   this.draw = function () {
-    Canvas.draw_circle(this);
+    Game.canvas.draw_circle(this);
   };
 
   this.get_speed = function () {

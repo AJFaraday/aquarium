@@ -11,7 +11,7 @@ Static.Obstacle = function () {
   Object.assign(this, Concerns.Catchable);
 
   this.draw = function () {
-    Canvas.draw_square(this);
+    Game.canvas.draw_square(this);
   };
 
   this.update = function () {

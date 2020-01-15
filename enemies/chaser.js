@@ -33,7 +33,7 @@ Enemies.Chaser = function (x, y) {
   };
 
   this.draw = function () {
-    Canvas.draw_circle(this);
+    Game.canvas.draw_circle(this);
   };
 
 };

@@ -17,7 +17,7 @@ Player.Health = function() {
   };
 
   this.draw = function () {
-    Canvas.draw_text(
+    Game.canvas.draw_text(
       "Health: " + this.value,
       20,
       55,

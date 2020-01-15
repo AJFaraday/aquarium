@@ -1,6 +1,7 @@
-Game = {
-  init: function () {
-    Canvas.init();
+class Game {
+
+  static init() {
+    this.canvas = new Canvas();
 
     window.onmousemove = Game.follow_event;
     window.ontouchend = Game.follow_event;
@@ -21,33 +22,34 @@ Game = {
       10
     );
     Game.update_loop = setInterval(Game.update, 10);
-  },
+  }
 
-  update: function () {
+  static update() {
     Game.updatables.forEach(
       function (updatable) {
         updatable.update();
       }
     );
-  },
+  }
 
-  draw: function () {
-    Canvas.ctx.clearRect(0, 0, 1024, 768);
+  static draw() {
+    Game.canvas.clear();
     Game.drawables.forEach(
       function (drawable) {
         drawable.draw();
       }
     );
     Game.do_script_actions()
-  },
+  }
 
-  follow_event: function (e) {
+  static follow_event(e) {
     e.preventDefault();
     Player.set_target(e.clientX, e.clientY);
-  },
+  }
 
-  add_goals: function () {
+  static add_goals() {
     if (Game.goals.length == 0) {
+      console.log('adding')
       var no_to_add = Math.floor(Player.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
         var new_goal = new Static.Goal();
@@ -56,9 +58,9 @@ Game = {
         Game.goals.push(new_goal);
       }
     }
-  },
+  }
 
-  add_obstacles: function () {
+  static add_obstacles() {
     if (Game.goals.length == 1) {
       var no_to_add = Math.floor(Player.score.value / 20);
       for (var x = no_to_add; x > 0; x--) {
@@ -67,9 +69,9 @@ Game = {
         Game.updatables.push(new_obstacle);
       }
     }
-  },
+  }
 
-  do_script_actions: function () {
+  static do_script_actions() {
     var actions = Script.Actions.for_score(Player.score.value);
     if (actions) {
       actions.forEach(function (action) {
@@ -78,9 +80,9 @@ Game = {
         }
       });
     }
-  },
+  }
 
-  end: function () {
+  static end() {
     clearInterval(Game.draw_loop);
     clearInterval(Game.update_loop);
 
@@ -88,19 +90,19 @@ Game = {
       function () {
         Game.draw();
         Player.health.draw();
-        Canvas.draw_text(
+        Game.canvas.draw_text(
           "GAME OVER!",
           512,
           200,
-          "#ff0000" ,
+          "#ff0000",
           "center",
           100
         );
-        Canvas.draw_text(
+        Game.canvas.draw_text(
           "FINAL SCORE: " + Player.score.value,
           512,
           300,
-          "#ff0000" ,
+          "#ff0000",
           "center",
           100
         );
@@ -109,4 +111,4 @@ Game = {
     )
   }
 
-};
+}

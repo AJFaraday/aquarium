@@ -25,7 +25,7 @@ Player.Score = function() {
   };
 
   this.draw = function () {
-    Canvas.draw_text(
+    Game.canvas.draw_text(
       "Score: " + this.value,
       20,
       25,

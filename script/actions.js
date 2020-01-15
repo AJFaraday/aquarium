@@ -8,7 +8,7 @@ Script.Actions = {
   },
 
   show_help: function(args) {
-    Canvas.draw_text(
+    Game.canvas.draw_text(
       args.message,
       512,
       (650 + (args.index * 32)),

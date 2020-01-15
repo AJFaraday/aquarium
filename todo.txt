@@ -1,1 +1,11 @@
+ES6 (js with classes) update
+
+- not so sure about game, a class with no constructor. Another way?
+
+Enemies despawn when leaving area
+
+New enemies
+
+straight line
+patrol
 
