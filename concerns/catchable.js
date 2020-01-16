@@ -1,14 +1,16 @@
 if (typeof Concerns === 'undefined') {Concerns = {}}
 
-Concerns.Catchable = {
+Concerns.Catchable = class Catchable {
+  constructor() {
 
-  remove: function () {
-    Game.updatables.splice(Game.updatables.indexOf(this), 1);
-    Game.drawables.splice(Game.drawables.indexOf(this), 1);
-  },
-
-  caught: function () {
-    return Utils.touching(this, Player.head);
   }
 
+  remove() {
+    Game.updatables.splice(Game.updatables.indexOf(this), 1);
+    Game.drawables.splice(Game.drawables.indexOf(this), 1);
+  }
+
+  caught() {
+    return Utils.touching(this, Player.head);
+  }
 };

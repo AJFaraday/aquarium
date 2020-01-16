@@ -2,10 +2,12 @@ if (typeof Player === 'undefined') {
   Player = {}
 }
 
-Player.Score = function() {
-  this.value = 0;
+Player.Score = class {
+  constructor(){
+    this.value = 0;
+  }
 
-  this.increment = function () {
+  increment() {
     this.value += 1;
     if (this.value % 10 == 0) {
       Player.health.increment();
@@ -20,11 +22,7 @@ Player.Score = function() {
     }
   };
 
-  this.decrement = function () {
-    this.value -= 5;
-  };
-
-  this.draw = function () {
+  draw() {
     Game.canvas.draw_text(
       "Score: " + this.value,
       20,

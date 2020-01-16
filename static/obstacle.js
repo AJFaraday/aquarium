@@ -2,24 +2,24 @@ if (typeof Static === 'undefined') {
   Static = {}
 }
 
-Static.Obstacle = function () {
-  this.x = Math.floor(Math.random() * 1024);
-  this.y = Math.floor(Math.random() * 768);
-  this.size = 6;
-  this.colour = 'rgba(256, 0, 0, 0.8)';
+Static.Obstacle = class Obstacle extends Concerns.Catchable {
 
-  Object.assign(this, Concerns.Catchable);
+  constructor () {
+    super();
+    this.x = Math.floor(Math.random() * 1024);
+    this.y = Math.floor(Math.random() * 768);
+    this.size = 6;
+    this.colour = 'rgba(256, 0, 0, 0.8)';
+  }
 
-  this.draw = function () {
+  draw() {
     Game.canvas.draw_square(this);
   };
 
-  this.update = function () {
+  update () {
     if (this.caught()) {
-      // increase score
       this.remove();
-
-      Player.head.increase_difficulty();
+      Player.increase_difficulty();
       Player.health.decrement(1);
     }
   };

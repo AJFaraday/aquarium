@@ -2,24 +2,23 @@ if (typeof Enemies === 'undefined') {
   Enemies = {}
 }
 
-Enemies.Chaser = function (x, y) {
-  this.target = Player.head;
+Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
+  constructor(x, y) {
+    super();
+    this.target = Player.head;
 
-  this.x = x;
-  this.y = y;
-  this.size = 10;
-  this.colour = 'rgba(256, 0,0, 0.5)';
+    this.x = x;
+    this.y = y;
+    this.size = 10;
+    this.colour = 'rgba(256, 0,0, 0.5)';
 
-  this.turn_speed = 20; // up to 100
-  this.speed = 20;
-  this.angle = Utils.angleBetweenPoints(this, Player.head);
-  this.history = [];
+    this.turn_speed = 20; // up to 100
+    this.speed = 20;
+    this.angle = Utils.angleBetweenPoints(this, Player.head);
+    this.history = [];
+  }
 
-  Object.assign(this, Concerns.Follower);
-  Object.assign(this, Concerns.Catchable);
-  Object.assign(this, Concerns.TailBiter);
-
-  this.update = function () {
+  update() {
     this.move();
     this.bite_tail();
     if (this.caught()) {
@@ -28,11 +27,11 @@ Enemies.Chaser = function (x, y) {
     }
   };
 
-  this.get_speed = function() {
+  get_speed() {
     return this.speed;
   };
 
-  this.draw = function () {
+  draw() {
     Game.canvas.draw_circle(this);
   };
 

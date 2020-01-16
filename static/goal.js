@@ -2,17 +2,15 @@ if (typeof Static === 'undefined') {
   Static = {}
 }
 
-Static.Goal = class Goal {
+Static.Goal = class Goal extends Concerns.Catchable {
   constructor() {
-    super.constructor()
+    super();
     this.x = Math.floor(Math.random() * 1024);
     this.y = Math.floor(Math.random() * 768);
     this.size = 6;
     this.colour = 'rgba(0, 256, 256, 0.8)';
 
-    var catchable = Object.assign({}, Concerns.Catchable);
-    delete catchable.remove;
-    Object.assign(this, catchable);
+    //this.caught = Concerns.Catchable.caught
   }
 
   draw() {
@@ -25,7 +23,7 @@ Static.Goal = class Goal {
       Player.score.increment();
       Game.add_goals();
       Game.add_obstacles();
-      Player.head.increase_difficulty();
+      Player.increase_difficulty();
       Player.head.grow_tail();
     }
   }

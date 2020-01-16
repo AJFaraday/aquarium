@@ -49,7 +49,6 @@ class Game {
 
   static add_goals() {
     if (Game.goals.length == 0) {
-      console.log('adding')
       var no_to_add = Math.floor(Player.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
         var new_goal = new Static.Goal();

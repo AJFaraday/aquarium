@@ -2,8 +2,12 @@ if (typeof Concerns === 'undefined') {
   Concerns = {}
 }
 
-Concerns.TailBiter = {
-  bite_tail: function () {
+Concerns.TailBiter = class TailBiter {
+  constructor() {
+
+  }
+
+  bite_tail() {
     var me = this;
     Player.head.tail_segments.forEach(
       function (segment) {

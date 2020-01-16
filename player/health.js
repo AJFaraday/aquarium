@@ -2,21 +2,23 @@ if (typeof Player === 'undefined') {
   Player = {}
 }
 
-Player.Health = function() {
-  this.value = 10;
+Player.Health = class {
+  constructor () {
+    this.value = 10;
+  }
 
-  this.increment = function () {
+  increment() {
     this.value += 5;
-  };
+  }
 
-  this.decrement = function (damage) {
+  decrement (damage) {
     this.value -= damage;
     if (this.value <= 0) {
       Game.end();
     }
-  };
+  }
 
-  this.draw = function () {
+  draw() {
     Game.canvas.draw_text(
       "Health: " + this.value,
       20,
@@ -25,5 +27,5 @@ Player.Health = function() {
       'left',
       30
     );
-  };
+  }
 };
