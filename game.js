@@ -49,8 +49,8 @@ class Game {
 
   static follow_touch(e) {
     try {
-      Player.set_target(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
-      document.getElementById('debug').value = 'D - ' + JSON.stringify(e.originalEvent.touches[0].pageX);
+      document.getElementById('debug').value = 'D - ' + JSON.stringify(e.targetTouches[0].pageX);
+      Player.set_target(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
     } catch(error) {
       document.getElementById('debug').value = 'D - ' + error;
     }
