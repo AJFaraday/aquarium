@@ -1,7 +1,6 @@
 Enemies despawn when leaving area
 
-New enemies
-
-straight line
-patrol
+New enemies:
+- straight line
+- patrol
 

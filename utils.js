@@ -24,6 +24,6 @@ class Utils {
   // for this, things need size, too
   static touching(thing_one, thing_two) {
     var distance_to_head = Utils.distanceBetweenPoints(thing_one, thing_two);
-    return (distance_to_head <= thing_two.size);
+    return (distance_to_head <= (thing_one.size + thing_two.size));
   }
 }
