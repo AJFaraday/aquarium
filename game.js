@@ -44,6 +44,7 @@ class Game {
 
   static follow_event(e) {
     e.preventDefault();
+    document.getElementById('debug').value = JSON.stringify(e.clientX);
     Player.set_target(e.clientX, e.clientY);
   }
 
