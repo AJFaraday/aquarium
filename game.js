@@ -43,7 +43,7 @@ class Game {
   }
 
   static follow_event(e) {
-    document.getElementById('debug').value = JSON.stringify(e);
+    document.getElementById('debug').value = 'A - ' + JSON.stringify(e);
     e.preventDefault();
     Player.set_target(e.clientX, e.clientY);
   }
