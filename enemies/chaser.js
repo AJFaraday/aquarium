@@ -9,10 +9,9 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
 
     this.x = x;
     this.y = y;
-    this.size = 10;
-    this.colour = 'rgba(256, 0,0, 0.5)';
+    this.size = 20;
 
-    this.turn_speed = 20; // up to 100
+    this.turn_speed = 10; // up to 100
     this.speed = 20;
     this.angle = Utils.angleBetweenPoints(this, Player.head);
     this.history = [];
@@ -32,7 +31,8 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
   };
 
   draw() {
-    Game.canvas.draw_circle(this);
+    //Game.canvas.draw_circle(this);
+    Game.canvas.draw_triangle(this);
   };
 
 };
