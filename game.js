@@ -48,12 +48,8 @@ class Game {
   }
 
   static follow_touch(e) {
-    try {
-      document.getElementById('debug').value = 'D - ' + JSON.stringify(e.targetTouches[0].pageX);
-      Player.set_target(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-    } catch(error) {
-      document.getElementById('debug').value = 'D - ' + error;
-    }
+    e.preventDefault();
+    Player.set_target(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
   }
 
   static add_goals() {
