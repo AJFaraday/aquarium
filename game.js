@@ -1,6 +1,9 @@
 class Game {
 
   static init() {
+    this.width = 1024;
+    this.height = 768; 
+    
     this.canvas = new Canvas();
 
     window.onmousemove = Game.follow_mouse;
@@ -66,7 +69,7 @@ class Game {
 
   static add_obstacles() {
     if (Game.goals.length == 1) {
-      var no_to_add = Math.floor(Player.score.value / 20);
+      var no_to_add = Math.floor(Player.score.value / 10);
       for (var x = no_to_add; x > 0; x--) {
         var new_obstacle = new Static.Obstacle();
         Game.drawables.push(new_obstacle);

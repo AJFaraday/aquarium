@@ -15,7 +15,7 @@ And it's applied to another object with
   Object.assign(this, Follower);
 
  */
-Concerns.Follower = class {
+Concerns.Follower = class Follower {
   constructor() {
   }
   move() {
@@ -26,6 +26,9 @@ Concerns.Follower = class {
     this.history.push({x: this.x, y: this.y});
     if (this.history.length >= 15) {
       this.history.shift();
+    }
+    if (this.remove && Utils.outOfRange(this)) {
+      this.remove();
     }
   }
 

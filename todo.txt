@@ -4,3 +4,4 @@ New enemies:
 - straight line
 - patrol
 
+more red marks earlier

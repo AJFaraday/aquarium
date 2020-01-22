@@ -2,7 +2,7 @@ if (typeof Enemies === 'undefined') {
   Enemies = {}
 }
 
-Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
+Enemies.Missile = class Missile extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
   constructor(x, y) {
     super();
     this.target = Player.head;
@@ -10,10 +10,9 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
     this.x = x;
     this.y = y;
     this.size = 20;
-    this.colour = 'rgba(255,0,0,0.6)';
 
-    this.turn_speed = 10; // up to 100
-    this.speed = 20;
+    this.turn_speed = 0; 
+    this.speed = 50;
     this.angle = Utils.angleBetweenPoints(this, Player.head);
     this.history = [];
     Game.updatables.push(this);
@@ -34,7 +33,7 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
   };
 
   draw() {
-    Game.canvas.draw_circle(this);
+    Game.canvas.draw_triangle(this);
   };
 
 };

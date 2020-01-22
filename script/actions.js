@@ -18,9 +18,7 @@ Script.Actions = {
     );
   },
 
-  add_chaser: function(args) {
-    var new_chaser = new Enemies.Chaser(args.x, args.y);
-    Game.drawables.push(new_chaser);
-    Game.updatables.push(new_chaser);
+  add_enemy: function(args) {
+    new Enemies[args.enemy_type](args.x, args.y, args);
   }
 };
