@@ -3,9 +3,9 @@ class Game {
   static init() {
     this.canvas = new Canvas();
 
-    window.onmousemove = Game.follow_event;
-    window.ontouchend = Game.follow_event;
-    window.ontouchmove = Game.follow_event;
+    window.onmousemove = Game.follow_mouse;
+    window.ontouchstart = Game.follow_touch;
+    window.ontouchmove = Game.follow_touch;
 
     Player.init();
 
@@ -42,10 +42,14 @@ class Game {
     Game.do_script_actions()
   }
 
-  static follow_event(e) {
-    document.getElementById('debug').value = 'B - ' + JSON.stringify(e.originalEvent);
+  static follow_mouse(e) {
     e.preventDefault();
     Player.set_target(e.clientX, e.clientY);
+  }
+
+  static follow_touch(e) {
+    Player.set_target(e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+    document.getElementById('debug').value = 'C - ' + JSON.stringify(e.originalEvent.touches[0].pageX);
   }
 
   static add_goals() {
