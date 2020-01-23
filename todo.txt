@@ -3,5 +3,11 @@ Enemies despawn when leaving area
 New enemies:
 - straight line
 - patrol
+- Rival
 
-more red marks earlier
+Prevent out-of-box movement
+
+scale to screen and stop scrolling on mobile
+
+test suite
+

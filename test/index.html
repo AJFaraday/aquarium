@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Follow Snake</title>
+    <script src="../game.js"></script>
+    <script src="../canvas.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../mix.js"></script>
+
+    <script src="../concerns/follower.js"></script>
+    <script src="../concerns/catchable.js"></script>
+    <script src="../concerns/tail_biter.js"></script>
+
+    <script src="../player/player.js"></script>
+    <script src="../player/move_target.js"></script>
+    <script src="../player/head.js"></script>
+    <script src="../player/score.js"></script>
+    <script src="../player/health.js"></script>
+    <script src="../player/tail_segment.js"></script>
+
+    <script src="../static/goal.js"></script>
+    <script src="../static/obstacle.js"></script>
+
+    <script src="../enemies/chaser.js"></script>
+    <script src="../enemies/missile.js"></script>
+
+    <script src="../script/steps.js"></script>
+    <script src="../script/actions.js"></script>
+
+    <script src="qunit-2.9.2.js"></script>
+    <script src="unit/canvas_test.js"></script>
+    <script src="unit/game_test.js"></script>
+
+  </head>
+
+  <body>
+
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <canvas id="canvas" width="1024" height="768" style="border: 2px solid black;"></canvas>
+
+    <script type="text/javascript">
+      //Game.init();
+    </script>
+
+  </body>
+
+</html>

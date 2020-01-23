@@ -42,7 +42,7 @@ class Game {
         drawable.draw();
       }
     );
-    Game.do_script_actions()
+    Game.do_script_actions();
   }
 
   static follow_mouse(e) {

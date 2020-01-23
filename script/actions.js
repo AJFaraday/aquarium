@@ -19,6 +19,8 @@ Script.Actions = {
   },
 
   add_enemy: function(args) {
+    console.log('yup')
+
     new Enemies[args.enemy_type](args.x, args.y, args);
   }
 };
