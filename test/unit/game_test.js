@@ -116,6 +116,71 @@ QUnit.module('Game', function (mod) {
       assert.equal(Player.head.target.x, (50 - rect.left));
       assert.equal(Player.head.target.y, (70 - rect.top));
     }
-  )
+  );
+
+  QUnit.test(
+    'add one goal up to level 10',
+    function (assert) {
+      Player.score.value = 0;
+      Game.goals = [];
+      Game.add_goals();
+      assert.equal(Game.goals.length, 1);
+    }
+  );
+
+  QUnit.test(
+    'add two goal up to level 20',
+    function (assert) {
+      Player.score.value = 10;
+      Game.goals = [];
+      Game.add_goals();
+      assert.equal(Game.goals.length, 2);
+    }
+  );
+
+  QUnit.test(
+    'add two goal up to level 30',
+    function (assert) {
+      Player.score.value = 20;
+      Game.goals = [];
+      Game.add_goals();
+      assert.equal(Game.goals.length, 3);
+    }
+  );
+
+  QUnit.test(
+    'add no obstacles up to level 10',
+    function (assert) {
+      Player.score.value = 9;
+      var n_updatables = Game.updatables.length;
+      var n_drawables = Game.drawables.length;
+      Game.goals = [new Static.Goal()];
+      Game.add_obstacles();
+      assert.equal(Game.updatables.length, n_updatables);
+      assert.equal(Game.drawables.length, n_drawables);
+    }
+  );
+
+  QUnit.test(
+    'add one obstacle up to level 20',
+    function (assert) {
+      Player.score.value = 10;
+      var n_updatables = Game.updatables.length;
+      var n_drawables = Game.drawables.length;
+      Game.goals = [new Static.Goal()];
+      Game.add_obstacles();
+      assert.equal(Game.updatables.length, (n_updatables + 1));
+      assert.equal(Game.drawables.length, (n_drawables + 1));
+    }
+  );
+
+  QUnit.test(
+    'end the game',
+    function (assert) {
+      Game.end();
+      // we need an assertion, but all I'm checking is that this throws no errors
+      assert.ok(true);
+    }
+  );
 
 });
