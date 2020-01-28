@@ -152,9 +152,9 @@ QUnit.module('Game', function (mod) {
     'add no obstacles up to level 10',
     function (assert) {
       Player.score.value = 9;
+      Game.goals = [new Static.Goal()];
       var n_updatables = Game.updatables.length;
       var n_drawables = Game.drawables.length;
-      Game.goals = [new Static.Goal()];
       Game.add_obstacles();
       assert.equal(Game.updatables.length, n_updatables);
       assert.equal(Game.drawables.length, n_drawables);
@@ -165,9 +165,9 @@ QUnit.module('Game', function (mod) {
     'add one obstacle up to level 20',
     function (assert) {
       Player.score.value = 10;
+      Game.goals = [new Static.Goal()];
       var n_updatables = Game.updatables.length;
       var n_drawables = Game.drawables.length;
-      Game.goals = [new Static.Goal()];
       Game.add_obstacles();
       assert.equal(Game.updatables.length, (n_updatables + 1));
       assert.equal(Game.drawables.length, (n_drawables + 1));

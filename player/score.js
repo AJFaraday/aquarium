@@ -12,14 +12,7 @@ Player.Score = class {
     if (this.value % 10 == 0) {
       Player.health.increment();
     }
-    var actions = Script.Actions.for_score(Player.score.value);
-    if (actions) {
-      actions.forEach(function (action) {
-        if (action.type == 'oneshot') {
-          Script.Actions[action.func](action)
-        }
-      });
-    }
+    Script.Actions.run_with_type(Player.score.value, 'oneshot');
   };
 
   draw() {

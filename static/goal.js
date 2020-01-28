@@ -9,7 +9,9 @@ Static.Goal = class Goal extends Concerns.Catchable {
     this.y = Math.floor(Math.random() * 768);
     this.size = 6;
     this.colour = 'rgba(0, 256, 256, 0.8)';
-
+    Game.drawables.push(this);
+    Game.updatables.push(this);
+    Game.goals.push(this);
     //this.caught = Concerns.Catchable.caught
   }
 

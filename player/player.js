@@ -16,5 +16,5 @@ Player.set_target = function(x,y) {
 };
 
 Player.increase_difficulty = function () {
-  this.speed += 0.5;
+  Player.head.speed += 0.5;
 };

@@ -59,10 +59,7 @@ class Game {
     if (Game.goals.length == 0) {
       var no_to_add = Math.floor(Player.score.value / 10) + 1;
       for (var x = no_to_add; x > 0; x--) {
-        var new_goal = new Static.Goal();
-        Game.drawables.push(new_goal);
-        Game.updatables.push(new_goal);
-        Game.goals.push(new_goal);
+        new Static.Goal();
       }
     }
   }
@@ -71,22 +68,13 @@ class Game {
     if (Game.goals.length == 1) {
       var no_to_add = Math.floor(Player.score.value / 10);
       for (var x = no_to_add; x > 0; x--) {
-        var new_obstacle = new Static.Obstacle();
-        Game.drawables.push(new_obstacle);
-        Game.updatables.push(new_obstacle);
+        new Static.Obstacle();
       }
     }
   }
 
   static do_script_actions() {
-    var actions = Script.Actions.for_score(Player.score.value);
-    if (actions) {
-      actions.forEach(function (action) {
-        if (!action.type) {
-          Script.Actions[action.func](action)
-        }
-      });
-    }
+    Script.Actions.run_without_type(Player.score.value);
   }
 
   static end() {

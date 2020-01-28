@@ -10,6 +10,8 @@ Static.Obstacle = class Obstacle extends Concerns.Catchable {
     this.y = Math.floor(Math.random() * 768);
     this.size = 6;
     this.colour = 'rgba(256, 0, 0, 0.8)';
+    Game.drawables.push(this);
+    Game.updatables.push(this);
   }
 
   draw() {

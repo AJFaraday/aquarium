@@ -3,11 +3,37 @@ if (typeof Script === 'undefined') {
 }
 
 Script.Actions = {
-  for_score: function(score) {
+  for_score: function (score) {
     return Script.Steps[score];
   },
 
-  show_help: function(args) {
+  run_without_type: function (score) {
+    var actions = Script.Actions.for_score(score);
+    if (actions) {
+      actions.forEach(function (action) {
+        if (!action.type) {
+          Script.Actions.run_action(action);
+        }
+      });
+    }
+  },
+
+  run_with_type: function (score, type) {
+    var actions = Script.Actions.for_score(score);
+    if (actions) {
+      actions.forEach(function (action) {
+        if (action.type == type) {
+          Script.Actions.run_action(action);
+        }
+      });
+    }
+  },
+
+  run_action: function (attrs) {
+    Script.Actions[attrs.func](attrs)
+  },
+
+  show_help: function (args) {
     Game.canvas.draw_text(
       args.message,
       512,
@@ -18,7 +44,7 @@ Script.Actions = {
     );
   },
 
-  add_enemy: function(args) {
+  add_enemy: function (args) {
     new Enemies[args.enemy_type](args.x, args.y, args);
   }
 };
