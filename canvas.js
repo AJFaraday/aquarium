@@ -59,6 +59,16 @@ class Canvas {
     this.ctx.translate((source.x * -1), (source.y * -1));
   }
 
+  // both things will have x and y
+  draw_line(thing_one, thing_two, colour, thickness) {
+    this.ctx.lineWidth = thickness;
+    this.ctx.strokeStyle = colour;
+    this.ctx.beginPath();
+    this.ctx.moveTo(thing_one.x, thing_one.y);
+    this.ctx.lineTo(thing_two.x, thing_two.y);
+    this.ctx.stroke();
+  }
+
   clear() {
     this.ctx.clearRect(0, 0, 1024, 768)
   }

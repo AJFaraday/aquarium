@@ -2,7 +2,7 @@ if (typeof Enemies === 'undefined') {
   Enemies = {}
 }
 
-Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
+Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter, Concerns.LifeSpan) {
   constructor(x, y) {
     super();
     this.target = Player.head;
@@ -10,14 +10,16 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
     this.x = x;
     this.y = y;
     this.size = 20;
-    this.colour = 'rgba(255,0,0,0.6)';
+    this.life_span = 1000;
 
-    this.turn_speed = 10; // up to 100
-    this.speed = 20;
+    this.colour = 'rgba(255,0,0,0.6)';
+    this.turn_speed = 20; // up to 100
+    this.speed = 15;
     this.angle = Utils.angleBetweenPoints(this, Player.head);
     this.history = [];
     Game.updatables.push(this);
     Game.drawables.push(this);
+    this.birth_tick = Game.tick;
   }
 
   update() {
@@ -27,6 +29,7 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
       Player.health.decrement(5);
       this.remove();
     }
+    this.check_lifespan();
   };
 
   get_speed() {

@@ -11,6 +11,12 @@ Script.Steps = {
     {func: 'show_help', message: 'The snake will follow your mouse pointer.', index: 0},
     {func: 'show_help', message: 'Try to catch the light blue goals.', index: 1}
   ],
+  /*
+  1: [
+    {func: 'add_enemy', type: 'oneshot', x: 200, y: 200, enemy_type: 'Teleporter'},
+    {func: 'add_enemy', type: 'oneshot', x: 200, y: 200, enemy_type: 'Chaser'},
+  ]
+   */
   5: [
     {func: 'show_help', message: "What's THAT?!?", index: 1},
     {func: 'add_enemy', type: 'oneshot', x: 512, y: 768, enemy_type: 'Missile'}
@@ -24,19 +30,16 @@ Script.Steps = {
     {func: 'show_help', message: "Steer clear of the red marks, tho.", index: 2}
   ],
   15: [
-    {func: 'show_help', message: "Your tail's getting pretty long now.", index: 0},
-    {func: 'show_help', message: "If you bite off a little at the end, you only get a little bit hurt.", index: 1},
-    {func: 'show_help', message: "But if you bite it all off...", index: 2},
+    {func: 'show_help', message: 'Enemies are dangerous, BUT', index: 0},
+    {func: 'show_help', message: 'They only live for 10 seconds,', index: 1},
+    {func: 'show_help', message: 'Stay safe out there!', index: 2},
+    {func: 'add_enemy', type: 'oneshot', x: 200, y: 200, enemy_type: 'Chaser'}
+  ],
+  17: [
+    {func: 'add_enemy', type: 'oneshot', x: 200, y: 200, enemy_type: 'Teleporter'}
   ],
   20: [
-    {func: 'show_help', message: "Woo! Even more goals!", index: 0}
-  ],
-  40: [
-    {func: 'show_help', message: "NOOOOOOOOOOOO!", index: 0},
-    {func: 'add_chaser', type: 'oneshot', x: 0, y: 0, enemy_type: 'Chaser'},
-    {func: 'add_chaser', type: 'oneshot', x: 0, y: 768, enemy_type: 'Chaser'},
-    {func: 'add_chaser', type: 'oneshot', x: 1024, y: 768, enemy_type: 'Chaser'},
-    {func: 'add_chaser', type: 'oneshot', x: 1024, y: 0, enemy_type: 'Chaser'}
+    {func: 'add_enemy', type: 'oneshot', x: 512, y: 768, enemy_type: 'Missile'}
   ]
-
+  // How about a rival next time?
 };

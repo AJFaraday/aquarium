@@ -2,8 +2,8 @@ class Game {
 
   static init() {
     this.width = 1024;
-    this.height = 768; 
-    
+    this.height = 768;
+
     this.canvas = new Canvas();
 
     window.onmousemove = Game.follow_mouse;
@@ -25,6 +25,8 @@ class Game {
       10
     );
     Game.update_loop = setInterval(Game.update, 10);
+
+    this.tick = 0;
   }
 
   static update() {
@@ -33,6 +35,7 @@ class Game {
         updatable.update();
       }
     );
+    Game.tick++;
   }
 
   static draw() {
