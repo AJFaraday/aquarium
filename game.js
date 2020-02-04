@@ -63,13 +63,16 @@ class Game {
     }
   }
 
-  static add_creature(type) {
+  static add_creature(type, colour, strategy) {
     var creature = new Creatures[type];
+    creature.colour = colour;
+    creature.strategy = strategy;
+    /*
     var r = Math.floor(Math.random() * 192) + 64;
     var g = Math.floor(Math.random() * 192) + 64;
     var b = Math.floor(Math.random() * 192) + 64;
     creature.colour = 'rgba('+r+','+g+','+b+',0.6)';
-    console.log(creature.colour)
+     */
     return creature;
   };
 

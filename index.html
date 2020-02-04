@@ -29,9 +29,10 @@
 
     <script type="text/javascript">
       Game.init();
-      Game.add_creature('Snake');
-      Game.add_creature('Snake');
-      Game.add_creature('Snake');
+      Game.add_creature('Snake', 'rgb(255,0,0,0.6', 'nearest_food');
+      Game.add_creature('Snake', 'rgb(0,255,0,0.6', 'farthest_food');
+      Game.add_creature('Snake', 'rgb(0,0,255,0.6', 'random_food');
+
       Game.creatures.forEach(function(x){x.set_target()})
     </script>
   </body>
