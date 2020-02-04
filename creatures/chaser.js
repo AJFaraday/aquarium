@@ -1,8 +1,8 @@
-if (typeof Enemies === 'undefined') {
-  Enemies = {}
+if (typeof Creatures === 'undefined') {
+  Creatures = {}
 }
 
-Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter, Concerns.LifeSpan) {
+Creatures.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter, Concerns.LifeSpan) {
   constructor(x, y) {
     super();
     this.target = Player.head;
@@ -19,6 +19,7 @@ Enemies.Chaser = class Chaser extends mix(Concerns.Follower, Concerns.Catchable,
     this.history = [];
     Game.updatables.push(this);
     Game.drawables.push(this);
+    Game.creatures.push(this);
     this.birth_tick = Game.tick;
   }
 

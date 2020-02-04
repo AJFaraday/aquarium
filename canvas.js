@@ -27,6 +27,7 @@ class Canvas {
 
   // source will have x, y, size and colour
   draw_square(source) {
+    this.ctx.lineWidth = 5;
     this.ctx.strokeStyle = source.colour;
     this.ctx.strokeRect(
       (source.x - (source.size/2)),
@@ -70,7 +71,7 @@ class Canvas {
   }
 
   clear() {
-    this.ctx.clearRect(0, 0, 1024, 768)
+    this.ctx.clearRect(0, 0, Game.width, Game.height)
   }
 
 

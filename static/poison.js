@@ -2,12 +2,12 @@ if (typeof Static === 'undefined') {
   Static = {}
 }
 
-Static.Obstacle = class Obstacle extends Concerns.Catchable {
+Static.Poison = class Poison extends Concerns.Catchable {
 
   constructor () {
     super();
-    this.x = Math.floor(Math.random() * 1024);
-    this.y = Math.floor(Math.random() * 768);
+    this.x = Math.floor(Math.random() * Game.width);
+    this.y = Math.floor(Math.random() * Game.height);
     this.size = 6;
     this.colour = 'rgba(256, 0, 0, 0.8)';
     Game.drawables.push(this);

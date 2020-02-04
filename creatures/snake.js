@@ -1,14 +1,14 @@
-if (typeof Player === 'undefined') {
-  Player = {}
+if (typeof Creatures === 'undefined') {
+  Creatures = {}
 }
 
-Player.Head = class Head extends mix(Concerns.Follower, Concerns.TailBiter) {
+Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter, Concerns.Eater) {
   constructor () {
     super();
-    this.target = new Player.MoveTarget();
+    this.target ={x: 0, y: 0};
 
-    this.x = (1024 / 2);
-    this.y = (768 / 2);
+    this.x = Math.random() * Game.width;
+    this.y = Math.random() * Game.height;
     this.size = 40;
     this.colour = 'rgba(0,256,128, 0.3)';
 
@@ -17,6 +17,10 @@ Player.Head = class Head extends mix(Concerns.Follower, Concerns.TailBiter) {
     this.angle = 0;
     this.tail_segments = [];
     this.history = [];
+
+    Game.updatables.push(this);
+    Game.drawables.push(this);
+    Game.creatures.push(this);
   }
 
   update() {
@@ -24,6 +28,9 @@ Player.Head = class Head extends mix(Concerns.Follower, Concerns.TailBiter) {
     this.bite_tail();
     for (var segment in this.tail_segments) {
       this.tail_segments[segment].move();
+    }
+    if(!Game.food.includes(this.target)) {
+      this.set_target();
     }
   }
 
@@ -45,11 +52,8 @@ Player.Head = class Head extends mix(Concerns.Follower, Concerns.TailBiter) {
     if (target == null) {
       target = this;
     }
-    this.tail_segments.push(new Player.TailSegment(target, this));
+    this.tail_segments.push(new Creatures.TailSegment(target, this));
   }
 
-  remove() {
-    // Player head can never be removed
-    // Called in Concerns.TailBiter
-  }
+
 };

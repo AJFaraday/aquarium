@@ -1,8 +1,8 @@
-if (typeof Enemies === 'undefined') {
-  Enemies = {}
+if (typeof Creatures === 'undefined') {
+  Creatures = {}
 }
 
-Enemies.Teleporter = class Teleporter extends mix(Concerns.Catchable, Concerns.TailBiter, Concerns.LifeSpan) {
+Creatures.Teleporter = class Teleporter extends mix(Concerns.Catchable, Concerns.TailBiter, Concerns.LifeSpan) {
   constructor(x, y, args) {
     super();
     this.jump_size = 200;
@@ -20,6 +20,7 @@ Enemies.Teleporter = class Teleporter extends mix(Concerns.Catchable, Concerns.T
     this.history = [];
     Game.updatables.push(this);
     Game.drawables.push(this);
+    Game.creatures.push(this);
     this.move_target = {
       x: 0, y:0,
       colour: 'rgba(255,0,0,0.6)', size: 5

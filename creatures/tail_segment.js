@@ -1,9 +1,9 @@
-if (typeof Player === 'undefined') {
-  Player = {}
+if (typeof Creatures === 'undefined') {
+  Creatures = {}
 }
 
 // Previous could be a head, or the next closest tail segment to the head.
-Player.TailSegment = class TailSegment extends mix(Concerns.Follower) {
+Creatures.TailSegment = class TailSegment extends mix(Concerns.Follower) {
   constructor(previous, head) {
     super();
     this.head = head;
@@ -13,7 +13,7 @@ Player.TailSegment = class TailSegment extends mix(Concerns.Follower) {
     this.size = 30;
     this.speed = previous.speed;
 
-    this.colour = 'rgba(0,256,128, 0.3)';
+    this.colour = head.colour;
     this.turn_speed = 100;
     this.angle = previous.angle;
     this.target = previous;
@@ -31,7 +31,6 @@ Player.TailSegment = class TailSegment extends mix(Concerns.Follower) {
   };
 
   get_bitten() {
-    Player.health.decrement(this.head.tail_segments.length - this.head.tail_segments.indexOf(this));
     this.head.tail_segments.splice(
       this.head.tail_segments.indexOf(this),
       this.head.tail_segments.length - 1

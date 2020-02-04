@@ -24,7 +24,7 @@ Concerns.Follower = class Follower {
     this.y = Math.sin(this.angle * Math.PI / 180) * (this.get_speed() / 7) + this.y;
 
     this.history.push({x: this.x, y: this.y});
-    if (this.history.length >= 15) {
+    if (this.history.length >= 5) {
       this.history.shift();
     }
     if (this.remove && Utils.outOfRange(this)) {

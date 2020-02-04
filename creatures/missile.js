@@ -1,11 +1,11 @@
-if (typeof Enemies === 'undefined') {
-  Enemies = {}
+if (typeof Creatures === 'undefined') {
+  Creatures = {}
 }
 
-Enemies.Missile = class Missile extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
+Creatures.Missile = class Missile extends mix(Concerns.Follower, Concerns.Catchable, Concerns.TailBiter) {
   constructor(x, y) {
     super();
-    this.target = Player.head;
+    //this.target = Player.head;
 
     this.x = x;
     this.y = y;
@@ -17,6 +17,8 @@ Enemies.Missile = class Missile extends mix(Concerns.Follower, Concerns.Catchabl
     this.history = [];
     Game.updatables.push(this);
     Game.drawables.push(this);
+    Game.creatures.push(this);
+
   }
 
   update() {

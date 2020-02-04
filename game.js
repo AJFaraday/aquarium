@@ -1,22 +1,20 @@
 class Game {
 
   static init() {
-    this.width = 1024;
-    this.height = 768;
+    //this.width = Game.width;
+    //this.height = Game.height;
+    this.width = document.documentElement.clientWidth - 5;
+    this.height = document.documentElement.clientHeight - 5;
 
     this.canvas = new Canvas();
+    this.canvas.canvas.width = this.width;
+    this.canvas.canvas.height = this.height;
 
-    window.onmousemove = Game.follow_mouse;
-    window.ontouchstart = Game.follow_touch;
-    window.ontouchmove = Game.follow_touch;
+    Game.drawables = [];
+    Game.updatables = [];
 
-    Player.init();
-
-    Game.drawables = [Player.head, Player.score, Player.health];
-    Game.updatables = [Player.head];
-
-    Game.goals = [];
-    Game.add_goals();
+    Game.food = [];
+    Game.creatures = [];
 
     Game.draw_loop = setInterval(
       function () {
@@ -35,6 +33,7 @@ class Game {
         updatable.update();
       }
     );
+    Game.add_food();
     Game.tick++;
   }
 
@@ -45,36 +44,34 @@ class Game {
         drawable.draw();
       }
     );
-    Game.do_script_actions();
   }
 
-  static follow_mouse(e) {
-    e.preventDefault();
-    Player.set_target(e.clientX, e.clientY);
-  }
-
-  static follow_touch(e) {
-    e.preventDefault();
-    Player.set_target(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-  }
-
-  static add_goals() {
-    if (Game.goals.length == 0) {
-      var no_to_add = Math.floor(Player.score.value / 10) + 1;
-      for (var x = no_to_add; x > 0; x--) {
-        new Static.Goal();
-      }
+  static add_food() {
+    if ((Game.tick % 100) == 0) {
+      //for (var x = no_to_add; x > 0; x--) {
+      new Static.Food();
+      //}
     }
   }
 
-  static add_obstacles() {
+  static add_poison() {
     if (Game.goals.length == 1) {
       var no_to_add = Math.floor(Player.score.value / 10);
       for (var x = no_to_add; x > 0; x--) {
-        new Static.Obstacle();
+        new Static.Poison();
       }
     }
   }
+
+  static add_creature(type) {
+    var creature = new Creatures[type];
+    var r = Math.floor(Math.random() * 192) + 64;
+    var g = Math.floor(Math.random() * 192) + 64;
+    var b = Math.floor(Math.random() * 192) + 64;
+    creature.colour = 'rgba('+r+','+g+','+b+',0.6)';
+    console.log(creature.colour)
+    return creature;
+  };
 
   static do_script_actions() {
     Script.Actions.run_without_type(Player.score.value);
@@ -83,30 +80,6 @@ class Game {
   static end() {
     clearInterval(Game.draw_loop);
     clearInterval(Game.update_loop);
-
-    setTimeout(
-      function () {
-        Game.draw();
-        Player.health.draw();
-        Game.canvas.draw_text(
-          "GAME OVER!",
-          512,
-          200,
-          "#ff0000",
-          "center",
-          100
-        );
-        Game.canvas.draw_text(
-          "FINAL SCORE: " + Player.score.value,
-          512,
-          300,
-          "#ff0000",
-          "center",
-          100
-        );
-      },
-      500
-    )
   }
 
 }

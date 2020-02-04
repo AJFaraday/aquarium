@@ -9,7 +9,7 @@ Concerns.TailBiter = class TailBiter {
 
   bite_tail() {
     var me = this;
-    Player.head.tail_segments.forEach(
+    this.tail_segments.forEach(
       function (segment) {
         if (Utils.touching(me, segment) && segment.active) {
           segment.get_bitten();
