@@ -35,6 +35,9 @@ class Game {
     );
     Game.add_food();
     Game.tick++;
+    if(Game.creatures.length <= 2) {
+      Game.add_random_creature();
+    }
   }
 
   static draw() {
@@ -46,8 +49,16 @@ class Game {
     );
   }
 
+  static add_random_creature() {
+    Game.add_creature(
+      'Snake',
+      'rgba('+(Math.random() * 255)+','+(Math.random() * 255)+','+(Math.random() * 255)+', 0.4)',
+      Object.keys(Strategies)[Math.floor(Math.random() * Object.keys(Strategies).length)]
+    );
+  }
+
   static add_food() {
-    if ((Game.tick % 100) == 0) {
+    if ((Game.tick % 50) == 0) {
       //for (var x = no_to_add; x > 0; x--) {
       new Static.Food();
       //}
@@ -66,7 +77,7 @@ class Game {
   static add_creature(type, colour, strategy) {
     var creature = new Creatures[type];
     creature.colour = colour;
-    creature.strategy = strategy;
+    creature.set_strategy(strategy);
     /*
     var r = Math.floor(Math.random() * 192) + 64;
     var g = Math.floor(Math.random() * 192) + 64;

@@ -31,6 +31,7 @@ Creatures.TailSegment = class TailSegment extends mix(Concerns.Follower) {
   };
 
   get_bitten() {
+    this.head.health -= (this.head.tail_segments.length - this.head.tail_segments.indexOf(this)) * 2;
     this.head.tail_segments.splice(
       this.head.tail_segments.indexOf(this),
       this.head.tail_segments.length - 1

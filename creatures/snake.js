@@ -17,10 +17,19 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.angle = 0;
     this.tail_segments = [];
     this.history = [];
+    this.health = 20;
 
     Game.updatables.push(this);
     Game.drawables.push(this);
     Game.creatures.push(this);
+  }
+
+  set_strategy(strategy) {
+    if (Strategies[strategy]) {
+      this.strategy = Strategies[strategy];
+    } else {
+      throw("Unknown strategy: " + strategy)
+    }
   }
 
   update() {
@@ -31,6 +40,9 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     }
     if(!Game.food.includes(this.target)) {
       this.set_target();
+    }
+    if (this.health <= 0) {
+      this.remove();
     }
   }
 
@@ -43,6 +55,20 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
 
   get_speed() {
     return this.speed;
+  }
+
+  get_bitten() {
+    this.speed = 20;
+  }
+
+  bite(creature) {
+    this.speed += creature.speed / 10;
+  }
+
+  remove() {
+    Game.updatables.splice(Game.updatables.indexOf(this), 1);
+    Game.drawables.splice(Game.drawables.indexOf(this), 1);
+    Game.creatures.splice(Game.creatures.indexOf(this), 1);
   }
 
   //////////////

@@ -15,13 +15,19 @@ strategy nearest farthest random
 
 Concerns.Eater = class Eater {
 
+  see_new_food() {
+    if (this.strategy.see_new == 'retarget') {
+      this.set_target();
+    }
+  }
+
   set_target() {
     if (Game.food.length > 0) {
       //this.target = this.random_food();
       if(typeof this.strategy === 'undefined') {
         this.target = this.random_food();
       } else {
-        this.target = this[this.strategy]();
+        this.target = this[this.strategy.target_type]();
       }
     } else {
       // todo choose somewhere nearby
@@ -41,6 +47,18 @@ Concerns.Eater = class Eater {
     return Game.food[distances.indexOf(min_distance)];
   }
 
+  least_rotation() {
+    this.get_angle();
+    var eater = this;
+    var angles = Game.food.map(function (food) {
+      var angle = Utils.angleBetweenPoints(food,eater) ;
+      return Utils.angleDifference(angle, eater.angle);
+    });
+
+    var min_angle = Math.min (...angles);
+    return Game.food[angles.indexOf(min_angle)];
+  }
+
   farthest_food() {
     var eater = this;
     var distances = Game.food.map(function (food) {
@@ -55,6 +73,7 @@ Concerns.Eater = class Eater {
   }
 
   eat() {
+    this.health += 1;
     this.speed += 0.1;
     this.set_target();
     this.grow_tail();

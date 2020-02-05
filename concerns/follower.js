@@ -27,9 +27,9 @@ Concerns.Follower = class Follower {
     if (this.history.length >= 5) {
       this.history.shift();
     }
-    if (this.remove && Utils.outOfRange(this)) {
-      this.remove();
-    }
+    //if (this.remove && Utils.outOfRange(this)) {
+    //  this.remove();
+    //}
   }
 
   get_angle() {

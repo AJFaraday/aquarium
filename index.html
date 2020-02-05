@@ -7,7 +7,8 @@
     <script src="canvas.js"></script>
     <script src="utils.js"></script>
     <script src="mix.js"></script>
-
+    <script src="strategies.js"></script>
+    
     <script src="concerns/follower.js"></script>
     <script src="concerns/catchable.js"></script>
     <script src="concerns/tail_biter.js"></script>
@@ -29,9 +30,11 @@
 
     <script type="text/javascript">
       Game.init();
-      Game.add_creature('Snake', 'rgb(255,0,0,0.6', 'nearest_food');
-      Game.add_creature('Snake', 'rgb(0,255,0,0.6', 'farthest_food');
-      Game.add_creature('Snake', 'rgb(0,0,255,0.6', 'random_food');
+      new Static.Food();
+      Game.add_creature('Snake', 'rgb(255,0,0,0.4', 'nearest');
+      Game.add_creature('Snake', 'rgb(0,255,0,0.4', 'farthest');
+      Game.add_creature('Snake', 'rgb(0,0,255,0.4', 'random');
+      Game.add_creature('Snake', 'rgb(128,128,128,0.4', 'low_turning');
 
       Game.creatures.forEach(function(x){x.set_target()})
     </script>
