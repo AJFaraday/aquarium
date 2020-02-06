@@ -1,13 +1,14 @@
-Enemies despawn when leaving area
+rename creatures>snakes
 
-New enemies:
-- straight line
-- patrol
-- Rival
+reintroduce enemies
 
-Prevent out-of-box movement
 
-scale to screen and stop scrolling on mobile
+retarget when
+- see food
+- target isn't food
+- target isn't snake
 
-test suite
 
+Config
+- food interval
+- min snakes

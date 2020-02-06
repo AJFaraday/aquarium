@@ -1,5 +1,5 @@
 Config = {
-  min_snakes: 1,
+  min_snakes: 2,
   // In 100ths of a second
   food_interval: 50,
   starting_snakes: [
