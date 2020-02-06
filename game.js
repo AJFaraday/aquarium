@@ -16,6 +16,12 @@ class Game {
     Game.food = [];
     Game.creatures = [];
 
+    Config.starting_snakes.forEach(
+      function(config) {
+        Game.add_creature('Snake', config.colour, config.strategy)
+      }
+    );
+
     Game.draw_loop = setInterval(
       function () {
         requestAnimationFrame(Game.draw)
@@ -35,7 +41,7 @@ class Game {
     );
     Game.add_food();
     Game.tick++;
-    if(Game.creatures.length <= 2) {
+    if(Game.creatures.length < Config.min_snakes) {
       Game.add_random_creature();
     }
   }
@@ -58,10 +64,8 @@ class Game {
   }
 
   static add_food() {
-    if ((Game.tick % 50) == 0) {
-      //for (var x = no_to_add; x > 0; x--) {
+    if ((Game.tick % Config.food_interval) == 0) {
       new Static.Food();
-      //}
     }
   }
 

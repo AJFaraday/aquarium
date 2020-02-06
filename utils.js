@@ -10,10 +10,10 @@ class Utils {
   }
   
   static outOfRange(thing) {
-      return thing.x < -50
-        || thing.x > (Game.width + 50)
-        || thing.y < -50
-        || thing.y > (Game.height + 50)
+      return thing.x < -200
+        || thing.x > (Game.width + 200)
+        || thing.y < -200
+        || thing.y > (Game.height + 200)
   }
 
   // Note: Things always have an x and a y component

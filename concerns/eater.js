@@ -24,7 +24,7 @@ Concerns.Eater = class Eater {
   set_target() {
     if (Game.food.length > 0) {
       //this.target = this.random_food();
-      if(typeof this.strategy === 'undefined') {
+      if (typeof this.strategy === 'undefined') {
         this.target = this.random_food();
       } else {
         this.target = this[this.strategy.target_type]();
@@ -47,16 +47,50 @@ Concerns.Eater = class Eater {
     return Game.food[distances.indexOf(min_distance)];
   }
 
+  nearest_snake() {
+    var eater = this;
+    var distances = Game.creatures.map(function (creature) {
+      if (creature == eater) {
+        return 99999;
+      }
+      return Utils.distanceBetweenPoints(eater, creature);
+    });
+    var min_distance = Math.min(...distances);
+    return Game.creatures[distances.indexOf(min_distance)];
+  }
+
+
+  highest_food() {
+    var eater = this;
+    var heights = Game.food.map(function (food) {
+      return food.y;
+    });
+    var min_height = Math.min(...heights);
+    return Game.food[heights.indexOf(min_height)];
+  }
+
   least_rotation() {
     this.get_angle();
     var eater = this;
     var angles = Game.food.map(function (food) {
-      var angle = Utils.angleBetweenPoints(food,eater) ;
-      return Utils.angleDifference(angle, eater.angle);
+      var angle = Utils.angleBetweenPoints(food, eater);
+      return Math.abs(Utils.angleDifference(angle, eater.angle));
     });
 
-    var min_angle = Math.min (...angles);
+    var min_angle = Math.max(...angles);
     return Game.food[angles.indexOf(min_angle)];
+  }
+
+  most_rotation() {
+    this.get_angle();
+    var eater = this;
+    var angles = Game.food.map(function (food) {
+      var angle = Utils.angleBetweenPoints(food, eater);
+      return Math.abs(Utils.angleDifference(angle, eater.angle));
+    });
+
+    var max_angle = Math.min(...angles);
+    return Game.food[angles.indexOf(max_angle)];
   }
 
   farthest_food() {
