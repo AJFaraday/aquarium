@@ -16,11 +16,24 @@ class Game {
     Game.food = [];
     Game.creatures = [];
 
+    var starting_snakes_left = Config.min_starting_snakes;
     Config.starting_snakes.forEach(
-      function(config) {
-        Game.add_creature('Snake', config.colour, config.strategy)
+      function (config) {
+        [...Array(config.count)].forEach(
+          function (_) {
+            Game.add_creature('Snake', config.colour, config.strategy);
+            starting_snakes_left--;
+          }
+        );
       }
     );
+    if(starting_snakes_left > 0) {
+      [...Array(starting_snakes_left)].forEach(
+        function (_) {
+          Game.add_random_creature();
+        }
+      );
+    }
 
     Game.draw_loop = setInterval(
       function () {
@@ -41,7 +54,7 @@ class Game {
     );
     Game.add_food();
     Game.tick++;
-    if(Game.creatures.length < Config.min_snakes) {
+    if (Game.creatures.length < Config.min_snakes) {
       Game.add_random_creature();
     }
   }
@@ -56,10 +69,11 @@ class Game {
   }
 
   static add_random_creature() {
+    var config = Config.starting_snakes[Math.floor(Math.random() * Config.starting_snakes.length)];
     Game.add_creature(
       'Snake',
-      'rgba('+(Math.random() * 255)+','+(Math.random() * 255)+','+(Math.random() * 255)+', 0.4)',
-      Object.keys(Strategies)[Math.floor(Math.random() * Object.keys(Strategies).length)]
+      config.colour,
+      config.strategy
     );
   }
 

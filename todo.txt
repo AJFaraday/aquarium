@@ -1,7 +1,5 @@
 rename creatures>snakes
 
-reintroduce enemies
-
 
 retarget when
 - see food
@@ -12,3 +10,7 @@ retarget when
 Config
 - food interval
 - min snakes
+
+
+Add a starvation mechanic.
+N ticks since last food or tail, perhaps?

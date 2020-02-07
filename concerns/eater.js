@@ -23,7 +23,6 @@ Concerns.Eater = class Eater {
 
   set_target() {
     if (Game.food.length > 0) {
-      //this.target = this.random_food();
       if (typeof this.strategy === 'undefined') {
         this.target = this.random_food();
       } else {
@@ -32,8 +31,8 @@ Concerns.Eater = class Eater {
     } else {
       // todo choose somewhere nearby
       this.target = {
-        x: ((Math.random() * 200) - 100) + this.x,
-        y: ((Math.random() * 200) - 100) + this.y
+        x: this.x,
+        y: this.y
       }
     }
   }
