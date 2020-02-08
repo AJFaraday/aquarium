@@ -6,11 +6,24 @@ retarget when
 - target isn't food
 - target isn't snake
 
-
 Config
 - food interval
 - min snakes
 
-
 Add a starvation mechanic.
 N ticks since last food or tail, perhaps?
+
+Game modes (fixed random seed):
+* solo survival
+* battle royal (one of each)
+* famine mode (reduce food spawns)
+* swarm mode (10 of each)
+
+
+Functions of Strategy class
+
+set_target
+new_food
+target_removed
+tail_bitten
+every_tick
