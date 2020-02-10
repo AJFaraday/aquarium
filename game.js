@@ -3,12 +3,13 @@ class Game {
   static init() {
     //this.width = Game.width;
     //this.height = Game.height;
-    this.width = document.documentElement.clientWidth - 5;
-    this.height = document.documentElement.clientHeight - 5;
+    this.width = document.documentElement.clientWidth;
+    this.height = document.documentElement.clientHeight;
 
     this.canvas = new Canvas();
     this.canvas.canvas.width = this.width;
     this.canvas.canvas.height = this.height;
+    this.tick = 0;
 
     Game.drawables = [];
     Game.updatables = [];
@@ -16,6 +17,12 @@ class Game {
     Game.food = [];
     Game.creatures = [];
 
+
+    [...Array(Config.starting_food)].forEach(
+      function (_) {
+        Game.add_food();
+      }
+    );
     var starting_snakes_left = Config.min_starting_snakes;
     Config.starting_snakes.forEach(
       function (config) {
@@ -27,7 +34,7 @@ class Game {
         );
       }
     );
-    if(starting_snakes_left > 0) {
+    if (starting_snakes_left > 0) {
       [...Array(starting_snakes_left)].forEach(
         function (_) {
           Game.add_random_creature();
@@ -43,7 +50,6 @@ class Game {
     );
     Game.update_loop = setInterval(Game.update, 10);
 
-    this.tick = 0;
   }
 
   static update() {

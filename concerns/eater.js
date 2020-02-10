@@ -23,17 +23,28 @@ Concerns.Eater = class Eater {
 
   set_target() {
     if (Game.food.length > 0) {
+      this.idling = false;
       if (typeof this.strategy === 'undefined') {
         this.target = this.random_food();
       } else {
         this.target = this[this.strategy.target_type]();
       }
     } else {
-      // todo choose somewhere nearby
-      this.target = {
-        x: this.x,
-        y: this.y
-      }
+      this.idle();
+    }
+  }
+
+  idle() {
+    if(typeof this.idle_target_tick == 'undefined') {
+      this.idle_target_tick = Game.tick;
+    }
+    if(typeof this.idle_inteval == 'undefined') {
+      this.idle_interval = (Math.random() * 400) + 100;
+    }
+    if((Game.tick - this.idle_target_tick) > 100) {
+      this.idle_target_tick = Game.tick;
+
+      this.target = {x: (Math.random() * Game.width), y: (Math.random() * Game.height)};
     }
   }
 
@@ -106,6 +117,7 @@ Concerns.Eater = class Eater {
   }
 
   eat() {
+    this.last_ate_tick = Game.tick;
     this.health += 1;
     this.speed += 0.1;
     this.set_target();

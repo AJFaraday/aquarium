@@ -19,6 +19,7 @@ new_food
 target_removed
 tail_bitten
 every_tick
+idle
 
 Game modes (fixed random seed, fixed board size):
 * solo survival

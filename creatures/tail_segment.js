@@ -8,8 +8,13 @@ Creatures.TailSegment = class TailSegment extends mix(Concerns.Follower) {
     super();
     this.head = head;
 
-    this.x = previous.history[0].x;
-    this.y = previous.history[0].y;
+    if (previous.history[0]) {
+      this.x = previous.history[0].x;
+      this.y = previous.history[0].y;
+    } else {
+      this.x = previous.x;
+      this.y = previous.y;
+    }
     this.size = 30;
     this.speed = previous.speed;
 

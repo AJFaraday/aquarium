@@ -28,6 +28,7 @@ Concerns.Follower = class Follower {
       this.history.shift();
     }
     if (this.remove && Utils.outOfRange(this)) {
+      console.log('snake removed because it is out of bounds');
       this.remove();
     }
   }

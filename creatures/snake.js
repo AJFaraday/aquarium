@@ -10,7 +10,6 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.x = Math.random() * Game.width;
     this.y = Math.random() * Game.height;
     this.size = 40;
-    this.colour = 'rgba(0,256,128, 0.3)';
 
     this.turn_speed = 40; // up to 100
     this.speed = 20;
@@ -18,6 +17,10 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.tail_segments = [];
     this.history = [];
     this.health = 20;
+    this.last_ate_tick = Game.tick;
+    this.idling = false;
+    this.grow_tail();
+    this.grow_tail();
 
     Game.updatables.push(this);
     Game.drawables.push(this);
@@ -42,8 +45,10 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
       this.set_target();
     }
     if (this.health <= 0) {
+      console.log("snake removed because it's tail was bitten")
       this.remove();
     }
+    this.check_for_starvation();
   }
 
   draw() {
@@ -62,6 +67,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   }
 
   bite(creature) {
+    this.last_ate_tick = Game.tick;
     this.speed += creature.speed / 10;
   }
 
@@ -81,5 +87,17 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.tail_segments.push(new Creatures.TailSegment(target, this));
   }
 
+  check_for_starvation() {
+    if ((Game.tick - this.last_ate_tick) > Config.starvation_interval) {
+      if (this.tail_segments.length == 0) {
+        console.log('snake died of starvation')
+        this.remove();
+      } else {
+        console.log('snake got shorter')
+        this.last_ate_tick = Game.tick;
+        this.tail_segments.pop();
+      }
+    }
+  }
 
 };
