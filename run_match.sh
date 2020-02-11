@@ -1,4 +1,4 @@
-terser --compress -o aquarium.min.js \
+terser --compress -o aquarium.cli.min.js \
   config.js \
   game.js \
   canvas.js \
@@ -9,3 +9,5 @@ terser --compress -o aquarium.min.js \
   static/*.js \
   creatures/*.js
 
+echo "module.exports = Game;" >> aquarium.cli.min.js
+node command_line.js

@@ -45,7 +45,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
       this.set_target();
     }
     if (this.health <= 0) {
-      console.log("snake removed because it's tail was bitten")
+      console.log(Game.tick + ": snake removed because it's tail was bitten");
       this.remove();
     }
     this.check_for_starvation();
@@ -90,10 +90,9 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   check_for_starvation() {
     if ((Game.tick - this.last_ate_tick) > Config.starvation_interval) {
       if (this.tail_segments.length == 0) {
-        console.log('snake died of starvation')
+        console.log(Game.tick + ': snake died of starvation')
         this.remove();
       } else {
-        console.log('snake got shorter')
         this.last_ate_tick = Game.tick;
         this.tail_segments.pop();
       }

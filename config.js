@@ -1,6 +1,6 @@
 // The game runs at 100 ticks per second
 Config = {
-  min_snakes: 5,
+  min_snakes: 0,
   starting_food: 20, //initial feast
   food_interval: 100, // In ticks
   starting_snakes: [
@@ -13,6 +13,6 @@ Config = {
     {colour: 'rgb(0,0,0,0.4)', strategy: 'parasite', count: 2}
   ],
   // Make it higher to start with at least this many
-  min_starting_snakes: 20,
+  min_starting_snakes: 100,
   starvation_interval: 500 // In ticks
 };

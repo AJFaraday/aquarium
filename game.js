@@ -1,14 +1,18 @@
 class Game {
 
   static init() {
-    //this.width = Game.width;
-    //this.height = Game.height;
-    this.width = document.documentElement.clientWidth;
-    this.height = document.documentElement.clientHeight;
+    this.cli_mode = (typeof document === 'undefined');
+    if (this.cli_mode) {
+      this.width = 1024;
+      this.height = 768;
+    } else {
+      this.width = document.documentElement.clientWidth;
+      this.height = document.documentElement.clientHeight;
+      this.canvas = new Canvas();
+      this.canvas.canvas.width = this.width;
+      this.canvas.canvas.height = this.height;
+    }
 
-    this.canvas = new Canvas();
-    this.canvas.canvas.width = this.width;
-    this.canvas.canvas.height = this.height;
     this.tick = 0;
 
     Game.drawables = [];
@@ -42,14 +46,15 @@ class Game {
       );
     }
 
-    Game.draw_loop = setInterval(
-      function () {
-        requestAnimationFrame(Game.draw)
-      },
-      10
-    );
-    Game.update_loop = setInterval(Game.update, 10);
-
+    if (!this.cli_mode) {
+      Game.draw_loop = setInterval(
+        function () {
+          requestAnimationFrame(Game.draw)
+        },
+        10
+      );
+      Game.update_loop = setInterval(Game.update, 10);
+    }
   }
 
   static update() {
@@ -62,6 +67,9 @@ class Game {
     Game.tick++;
     if (Game.creatures.length < Config.min_snakes) {
       Game.add_random_creature();
+    }
+    if(Game.creatures.length == 0) {
+      Game.end();
     }
   }
 
