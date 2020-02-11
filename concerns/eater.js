@@ -63,7 +63,8 @@ Concerns.Eater = class Eater {
       if (creature == eater) {
         return 99999;
       }
-      return Utils.distanceBetweenPoints(eater, creature);
+      var length = creature.tail_segments.length;
+      return Utils.distanceBetweenPoints(eater, creature) - (length * 1000);
     });
     var min_distance = Math.min(...distances);
     return Game.creatures[distances.indexOf(min_distance)];

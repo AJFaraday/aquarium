@@ -5,9 +5,8 @@ retarget when
 - target isn't food
 - target isn't snake
 
-Config
-- food interval
-- min snakes
+
+minify js (hope to run on command line)
 
 Add a starvation mechanic.
 N ticks since last food or tail, perhaps?
