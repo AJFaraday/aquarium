@@ -1,8 +1,8 @@
 // The game runs at 100 ticks per second
 Config = {
-  min_snakes: 0,
+  min_snakes: 5,
   starting_food: 20, //initial feast
-  food_interval: 50, // In ticks
+  food_interval: 100, // In ticks
   starting_snakes: [
     {colour: 'rgb(255,0,0,0.4)', strategy: 'nearest', count: 2},
     {colour: 'rgb(0,255,0,0.4)', strategy: 'farthest', count: 2},
