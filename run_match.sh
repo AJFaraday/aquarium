@@ -1,3 +1,5 @@
+export NODE_PATH=/usr/lib/node_modules
+
 terser --compress -o aquarium.cli.min.js \
   config.js \
   game.js \

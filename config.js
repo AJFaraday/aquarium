@@ -13,6 +13,6 @@ Config = {
     {colour: 'rgb(0,0,0,0.4)', strategy: 'parasite', count: 2}
   ],
   // Make it higher to start with at least this many
-  min_starting_snakes: 100,
+  min_starting_snakes: 1,
   starvation_interval: 500 // In ticks
 };

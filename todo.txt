@@ -26,7 +26,7 @@ Game modes (fixed random seed, fixed board size):
 * famine mode (reduce food spawns)
 * swarm mode (10 of each)
 * parasite mode (snake vs parasite, of parasite dies, another starts)
-* self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
+* self rivalry (10, 50, 100 of the same. Repnpm ort highest?, lowest?)
 
 
 Challenge before tournament.

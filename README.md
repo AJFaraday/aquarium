@@ -46,3 +46,17 @@ If you're not me, put in a PR.
 Currently, the master branch is available at
 
 https://ajfaraday.github.io/aquarium/
+
+# Run in command line
+
+First, you need terser:
+
+```bash
+sudo npm install terser -g
+```
+
+For now, just run this 
+
+```bash
+./run_match.sh
+```

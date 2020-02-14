@@ -1,3 +1,6 @@
+// First run:
+// export NODE_PATH=/usr/lib/node_modules
+
 var Game = require('./aquarium.cli.min');
 
 Game.init();
