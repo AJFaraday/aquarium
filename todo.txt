@@ -19,10 +19,10 @@ idle
 Game modes (fixed random seed, fixed board size):
 * solo survival
 * battle royal (one of each)
-* famine mode (reduce food spawns)
+* famine mode (battle royale with famine on)
 * swarm mode (10 of each)
 * parasite mode (snake vs parasite, of parasite dies, another starts)
-* self rivalry (10, 50, 100 of the same. Repnpm ort highest?, lowest?)
+* self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
 
 
 

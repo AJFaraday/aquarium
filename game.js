@@ -18,6 +18,7 @@ class Game {
     Game.drawables = [];
     Game.updatables = [];
 
+    Game.last_food_tick = 0;
     Game.food = [];
     Game.creatures = [];
 
@@ -119,7 +120,8 @@ class Game {
   }
 
   static add_food() {
-    if ((Game.tick % Config.food_interval) == 0) {
+    if ((Game.tick - Game.last_food_tick) >= Config.food_interval) {
+      Game.last_food_tick = Game.tick;
       new Static.Food();
     }
   }

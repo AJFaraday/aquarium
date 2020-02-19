@@ -35,5 +35,8 @@ Static.Food = class Food extends Concerns.Catchable {
     Game.updatables.splice(Game.updatables.indexOf(this), 1);
     Game.drawables.splice(Game.drawables.indexOf(this), 1);
     Game.food.splice(Game.food.indexOf(this), 1);
+    if(Config.famine == true) {
+      Config.food_interval += 10;
+    }
   }
 };
