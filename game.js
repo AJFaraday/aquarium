@@ -126,25 +126,12 @@ class Game {
     }
   }
 
-  static add_poison() {
-    if (Game.goals.length == 1) {
-      var no_to_add = Math.floor(Player.score.value / 10);
-      for (var x = no_to_add; x > 0; x--) {
-        new Static.Poison();
-      }
-    }
-  }
-
   static add_creature(type, colour, strategy) {
     var creature = new Creatures[type];
     creature.colour = colour;
     creature.set_strategy(strategy);
     return creature;
   };
-
-  static do_script_actions() {
-    Script.Actions.run_without_type(Player.score.value);
-  }
 
   static end() {
     clearInterval(Game.draw_loop);
