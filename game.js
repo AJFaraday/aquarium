@@ -21,12 +21,14 @@ class Game {
     Game.food = [];
     Game.creatures = [];
 
+    switch (Config.starting_food_mode) {
+      case 'rng':
+        Game.add_random_foods(Config.starting_food);
+        break;
+      case 'grid':
+        Game.add_food_grid(Config.grid_size);
+    }
 
-    [...Array(Config.starting_food)].forEach(
-      function (_) {
-        Game.add_food();
-      }
-    );
     var starting_snakes_left = Config.min_starting_snakes;
     Config.starting_snakes.forEach(
       function (config) {
@@ -68,7 +70,7 @@ class Game {
     if (Game.creatures.length < Config.min_snakes) {
       Game.add_random_creature();
     }
-    if(Game.creatures.length == 0) {
+    if (Game.creatures.length == 0) {
       Game.end();
     }
   }
@@ -91,6 +93,31 @@ class Game {
     );
   }
 
+  static add_random_foods(n) {
+    [...Array(n)].forEach(
+      function (_) {
+        Game.add_food();
+      }
+    );
+  }
+
+  static add_food_grid(size) {
+    var grid_width = Math.floor(Game.width / size);
+    var grid_height = Math.floor(Game.height / size);
+    var row = 0;
+    var col = 0;
+    while (row <= grid_height) {
+      col = 0;
+      while (col <= grid_width) {
+        var food = new Static.Food();
+        food.x = col * size;
+        food.y = row * size;
+        col++;
+      }
+      row++;
+    }
+  }
+
   static add_food() {
     if ((Game.tick % Config.food_interval) == 0) {
       new Static.Food();
@@ -110,12 +137,6 @@ class Game {
     var creature = new Creatures[type];
     creature.colour = colour;
     creature.set_strategy(strategy);
-    /*
-    var r = Math.floor(Math.random() * 192) + 64;
-    var g = Math.floor(Math.random() * 192) + 64;
-    var b = Math.floor(Math.random() * 192) + 64;
-    creature.colour = 'rgba('+r+','+g+','+b+',0.6)';
-     */
     return creature;
   };
 
