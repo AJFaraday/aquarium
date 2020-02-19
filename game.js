@@ -91,9 +91,10 @@ class Game {
   }
 
   static add_random_foods(n) {
+
     [...Array(n)].forEach(
       function (_) {
-        Game.add_food();
+        new Static.Food();
       }
     );
   }

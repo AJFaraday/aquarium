@@ -1,6 +1,7 @@
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1
+* kill another snake - 10
 * 10 seconds alive - 1
 * Last snake alive - 1
 
