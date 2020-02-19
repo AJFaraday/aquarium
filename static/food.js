@@ -13,9 +13,9 @@ Static.Food = class Food extends Concerns.Catchable {
     Game.updatables.push(this);
     Game.food.push(this);
 
-    Game.creatures.forEach(
-      function(creature) {
-        creature.see_new_food();
+    Game.snakes.forEach(
+      function(snake) {
+        snake.see_new_food();
       }
     )
   }

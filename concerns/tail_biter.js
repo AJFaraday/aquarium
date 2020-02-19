@@ -9,15 +9,15 @@ Concerns.TailBiter = class TailBiter {
 
   bite_tail() {
     var me = this;
-    Game.creatures.forEach(
-      function(creature) {
-        if (creature.tail_segments) {
-          creature.tail_segments.forEach(
+    Game.snakes.forEach(
+      function(snake) {
+        if (snake.tail_segments) {
+          snake.tail_segments.forEach(
             function (segment) {
               if (Utils.touching(me, segment) && segment.active) {
-                me.bite(creature);
+                me.bite(snake);
                 segment.get_bitten();
-                creature.get_bitten();
+                snake.get_bitten();
               }
             }
           );

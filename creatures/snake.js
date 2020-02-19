@@ -24,7 +24,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
 
     Game.updatables.push(this);
     Game.drawables.push(this);
-    Game.creatures.push(this);
+    Game.snakes.push(this);
   }
 
   set_strategy(strategy) {
@@ -66,15 +66,15 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.speed = 20;
   }
 
-  bite(creature) {
+  bite(snake) {
     this.last_ate_tick = Game.tick;
-    this.speed += creature.speed / 10;
+    this.speed += snake.speed / 10;
   }
 
   remove() {
     Game.updatables.splice(Game.updatables.indexOf(this), 1);
     Game.drawables.splice(Game.drawables.indexOf(this), 1);
-    Game.creatures.splice(Game.creatures.indexOf(this), 1);
+    Game.snakes.splice(Game.snakes.indexOf(this), 1);
   }
 
   //////////////

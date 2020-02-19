@@ -59,15 +59,15 @@ Concerns.Eater = class Eater {
 
   nearest_snake() {
     var eater = this;
-    var distances = Game.creatures.map(function (creature) {
-      if (creature == eater) {
+    var distances = Game.snakes.map(function (snake) {
+      if (snake == eater) {
         return 99999;
       }
-      var length = creature.tail_segments.length;
-      return Utils.distanceBetweenPoints(eater, creature) - (length * 1000);
+      var length = snake.tail_segments.length;
+      return Utils.distanceBetweenPoints(eater, snake) - (length * 1000);
     });
     var min_distance = Math.min(...distances);
-    return Game.creatures[distances.indexOf(min_distance)];
+    return Game.snakes[distances.indexOf(min_distance)];
   }
 
 

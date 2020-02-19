@@ -20,7 +20,7 @@ class Game {
 
     Game.last_food_tick = 0;
     Game.food = [];
-    Game.creatures = [];
+    Game.snakes = [];
 
     switch (Config.starting_food_mode) {
       case 'rng':
@@ -35,7 +35,7 @@ class Game {
       function (config) {
         [...Array(config.count)].forEach(
           function (_) {
-            Game.add_creature('Snake', config.colour, config.strategy);
+            Game.add_snake('Snake', config.colour, config.strategy);
             starting_snakes_left--;
           }
         );
@@ -44,7 +44,7 @@ class Game {
     if (starting_snakes_left > 0) {
       [...Array(starting_snakes_left)].forEach(
         function (_) {
-          Game.add_random_creature();
+          Game.add_random_snake();
         }
       );
     }
@@ -68,10 +68,10 @@ class Game {
     );
     Game.add_food();
     Game.tick++;
-    if (Game.creatures.length < Config.min_snakes) {
-      Game.add_random_creature();
+    if (Game.snakes.length < Config.min_snakes) {
+      Game.add_random_snake();
     }
-    if (Game.creatures.length == 0) {
+    if (Game.snakes.length == 0) {
       Game.end();
     }
   }
@@ -85,9 +85,9 @@ class Game {
     );
   }
 
-  static add_random_creature() {
+  static add_random_snake() {
     var config = Config.starting_snakes[Math.floor(Math.random() * Config.starting_snakes.length)];
-    Game.add_creature(
+    Game.add_snake(
       'Snake',
       config.colour,
       config.strategy
@@ -126,11 +126,11 @@ class Game {
     }
   }
 
-  static add_creature(type, colour, strategy) {
-    var creature = new Creatures[type];
-    creature.colour = colour;
-    creature.set_strategy(strategy);
-    return creature;
+  static add_snake(type, colour, strategy) {
+    var snake = new Creatures.Snake;
+    snake.colour = colour;
+    snake.set_strategy(strategy);
+    return snake;
   };
 
   static end() {

@@ -7,9 +7,9 @@ require('seedrandom')('aquarium', {global: true});
 Config.min_snakes = 0;
 
 Game.init();
-while(Game.creatures.length > 1) {
+while(Game.snakes.length > 1) {
   Game.update();
 }
 
-console.log("Winner is: " + Game.creatures[0].strategy.target_type) ;
+console.log("Winner is: " + Game.snakes[0].strategy.target_type) ;
 
