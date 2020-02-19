@@ -35,7 +35,7 @@ class Game {
       function (config) {
         [...Array(config.count)].forEach(
           function (_) {
-            Game.add_snake('Snake', config.colour, config.strategy);
+            Game.add_snake(config.colour, config.strategy);
             starting_snakes_left--;
           }
         );
@@ -87,11 +87,7 @@ class Game {
 
   static add_random_snake() {
     var config = Config.starting_snakes[Math.floor(Math.random() * Config.starting_snakes.length)];
-    Game.add_snake(
-      'Snake',
-      config.colour,
-      config.strategy
-    );
+    Game.add_snake(config.colour, config.strategy);
   }
 
   static add_random_foods(n) {
@@ -126,7 +122,7 @@ class Game {
     }
   }
 
-  static add_snake(type, colour, strategy) {
+  static add_snake(colour, strategy) {
     var snake = new Creatures.Snake;
     snake.colour = colour;
     snake.set_strategy(strategy);
