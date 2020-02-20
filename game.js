@@ -30,12 +30,13 @@ class Game {
         Game.add_food_grid(Config.grid_size);
     }
 
+    this.snake_index = 0;
     var starting_snakes_left = Config.min_starting_snakes;
-    Config.starting_snakes.forEach(
-      function (config) {
-        [...Array(config.count)].forEach(
+    Config.starting_behaviours.forEach(
+      function (behaviour) {
+        [...Array(Config.snakes_of_each_behaviour)].forEach(
           function (_) {
-            Game.add_snake(config.colour, config.strategy);
+            Game.add_snake(behaviour);
             starting_snakes_left--;
           }
         );
@@ -73,6 +74,12 @@ class Game {
     }
     if (Game.snakes.length == 0) {
       Game.end();
+    } else {
+      Game.snakes.forEach(
+        function(snake) {
+          snake.behaviour.every_tick();
+        }
+      )
     }
   }
 
@@ -86,8 +93,8 @@ class Game {
   }
 
   static add_random_snake() {
-    var config = Config.starting_snakes[Math.floor(Math.random() * Config.starting_snakes.length)];
-    Game.add_snake(config.colour, config.strategy);
+    var behaviour = Config.respawn_behaviours[Math.floor(Math.random() * Config.respawn_behaviours.length)];
+    Game.add_snake(behaviour);
   }
 
   static add_random_foods(n) {
@@ -123,10 +130,8 @@ class Game {
     }
   }
 
-  static add_snake(colour, strategy) {
-    var snake = new Creatures.Snake;
-    snake.colour = colour;
-    snake.set_strategy(strategy);
+  static add_snake(behaviour) {
+    var snake = new Creatures.Snake(behaviour);
     return snake;
   };
 

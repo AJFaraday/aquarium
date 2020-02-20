@@ -17,7 +17,7 @@ Concerns.TailBiter = class TailBiter {
               if (Utils.touching(me, segment) && segment.active) {
                 me.bite(snake);
                 segment.get_bitten();
-                snake.get_bitten();
+                snake.get_bitten_by(me);
               }
             }
           );

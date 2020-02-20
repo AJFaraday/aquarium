@@ -11,5 +11,5 @@ while(Game.snakes.length > 1) {
   Game.update();
 }
 
-console.log("Winner is: " + Game.snakes[0].strategy.target_type) ;
+console.log("Winner is: " + Game.snakes[0].name) ;
 

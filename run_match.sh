@@ -2,7 +2,6 @@ export NODE_PATH=/usr/lib/node_modules
 
 terser --compress -o aquarium.cli.min.js \
   lib/*.js \
-  config.js \
   game.js \
   canvas.js \
   utils.js \
@@ -10,7 +9,9 @@ terser --compress -o aquarium.cli.min.js \
   strategies.js \
   concerns/*.js \
   static/*.js \
-  creatures/*.js
+  creatures/*.js \
+  behaviours/*.js \
+  config.js
 
 echo "module.exports = Game;" >> aquarium.cli.min.js
 

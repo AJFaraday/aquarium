@@ -19,6 +19,8 @@ tail_bitten
 every_tick
 idle
 
+dying message includes name
+
 Game modes (fixed random seed, fixed board size):
 * solo survival
 * battle royal (one of each)
