@@ -97,7 +97,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   }
 
   check_for_starvation() {
-    if ((Game.tick - this.last_ate_tick) > Config.starvation_interval) {
+    if ((Game.tick - this.last_ate_tick) > Game.config.starvation_interval) {
       if (this.tail_segments.length == 0) {
         console.log(Game.tick + ': ' + this.name + ' died of starvation');
         this.remove();

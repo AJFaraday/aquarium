@@ -21,12 +21,8 @@ every_tick
 idle
 starve
 
-check every method
 
-generate name index per behaviour
-
-dying message includes name
-
+Implement game modes as configs:
 Game modes (fixed random seed, fixed board size):
 * solo survival
 * battle royal (one of each)

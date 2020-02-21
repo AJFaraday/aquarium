@@ -3,10 +3,8 @@
 
 var Game = require('./aquarium.cli.min');
 require('seedrandom')('aquarium', {global: true});
-
-Config.min_snakes = 0;
-
 Game.init();
+Game.config.min_snakes = 0;
 while(Game.snakes.length > 1) {
   Game.update();
 }

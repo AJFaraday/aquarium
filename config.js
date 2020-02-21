@@ -11,6 +11,6 @@ Config = {
   snakes_of_each_behaviour: 1,
   respawn_behaviours: Object.values(Behaviours),
   // Make it higher to start with at least this many
-  min_starting_snakes: 100,
+  min_starting_snakes: 0,
   starvation_interval: 500 // In ticks
 };

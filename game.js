@@ -25,19 +25,19 @@ class Game {
     Game.food = [];
     Game.snakes = [];
 
-    switch (Config.starting_food_mode) {
+    switch (Game.config.starting_food_mode) {
       case 'rng':
-        Game.add_random_foods(Config.starting_food);
+        Game.add_random_foods(Game.config.starting_food);
         break;
       case 'grid':
-        Game.add_food_grid(Config.grid_size);
+        Game.add_food_grid(Game.config.grid_size);
     }
 
     this.snake_registry = {};
-    var starting_snakes_left = Config.min_starting_snakes;
-    Config.starting_behaviours.forEach(
+    var starting_snakes_left = Game.config.min_starting_snakes;
+    Game.config.starting_behaviours.forEach(
       function (behaviour) {
-        [...Array(Config.snakes_of_each_behaviour)].forEach(
+        [...Array(Game.config.snakes_of_each_behaviour)].forEach(
           function (_) {
             Game.add_snake(behaviour);
             starting_snakes_left--;
@@ -72,7 +72,7 @@ class Game {
     );
     Game.add_food();
     Game.tick++;
-    if (Game.snakes.length < Config.min_snakes) {
+    if (Game.snakes.length < Game.config.min_snakes) {
       Game.add_random_snake();
     }
     if (Game.snakes.length == 0) {
@@ -96,7 +96,7 @@ class Game {
   }
 
   static add_random_snake() {
-    var behaviour = Config.respawn_behaviours[Math.floor(Math.random() * Config.respawn_behaviours.length)];
+    var behaviour = Game.config.respawn_behaviours[Math.floor(Math.random() * Game.config.respawn_behaviours.length)];
     Game.add_snake(behaviour);
   }
 
@@ -127,7 +127,7 @@ class Game {
   }
 
   static add_food() {
-    if ((Game.tick - Game.last_food_tick) >= Config.food_interval) {
+    if ((Game.tick - Game.last_food_tick) >= Game.config.food_interval) {
       Game.last_food_tick = Game.tick;
       new Static.Food();
     }
