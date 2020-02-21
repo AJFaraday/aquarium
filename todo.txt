@@ -21,6 +21,7 @@ every_tick
 idle
 starve
 
+UI to select match type (with focus behaviour)
 
 Implement game modes as configs:
 Game modes (fixed random seed, fixed board size):
