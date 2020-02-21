@@ -6,10 +6,10 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   constructor (behaviour) {
     super();
 
-    Game.snake_index++;
     this.behaviour = new behaviour(this);
     this.colour = this.behaviour.colour();
-    this.name = this.behaviour.name() + '[' + Game.snake_index + ']';
+
+    this.name = Game.register_snake(this.behaviour.name());
 
     this.target ={x: 0, y: 0};
 

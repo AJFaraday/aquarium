@@ -1,5 +1,7 @@
+if (typeof Configs === 'undefined') {Configs = {}}
+
 // The game runs at 100 ticks per second
-Config = {
+Configs.royale = {
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 20, //initial feast

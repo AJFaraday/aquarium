@@ -94,6 +94,17 @@ class Behaviour {
     return Utils;
   }
 
+  game_width() {
+    return Game.width;
+  }
+
+  game_height() {
+    return Game.height;
+  }
+
+  angle() {
+    return this.snake.get_angle();
+  }
 
 
 

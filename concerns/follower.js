@@ -36,6 +36,7 @@ Concerns.Follower = class Follower {
   get_angle() {
     var angle_difference = Utils.angleDifference(this.angle_to_target(), this.angle);
     this.angle -= (angle_difference / (200 / (this.turn_speed / 5)));
+    return this.angle;
   }
 
   angle_to_target() {

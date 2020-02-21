@@ -15,19 +15,34 @@ Functions of Strategy class
 set_target
 new_food
 target_removed
-tail_bitten
+tail_bitten(biter)
+bite_tail(bitee)
 every_tick
 idle
+starve
+
+check every method
+
+generate name index per behaviour
 
 dying message includes name
 
 Game modes (fixed random seed, fixed board size):
 * solo survival
 * battle royal (one of each)
+* feast mode (battle royale with LOADs of fodo)
 * famine mode (battle royale with famine on)
 * swarm mode (10 of each)
 * parasite mode (snake vs parasite, of parasite dies, another starts)
 * self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
 
+
+Behaviour validator script
+
+Criteria for PR
+* set_target doesn't error when there's no food
+* No console logs
+* Color is a valid rgba form
+* Color has 0.4 alpha value
 
 

@@ -1,6 +1,9 @@
 class Game {
 
   static init() {
+
+    this.config = Config;
+
     this.cli_mode = (typeof document === 'undefined');
     if (this.cli_mode) {
       this.width = 1024;
@@ -30,7 +33,7 @@ class Game {
         Game.add_food_grid(Config.grid_size);
     }
 
-    this.snake_index = 0;
+    this.snake_registry = {};
     var starting_snakes_left = Config.min_starting_snakes;
     Config.starting_behaviours.forEach(
       function (behaviour) {
@@ -138,6 +141,14 @@ class Game {
   static end() {
     clearInterval(Game.draw_loop);
     clearInterval(Game.update_loop);
+  }
+
+  static register_snake(name) {
+    if (typeof Game.snake_registry[name] == 'undefined') {
+      Game.snake_registry[name] = 0;
+    }
+    Game.snake_registry[name]++
+    return name + '[' + Game.snake_registry[name] + ']'
   }
 
 }
