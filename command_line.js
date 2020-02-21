@@ -2,7 +2,7 @@
 // export NODE_PATH=/usr/lib/node_modules
 
 var Game = require('./aquarium.cli.min');
-require('seedrandom')('aquarium', {global: true});
+require('./lib/seedrandom.min.js')('aquarium', {global: true});
 Game.init();
 Game.config.min_snakes = 0;
 while(Game.snakes.length > 1) {

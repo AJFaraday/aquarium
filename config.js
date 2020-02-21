@@ -1,16 +1,58 @@
 // The game runs at 100 ticks per second
 Config = {
-  min_snakes: 0,
-  starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
-  starting_food: 20, //initial feast
-  grid_size: 100,
-  food_interval: 50, // In ticks
-  famine: false,
-  starting_behaviours: Object.values(Behaviours),
-  //starting_behaviours: [Behaviours.Random],
-  snakes_of_each_behaviour: 1,
-  respawn_behaviours: Object.values(Behaviours),
-  // Make it higher to start with at least this many
-  min_starting_snakes: 0,
-  starvation_interval: 500 // In ticks
+
+  index: 0,
+
+  all_behaviours: function() {
+    return Object.values(Behaviours);
+  },
+
+  single_behaviour: function(index) {
+    return [Object.values(Behaviours)[index]];
+  },
+
+  current_behaviour: function() {
+    return Config.single_behaviour(Config.index);
+  },
+
+  next_behaviour: function() {
+    var current =  Config.current_behaviour();
+    Config.index++;
+    return current;
+  },
+
+  finished: function() {
+    return Config.index >= (Object.keys(Behaviours).length);
+  },
+
+  reset_index: function() {
+    Config.index = 0;
+  },
+  
+  build_config: function(config) {
+    var new_config = {};
+    Object.keys(config).forEach(
+      function(key) {
+        if(typeof config[key] =='function') {
+          console.log(config[key]);
+          new_config[key] = config[key]();
+        } else {
+          new_config[key] = config[key];
+        }
+      }
+    );
+    return new_config;
+  },
+
+  build_config_for_all: function(config) {
+    Config.reset_index();
+    configs = [];
+    while(!Config.finished()) {
+      console.log(Config.index);
+      configs.push(Config.build_config(config));
+      Config.next_behaviour();
+    }
+    console.log(configs);
+  }
+
 };
