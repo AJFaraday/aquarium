@@ -34,7 +34,6 @@ Config = {
     Object.keys(config).forEach(
       function(key) {
         if(typeof config[key] =='function') {
-          console.log(config[key]);
           new_config[key] = config[key]();
         } else {
           new_config[key] = config[key];
@@ -48,11 +47,10 @@ Config = {
     Config.reset_index();
     configs = [];
     while(!Config.finished()) {
-      console.log(Config.index);
       configs.push(Config.build_config(config));
       Config.next_behaviour();
     }
-    console.log(configs);
+    return configs;
   }
 
 };

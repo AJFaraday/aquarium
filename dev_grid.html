@@ -42,8 +42,8 @@
 
     <script type="text/javascript">
       Math.seedrandom('aquarium', {global: true});
-      Game.init(Config.build_config(Configs.royale));
-
+      Config.index = Utils.url_vars()['snake_index'];
+      Game.init(Config.build_config(Configs.grid));
     </script>
   </body>
 

@@ -25,7 +25,7 @@ Behaviours.Nearest = class Nearest extends (Behaviour) {
         return behaviour.utils().distanceBetweenPoints(behaviour.snake, food);
       });
       var min_distance = Math.min(...distances);
-      this.snake.target = this.food()[distances.indexOf(min_distance)];
+      this.target(this.food()[distances.indexOf(min_distance)]);
     }
   }
 

@@ -10,6 +10,8 @@ Exit condition: (part of game mode?)
 * 1 snake left
 * Time limit finished (say, 10 minutes)
 
+Choose standard board size in browser
+
 Functions of Strategy class
 
 set_target
@@ -27,7 +29,7 @@ Implement game modes as configs:
 Game modes (fixed random seed, fixed board size):
 * solo survival
 * battle royal (one of each)
-* feast mode (battle royale with LOADs of fodo)
+* feast mode (battle royale with LOADs of food)
 * famine mode (battle royale with famine on)
 * swarm mode (10 of each)
 * parasite mode (snake vs parasite, of parasite dies, another starts)

@@ -39,4 +39,14 @@ class Utils {
     var nums = [...array].sort((a, b) => a - b);
     return nums[mid];
   }
+
+  static url_vars() {
+    if(typeof window != 'undefined') {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    }
+  }
 }

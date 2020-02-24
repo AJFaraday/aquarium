@@ -26,7 +26,7 @@ Behaviours.LowRotation = class LowRotation extends (Behaviour) {
         return Math.abs(behaviour.utils().angleDifference(angle, behaviour.angle()));
       });
       var min_angle = Math.max(...angles);
-      this.snake.target = behaviour.food()[angles.indexOf(min_angle)];
+      this.target(behaviour.food()[angles.indexOf(min_angle)]);
     }
   }
 

@@ -33,6 +33,7 @@
     <script src="config.js"></script>
     <script src="configs/royale.js"></script>
     <script src="configs/grid.js"></script>
+    <script src="configs/swarm.js"></script>
 
 
   </head>
@@ -42,8 +43,9 @@
 
     <script type="text/javascript">
       Math.seedrandom('aquarium', {global: true});
-      Game.init(Config.build_config(Configs.royale));
-
+      Config.index = Utils.url_vars()['snake_index'];
+      var config = Configs[Utils.url_vars()['config']];
+      Game.init(Config.build_config(config));
     </script>
   </body>
 

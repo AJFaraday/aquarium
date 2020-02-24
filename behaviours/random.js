@@ -20,7 +20,7 @@ Behaviours.Random = class Random extends (Behaviour) {
     if (this.food().length == 0) {
       this.idle()
     } else {
-      this.snake.target = this.food()[Math.floor(Math.random() * this.food().length)]
+      this.target(this.food()[Math.floor(Math.random() * this.food().length)]);
     }
   }
 

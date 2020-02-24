@@ -25,7 +25,7 @@ Behaviours.TopHugger = class TopHugger extends (Behaviour) {
         return food.y;
       });
       var min_height = Math.min(...heights);
-      this.snake.target = this.food()[heights.indexOf(min_height)];
+      this.target(this.food()[heights.indexOf(min_height)]);
     }
   }
 

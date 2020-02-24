@@ -9,6 +9,6 @@ terser --compress -o aquarium.min.js \
   static/*.js \
   creatures/*.js \
   behaviours/*.js \
-  configs/*.js \
-  config.js
+  config.js \
+  configs/*.js 
 
