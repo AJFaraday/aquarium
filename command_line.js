@@ -17,7 +17,7 @@ function run_config(config) {
 }
 
 run_config(Configs.royale);
-run_config(Configs.swarm);
+run_config(Configs.big);
 
 var grid_configs = Config.build_config_for_all(Configs.grid);
 grid_configs.forEach(
@@ -26,4 +26,17 @@ grid_configs.forEach(
   }
 );
 
+var swarm_configs = Config.build_config_for_all(Configs.swarm);
+swarm_configs.forEach(
+  function (config) {
+    run_config(config);
+  }
+);
 
+
+var versus_configs = Config.build_config_for_all_pairs(Configs.versus);
+versus_configs.forEach(
+  function (config) {
+    run_config(config);
+  }
+);

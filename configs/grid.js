@@ -10,10 +10,9 @@ Configs.grid = {
   starting_food_mode: 'grid', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 20, //initial feast
   grid_size: 100,
-  food_interval: 500, // In ticks
+  food_interval: 50000000, // In ticks
   famine: false,
   starting_behaviours: Config.current_behaviour,
-  //starting_behaviours: [Behaviours.Random],
   snakes_of_each_behaviour: 1,
   respawn_behaviours: Config.current_behaviour,
   // Make it higher to start with at least this many
