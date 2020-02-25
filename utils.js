@@ -49,4 +49,19 @@ class Utils {
       return vars;
     }
   }
+
+  static pairs_for(n_options) {
+    var n1 = 0;
+    var n2 = 0;
+    var pairs = [];
+    while (n1 < n_options) {
+      n2 = n1;
+      while (n2 < n_options) {
+        pairs.push([n1, n2]);
+        n2++;
+      }
+      n1++;
+    }
+    return pairs;
+  }
 }

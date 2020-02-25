@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Watch Snakes - MENU</title>
+    <script src="lib/seedrandom.min.js"></script>
+
+    <script src="game.js"></script>
+    <script src="canvas.js"></script>
+    <script src="utils.js"></script>
+    <script src="mix.js"></script>
+    <script src="strategies.js"></script>
+
+    <script src="concerns/follower.js"></script>
+    <script src="concerns/tail_biter.js"></script>
+    <script src="concerns/eater.js"></script>
+    <script src="concerns/catchable.js"></script>
+    <script src="concerns/behaviour.js"></script>
+
+    <script src="static/food.js"></script>
+
+    <script src="creatures/snake.js"></script>
+    <script src="creatures/tail_segment.js"></script>
+
+    <script src="behaviours/nearest.js"></script>
+    <script src="behaviours/farthest.js"></script>
+    <script src="behaviours/random.js"></script>
+    <script src="behaviours/parasite.js"></script>
+    <script src="behaviours/top_hugger.js"></script>
+    <script src="behaviours/low_rotation.js"></script>
+    <script src="behaviours/high_rotation.js"></script>
+
+    <script src="config.js"></script>
+    <script src="configs/royale.js"></script>
+    <script src="configs/grid.js"></script>
+    <script src="configs/swarm.js"></script>
+    <script src="configs/versus.js"></script>
+    <script src="configs/big.js"></script>
+
+    <script src="menu.js"></script>
+
+  </head>
+
+  <body style="margin:0;">
+    <h1>Aquarium - Match Menu</h1>
+
+    <ul id="menu">
+
+    </ul>
+
+    <script type="text/javascript">
+      menu = new Menu();
+      menu.populate();
+    </script>
+  </body>
+
+</html>
