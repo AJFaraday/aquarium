@@ -27,6 +27,13 @@ class Game {
     Game.food = [];
     Game.snakes = [];
 
+    this.drawables.push(
+      new Static.Text(
+        this.config.name,
+        20, 40, 30, 'left'
+      )
+    );
+
     switch (Game.config.starting_food_mode) {
       case 'rng':
         Game.add_random_foods(Game.config.starting_food);
