@@ -11,8 +11,8 @@ terser --compress -o aquarium.cli.min.js \
   static/*.js \
   creatures/*.js \
   behaviours/*.js \
-  configs/*.js \
-  config.js
+  config.js \
+  configs/*.js
 
 echo "module.exports = Game;" >> aquarium.cli.min.js
 

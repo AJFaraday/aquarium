@@ -34,7 +34,6 @@ Config = {
     Object.keys(config).forEach(
       function(key) {
         if(typeof config[key] =='function') {
-          console.log(config[key]);
           new_config[key] = config[key]();
         } else {
           new_config[key] = config[key];
