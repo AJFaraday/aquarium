@@ -1,16 +1,18 @@
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1
-* kill another snake - 10
+* kill another snake - 1
 * 10 seconds alive - 1
 * Last snake alive - 1
 
-Exit condition: (part of game mode?)
+Exit conditions: (part of game mode?)
 
 * 1 snake left
 * Time limit finished (say, 10 minutes)
 
-Choose standard board size in browser
+Menu
+- Check box for 'standard mode'
+- Match list as table (could include results)
 
 Functions of Strategy class
 
@@ -23,7 +25,6 @@ every_tick
 idle
 starve
 
-UI to select match type (with focus behaviour)
 
 API
 - Proxies to prevent modification
@@ -43,6 +44,8 @@ Game modes (fixed random seed, fixed board size):
 Behaviour validator script
 
 Criteria for PR
+* Adds class (inheriting from Behaviour) to Behaviours
+* Defines name, colour, set_target
 * set_target doesn't error when there's no food
 * No console logs
 * Color is a valid rgba form
@@ -50,5 +53,7 @@ Criteria for PR
 
 in game
 Link to menu
-Display configuration name
 When scores are done, table of results 
+
+* Menu as table (can include winner)
+
