@@ -2,6 +2,8 @@ if (typeof Configs === 'undefined') {Configs = {}}
 
 // The game runs at 100 ticks per second
 Configs.grid = {
+  id: 'grid',
+  type: 'solo',
   name: function() {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
     return "Solo on grid: " + dummy_behaviour.name();

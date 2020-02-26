@@ -2,6 +2,8 @@ if (typeof Configs === 'undefined') {Configs = {}}
 
 // The game runs at 100 ticks per second
 Configs.versus = {
+  id: 'versus',
+  type: 'versus',
   name: function() {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
     var dummy_opponent = new(Config.current_opponent()[0]);

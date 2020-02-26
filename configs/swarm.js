@@ -2,6 +2,8 @@ if (typeof Configs === 'undefined') {Configs = {}}
 
 // The game runs at 100 ticks per second
 Configs.swarm = {
+  id: 'swarm',
+  type: 'solo',
   name: function() {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
     return "Swarm mode: 20 x " + dummy_behaviour.name();

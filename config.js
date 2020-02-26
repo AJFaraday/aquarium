@@ -81,6 +81,35 @@ Config = {
       Config.next_behaviour();
     }
     return configs;
+  },
+
+  from_url: function () {
+    if (typeof window != 'undefined') {
+      var url = window.location.href;
+      var attrs = {};
+      url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        attrs[key] = value;
+      });
+      if (attrs.snake) {
+        Config.index = Object.keys(Behaviours).indexOf(attrs.snake);
+        if (Config.index == -1) {
+          throw "Unknown snake: " + attrs.snake
+        }
+      }
+
+      if (attrs.opponent) {
+        Config.opponent_index = Object.keys(Behaviours).indexOf(attrs.opponent);
+        if (Config.index == -1) {
+          throw "Unknown snake: " + attrs.snake
+        }
+      }
+
+      var config = Configs[attrs.config];
+      if (typeof config == 'undefined') {
+        throw "Unknown config: " + attrs.config
+      }
+      return Config.build_config(config);
+    }
   }
 
 };

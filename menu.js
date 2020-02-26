@@ -16,15 +16,9 @@ class Menu {
     Menu.versus_configs().forEach(
       function (config_name) {
         var configs = Config.build_config_for_all_pairs(Configs[config_name]);
-        var pairs = Utils.pairs_for(Object.keys(Behaviours).length);
         configs.forEach(
           function (config, index) {
-            var pair = pairs[index];
-            menu.append_to_section(
-              'Versus',
-              config.name,
-              'dev_config.html?config=' + config_name + '&snake_index=' + pair[0] + '&opponent_index=' + pair[1]
-            );
+            menu.append_to_section('Versus', config);
           }
         )
       }
@@ -37,11 +31,7 @@ class Menu {
         var configs = Config.build_config_for_all(Configs[config_name]);
         configs.forEach(
           function (config, index) {
-            menu.append_to_section(
-              'Solo',
-              config.name,
-              'dev_config.html?config=' + config_name + '&snake_index=' + index
-            );
+            menu.append_to_section('Solo', config);
           }
         )
       }
@@ -52,12 +42,7 @@ class Menu {
     Menu.all_snake_configs().forEach(
       function (config_name) {
         var config = Config.build_config(Configs[config_name]);
-        menu.append_to_section(
-          'All Snakes',
-          config.name,
-          // TODO make this non-dev config, one day
-          'dev_config.html?config=' + config_name
-        );
+        menu.append_to_section('All Snakes', config);
       }
     );
   }
@@ -70,17 +55,36 @@ class Menu {
     this.list.append(this.sections[name]);
   }
 
-  append_to_section(section, label, url) {
+  append_to_section(section, config) {
     if (typeof this.sections[section] == 'undefined') {
       this.build_section(section)
     }
+    var label = config.name;
     var list_item = document.createElement('li');
     var link = document.createElement('a');
     link.innerHTML = label;
-    link.setAttribute('href', url);
+    link.setAttribute('href', this.url_from_config(config));
     link.setAttribute('target', '_blank');
     list_item.append(link);
     this.sections[section].append(list_item);
+  }
+
+  // TODO just config, one day
+  url_from_config(config) {
+    switch (config.type) {
+      case 'solo':
+        return 'dev_config.html?config=' + config.id +
+          '&snake=' + config.starting_behaviours[0].name;
+        break;
+      case 'versus':
+        return 'dev_config.html?config=' + config.id +
+          '&snake=' + config.starting_behaviours[0].name +
+          '&opponent=' + config.starting_behaviours[1].name;
+        break;
+      case 'all':
+        return 'dev_config.html?config=' + config.id;
+        break;
+    }
   }
 
   static solo_configs() {

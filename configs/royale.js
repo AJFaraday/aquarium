@@ -2,6 +2,8 @@ if (typeof Configs === 'undefined') {Configs = {}}
 
 // The game runs at 100 ticks per second
 Configs.royale = {
+  id: 'royale',
+  type: 'all',
   name: 'Battle Royale - All snakes',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
