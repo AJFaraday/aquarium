@@ -8,6 +8,7 @@ var Configs = exports.Configs;
 
 function run_config(config) {
   require('./lib/seedrandom.min.js')('aquarium', {global: true});
+  console.log('===============');
   Game.init(Config.build_config(config));
   Game.config.min_snakes = 0;
   while (Game.snakes.length > 1) {

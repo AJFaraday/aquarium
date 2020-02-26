@@ -14,17 +14,17 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.x = Math.random() * Game.width;
     this.y = Math.random() * Game.height;
     this.target = {x: 0, y: 0};
-
-    this.behaviour.set_target();
-    this.history = this.init_history();
-
+    this.angle = this.angle_to_target();
+    this.turn_speed = 40;
     this.size = 40;
-    this.turn_speed = 40; // up to 100
     this.speed = 20;
     this.angle = 0;
     this.tail_segments = [];
     this.health = 20;
     this.last_ate_tick = Game.tick;
+
+    this.behaviour.set_target();
+    this.history = this.init_history();
     this.grow_tail();
     this.grow_tail();
 
@@ -34,7 +34,6 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   }
 
   init_history() {
-    this.angle = this.angle_to_target();
     return [
       {
         x: Math.sin(this.angle * Math.PI / 180) * 60 + this.x,

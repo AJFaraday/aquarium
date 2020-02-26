@@ -19,7 +19,7 @@ Behaviours.LowRotation = class LowRotation extends (Behaviour) {
   set_target() {
     var behaviour = this;
     if (this.food().length == 0) {
-      this.idle()
+      this.idle();
     } else {
       var angles = this.food().map(function (food) {
         var angle = behaviour.utils().angleBetweenPoints(food, behaviour.snake);

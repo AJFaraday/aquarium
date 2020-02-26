@@ -112,6 +112,7 @@ class Behaviour {
     } else {
       console.log(this.snake.name + ": Invalid target object");
       console.log(object);
+      throw this.snake.name + ": Invalid target object";
     }
   }
 
