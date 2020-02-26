@@ -24,8 +24,8 @@ Creatures.TailSegment = class TailSegment extends mix(Concerns.Follower) {
     this.target = previous;
     this.history = [];
     this.active = (head.tail_segments.length > 1);
-
   }
+
 
   draw() {
     Game.canvas.draw_circle(this);

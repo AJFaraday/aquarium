@@ -1,5 +1,6 @@
 terser --compress -o aquarium.min.js \
   lib/*.js \
+  menu.js \
   game.js \
   canvas.js \
   utils.js \
@@ -10,5 +11,5 @@ terser --compress -o aquarium.min.js \
   creatures/*.js \
   behaviours/*.js \
   config.js \
-  configs/*.js
+  configs/*.js 
 

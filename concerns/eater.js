@@ -21,7 +21,7 @@ Concerns.Eater = class Eater {
 
   set_target() {
     if (Game.food.length > 0) {
-      this.behaviour.new_food();
+      this.behaviour.set_target();
     } else {
       this.behaviour.idle();
     }

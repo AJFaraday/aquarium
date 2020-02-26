@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Watch Snakes</title>
     <script src="aquarium.min.js"></script>
+    
   </head>
 
   <body style="margin:0;">
@@ -11,8 +12,7 @@
 
     <script type="text/javascript">
       Math.seedrandom('aquarium', {global: true});
-      Game.init(Config.build_config(Configs.royale));
-
+      Game.init(Config.from_url());
     </script>
   </body>
 

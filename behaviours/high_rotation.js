@@ -26,7 +26,7 @@ Behaviours.HighRotation = class HighRotation extends (Behaviour) {
         return Math.abs(behaviour.utils().angleDifference(angle, behaviour.angle()));
       });
       var max_angle = Math.min(...angles);
-      this.snake.target = behaviour.food()[angles.indexOf(max_angle)];
+      this.target(behaviour.food()[angles.indexOf(max_angle)]);
     }
   }
 

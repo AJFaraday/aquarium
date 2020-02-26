@@ -34,10 +34,9 @@
     <script src="config.js"></script>
     <script src="configs/royale.js"></script>
     <script src="configs/grid.js"></script>
-    <script src="configs/big.js"></script>
     <script src="configs/swarm.js"></script>
     <script src="configs/versus.js"></script>
-
+    <script src="configs/big.js"></script>
 
   </head>
 
@@ -46,8 +45,8 @@
 
     <script type="text/javascript">
       Math.seedrandom('aquarium', {global: true});
-      Game.init(Config.build_config(Configs.royale));
 
+      Game.init(Config.from_url());
     </script>
   </body>
 

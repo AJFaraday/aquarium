@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8"/>
-    <title>Watch Snakes</title>
+    <title>Watch Snakes - MENU</title>
     <script src="lib/seedrandom.min.js"></script>
-    
+
     <script src="game.js"></script>
     <script src="canvas.js"></script>
     <script src="utils.js"></script>
@@ -34,20 +34,23 @@
     <script src="config.js"></script>
     <script src="configs/royale.js"></script>
     <script src="configs/grid.js"></script>
-    <script src="configs/big.js"></script>
     <script src="configs/swarm.js"></script>
     <script src="configs/versus.js"></script>
+    <script src="configs/big.js"></script>
 
+    <script src="menu.js"></script>
 
   </head>
 
   <body style="margin:0;">
-    <canvas id="canvas" style="margin:0px;padding:0px;"></canvas>
+    <h1>Aquarium - Match Menu</h1>
+
+    <div id="form">
+    </div>
+    <ul id="menu"></ul>
 
     <script type="text/javascript">
-      Math.seedrandom('aquarium', {global: true});
-      Game.init(Config.build_config(Configs.royale));
-
+      menu = new Menu();
     </script>
   </body>
 

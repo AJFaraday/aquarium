@@ -106,6 +106,13 @@ class Behaviour {
     return this.snake.get_angle();
   }
 
-
+  target(object) {
+    if ((typeof object != 'undefined') && (typeof object.x == 'number') && (typeof object.y == 'number')) {
+      this.snake.target = object
+    } else {
+      console.log(this.snake.name + ": Invalid target object");
+      console.log(object);
+    }
+  }
 
 }

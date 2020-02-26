@@ -34,7 +34,7 @@ Behaviours.Parasite = class Parasite extends (Behaviour) {
       if (target == this.snake) {
         this.target = {x: (this.game_width() / 2), y: (this.game_height() / 2)}
       } else {
-        this.snake.target = target;
+        this.target(target);
       }
     }
   }

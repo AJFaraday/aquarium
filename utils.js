@@ -39,4 +39,29 @@ class Utils {
     var nums = [...array].sort((a, b) => a - b);
     return nums[mid];
   }
+
+  static url_vars() {
+    if(typeof window != 'undefined') {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+        vars[key] = value;
+      });
+      return vars;
+    }
+  }
+
+  static pairs_for(n_options) {
+    var n1 = 0;
+    var n2 = 0;
+    var pairs = [];
+    while (n1 < n_options) {
+      n2 = n1;
+      while (n2 < n_options) {
+        pairs.push([n1, n2]);
+        n2++;
+      }
+      n1++;
+    }
+    return pairs;
+  }
 }

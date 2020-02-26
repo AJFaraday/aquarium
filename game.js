@@ -1,8 +1,9 @@
 class Game {
 
-  static init() {
+  static init(config) {
 
-    this.config = Config.build_config(Configs.royale);
+    this.config = config;
+    console.log('Running Config: ' + config.name);
 
     this.cli_mode = (typeof document === 'undefined');
     if (this.cli_mode) {
@@ -10,7 +11,7 @@ class Game {
       this.height = 768;
     } else {
       this.width = document.documentElement.clientWidth;
-      this.height = document.documentElement.clientHeight; 
+      this.height = document.documentElement.clientHeight;
 
       this.canvas = new Canvas();
       this.canvas.canvas.width = this.width;
@@ -25,6 +26,13 @@ class Game {
     Game.last_food_tick = 0;
     Game.food = [];
     Game.snakes = [];
+
+    this.drawables.push(
+      new Static.Text(
+        this.config.name,
+        20, 40, 30, 'left'
+      )
+    );
 
     switch (Game.config.starting_food_mode) {
       case 'rng':
