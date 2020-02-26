@@ -48,4 +48,7 @@ Criteria for PR
 * Color is a valid rgba form
 * Color has 0.4 alpha value
 
-
+in game
+Link to menu
+Display configuration name
+When scores are done, table of results 
