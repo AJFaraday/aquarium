@@ -13,14 +13,14 @@ Behaviours.Failure = class Failure extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(0,0,255,0.4)';
+    return 'rgb(0,255,255,0.4)';
   }
 
   set_target() {
     if (this.food().length == 0) {
       this.idle()
     } else {
-      this.target(this.food()[Math.floor(Math.random() * this.food().length)]);
+      this.target({x: 200, y: 200});
     }
   }
 
