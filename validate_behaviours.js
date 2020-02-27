@@ -8,7 +8,7 @@ var Validator = require('./validator.cli.min.js');
 
 Object.keys(Behaviours).forEach(
   function(behaviour_name) {
-    var validator = new Validator(Behaviours[behaviour_name]);
+    var validator = new Validator(behaviour_name);
     validator.check();
   }
 );

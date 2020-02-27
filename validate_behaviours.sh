@@ -18,7 +18,7 @@ echo "module.exports = {Game: Game, Config: Config, Configs: Configs, Behaviours
 
 terser --compress -o validator.cli.min.js \
   validator/validator.js \
-  validator/*.js
+  validator/checks/*.js
 
 echo "module.exports = Validator" >> validator.cli.min.js
 
