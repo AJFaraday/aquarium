@@ -27,13 +27,15 @@ Concerns.Eater = class Eater {
     }
   }
 
-  eat() {
+  eat(food) {
     this.last_ate_tick = Game.tick;
     this.health += 1;
     this.speed += 0.1;
-    this.set_target();
     this.grow_tail();
     this.behaviour.eat();
+    if (food == this.target) {
+      this.behaviour.eat_target();
+    }
   };
 
 };

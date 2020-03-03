@@ -41,6 +41,11 @@ class Behaviour {
 
   }
 
+  // Called wehn this snake eats the thing it's targetting
+  eat_target() {
+
+  }
+
   // Called when this snake loses a tail segment due to starvation
   starve() {
 

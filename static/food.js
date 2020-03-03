@@ -27,7 +27,7 @@ Static.Food = class Food extends Concerns.Catchable {
   update() {
     if (this.caught()) {
       this.remove();
-      this.caught_by().eat();
+      this.caught_by().eat(this);
     }
   }
 
