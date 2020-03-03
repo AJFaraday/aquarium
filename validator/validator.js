@@ -22,6 +22,7 @@ class Validator {
 
   check() {
     if (!this.valid()) {
+      console.log('Errors: ' + this.errors.join('\n'));
       return
     }
     var validator = this;
@@ -36,7 +37,7 @@ class Validator {
         }
       }
     );
-    if(this.errors.length > 0) {
+    if(!this.valid()) {
       console.log('Errors: ' + this.errors.join('\n'));
     }
   }
