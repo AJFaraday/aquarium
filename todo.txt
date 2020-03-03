@@ -16,7 +16,11 @@ Menu
 
 Functions of Strategy class
 
+name
+colour
 set_target
+
+Callbacks:
 new_food
 target_removed
 tail_bitten(biter)
@@ -24,7 +28,8 @@ bite_tail(bitee)
 every_tick
 idle
 starve
-
+eat
+eat_target
 
 API
 - Proxies to prevent modification
