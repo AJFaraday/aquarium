@@ -13,7 +13,7 @@ Behaviours.Random = class Random extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(0,0,255,0.4)';
+    return 'rgba(0,0,255,0.4)';
   }
 
   set_target() {

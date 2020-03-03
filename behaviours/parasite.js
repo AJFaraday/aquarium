@@ -13,7 +13,7 @@ Behaviours.Parasite = class Parasite extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(0,0,0,0.4)';
+    return 'rgba(0,0,0,0.4)';
   }
 
   set_target() {

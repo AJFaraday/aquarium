@@ -13,7 +13,7 @@ Behaviours.TopHugger = class TopHugger extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(255,128,0,0.4)';
+    return 'rgba(255,128,0,0.4)';
   }
 
   set_target() {

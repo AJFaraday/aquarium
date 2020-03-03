@@ -13,7 +13,7 @@ Behaviours.Farthest = class Farthest extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(0,255,0,0.4)';
+    return 'rgba(0,255,0,0.4)';
   }
 
   set_target() {

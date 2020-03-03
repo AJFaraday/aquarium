@@ -13,7 +13,7 @@ Behaviours.HighRotation = class HighRotation extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(128,0,128,0.4)';
+    return 'rgba(128,0,128,0.4)';
   }
 
   set_target() {

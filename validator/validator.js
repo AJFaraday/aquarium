@@ -5,6 +5,7 @@ var Configs = exports.Configs;
 var Behaviours = exports.Behaviours;
 
 class Validator {
+  
 
   constructor(behaviour_name) {
     this.errors = [];

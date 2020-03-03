@@ -13,7 +13,7 @@ Behaviours.LowRotation = class LowRotation extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(128,128,128,0.4)';
+    return 'rgba(128,128,128,0.4)';
   }
 
   set_target() {

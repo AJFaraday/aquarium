@@ -13,7 +13,7 @@ Behaviours.Failure = class Failure extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(0,255,255,0.4)';
+    return 'rgba(0,255,255,0.4)';
   }
 
   set_target() {

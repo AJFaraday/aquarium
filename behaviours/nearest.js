@@ -13,7 +13,7 @@ Behaviours.Nearest = class Nearest extends (Behaviour) {
   }
 
   colour() {
-    return 'rgb(255,0,0,0.4)';
+    return 'rgba(255,0,0,0.4)';
   }
 
   set_target() {
