@@ -6,14 +6,24 @@ var Behaviours = exports.Behaviours;
 
 class Validator {
   
-
-  constructor(behaviour_name) {
+  // TODO pass this a class?
+  constructor(behaviour_class) {
     this.errors = [];
-    this.behaviour_name = behaviour_name;
-    this.behaviour = new Behaviours[behaviour_name]('dummyval');
+    this.behaviour_class = behaviour_class;
+
+    try {
+      this.snake = new Creatures.Snake(behaviour_class);
+      this.behaviour = this.snake.behaviour;
+      this.behaviour_name = Object.getPrototypeOf(this.behaviour).constructor.name;
+    } catch(er) {
+      this.errors.push("Couldn't initialize snake, this error is seen: " + er);
+    }
   }
 
   check() {
+    if (!this.valid()) {
+      return
+    }
     var validator = this;
     console.log('Checking ' + this.behaviour_name);
     Object.keys(Validator.checks).forEach(
@@ -37,6 +47,10 @@ class Validator {
 
   add_error_array(errors) {
     this.errors = this.errors.concat(errors);
+  }
+
+  valid() {
+    return (this.errors.length == 0);
   }
 
 }

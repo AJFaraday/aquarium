@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.TopHugger = class TopHugger extends (Behaviour) {
+Behaviours.TopHugger = class TopHugger extends Behaviour {
 
   constructor(snake) {
     super(snake);

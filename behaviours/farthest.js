@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.Farthest = class Farthest extends (Behaviour) {
+Behaviours.Farthest = class Farthest extends Behaviour {
 
   constructor(snake) {
     super(snake);

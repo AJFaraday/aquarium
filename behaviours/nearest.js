@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.Nearest = class Nearest extends (Behaviour) {
+Behaviours.Nearest = class Nearest extends Behaviour {
 
   constructor(snake) {
     super(snake);

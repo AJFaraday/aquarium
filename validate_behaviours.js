@@ -6,9 +6,14 @@ var Behaviours = exports.Behaviours;
 
 var Validator = require('./validator.cli.min.js');
 
+console.log(Behaviours.Failure.name)
+
+Config.index = 2;
+Game.init(Config.build_config(Configs.grid));
+
 Object.keys(Behaviours).forEach(
   function(behaviour_name) {
-    var validator = new Validator(behaviour_name);
+    var validator = new Validator(Behaviours[behaviour_name], behaviour_name);
     validator.check();
   }
 );

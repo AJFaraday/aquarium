@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.Random = class Random extends (Behaviour) {
+Behaviours.Random = class Random extends Behaviour {
 
   constructor(snake) {
     super(snake);

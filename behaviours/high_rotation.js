@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.HighRotation = class HighRotation extends (Behaviour) {
+Behaviours.HighRotation = class HighRotation extends Behaviour {
 
   constructor(snake) {
     super(snake);

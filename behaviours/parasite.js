@@ -2,7 +2,7 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.Parasite = class Parasite extends (Behaviour) {
+Behaviours.Parasite = class Parasite extends Behaviour {
 
   constructor(snake) {
     super(snake);

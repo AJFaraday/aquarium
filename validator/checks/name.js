@@ -8,7 +8,7 @@ Validator.checks.name = function (validator) {
   if (typeof name != 'string') {
     errors.push('Behaviour should have a name() method returning a string')
   }
-  if (name.length && name.length > 30) {
+  if (name && name.length > 30) {
     errors.push("Behaviour name() should not be more than 30 characters long")
   }
   return errors;

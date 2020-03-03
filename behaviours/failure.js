@@ -2,10 +2,14 @@ if (typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
-Behaviours.Failure = class Failure extends (Behaviour) {
+Behaviours.Failure = class Failure extends Behaviour {
 
   constructor(snake) {
     super(snake);
+    this.spot = {
+      x: (Math.random() * this.game_width()),
+      y: (Math.random() * this.game_height())
+    }
   }
 
   name() {
@@ -17,19 +21,12 @@ Behaviours.Failure = class Failure extends (Behaviour) {
   }
 
   set_target() {
-    if (this.food().length == 0) {
-      this.idle()
-    } else {
-      this.target({x: 200, y: 200});
-    }
+    this.target(this.spot);
+    //this.target(this.food()[0])
   }
 
-  target_removed() {
-    this.set_target();
-  }
-
-  eat() {
-    this.set_target();
+  idle() {
+    this.target(this.spot);
   }
 
 };
