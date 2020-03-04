@@ -22,7 +22,7 @@ Behaviours.Parasite = class Parasite extends Behaviour {
       this.idle()
     } else {
       var parasite = this.snake;
-      var distances = Game.snakes.map(function (snake) {
+      var distances = this.snakes().map(function (snake) {
         if (snake == parasite) {
           return 99999;
         }

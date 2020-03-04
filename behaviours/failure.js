@@ -9,7 +9,7 @@ Behaviours.Failure = class Failure extends Behaviour {
     this.spot = {
       x: (Math.random() * this.game_width()),
       y: (Math.random() * this.game_height())
-    }
+    };
   }
 
   name() {

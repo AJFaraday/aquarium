@@ -5,7 +5,6 @@ terser --compress -o aquarium.min.js \
   canvas.js \
   utils.js \
   mix.js \
-  strategies.js \
   concerns/*.js \
   static/*.js \
   creatures/*.js \

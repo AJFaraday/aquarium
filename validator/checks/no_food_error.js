@@ -12,7 +12,7 @@ Validator.checks.no_food_error = function (validator) {
     validator.behaviour.set_target();
     Game.update();
   } catch (er) {
-    errors.push("Behaviour throws an error when there's no food: " + er)
+    errors.push("Behaviour.set_target() throws an error when there's no food: " + er)
   }
 
   Game.food = old_food;

@@ -75,6 +75,14 @@ class Behaviour {
   /////// Helpers //////
   //////////////////////
 
+  x() {
+    return this.snake.x;
+  }
+
+  y() {
+    return this.snake.y;
+  }
+
   food() {
     return Game.food;
   }

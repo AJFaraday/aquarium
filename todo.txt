@@ -45,16 +45,11 @@ Game modes (fixed random seed, fixed board size):
 * parasite mode (snake vs parasite, of parasite dies, another starts)
 * self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
 
-
-Behaviour validator script
-
-Criteria for PR
-* Adds class (inheriting from Behaviour) to Behaviours
-* Defines name, colour, set_target
-* set_target doesn't error when there's no food
-* No console logs
-* Color is a valid rgba form
-* Color has 0.4 alpha value
+Behaviour validator components
+- Answer importer (gets all answers by id)
+- Code getter (either answer id or file)
+- new Validator(behaviour_class)
+- Writer (adds to behaviours/*.js)
 
 in game
 Link to menu
