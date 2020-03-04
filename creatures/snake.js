@@ -88,6 +88,12 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     Game.updatables.splice(Game.updatables.indexOf(this), 1);
     Game.drawables.splice(Game.drawables.indexOf(this), 1);
     Game.snakes.splice(Game.snakes.indexOf(this), 1);
+    new Static.Ghost(this);
+    this.tail_segments.forEach(
+      function(segment) {
+        new Static.Ghost(segment);
+      }
+    )
   }
 
   //////////////

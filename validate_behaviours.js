@@ -4,8 +4,14 @@ var Config = exports.Config;
 var Configs = exports.Configs;
 var Behaviours = exports.Behaviours;
 
-var Validator = require('./validator.cli.min.js');
+var exports = require('./validator.cli.min.js');
+var Validator = exports.Validator;
+var Fetcher = exports.Fetcher;
 
+var fetcher = new Fetcher(18632, 'codegolf.meta');
+
+
+/*
 Config.index = 2;
 Game.init(Config.build_config(Configs.grid));
 
@@ -16,3 +22,4 @@ Object.keys(Behaviours).forEach(
     validator.check();
   }
 );
+ */

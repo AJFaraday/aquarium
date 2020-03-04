@@ -1,3 +1,7 @@
+Feature idea:
+
+Snakes leave behind drawables with low alpha. A stationary ghost of it's last position
+
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1

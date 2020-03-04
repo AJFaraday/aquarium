@@ -60,3 +60,10 @@ For now, just run this
 ```bash
 ./run_match.sh
 ```
+
+# Validator
+
+```bash
+sudo npm install terser -g
+sudo npm install -g request@2.81.0`
+`
