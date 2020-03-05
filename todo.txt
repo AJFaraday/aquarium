@@ -61,3 +61,7 @@ When scores are done, table of results
 
 * Menu as table (can include winner)
 
+
+Fun idea:
+Generate an SVG when running matches (maybe 500 ticks in?)
+Preview matches on hovering. 
