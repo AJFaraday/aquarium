@@ -13,7 +13,7 @@ terser -o aquarium.cli.min.js \
   config.js \
   configs/*.js
 
-echo "module.exports = {Game: Game, Config: Config, Configs: Configs, Behaviours: Behaviours};" >> aquarium.cli.min.js
+echo "module.exports = {Game: Game, Config: Config, Configs: Configs, Behaviours: Behaviours, Behaviour: Behaviour};" >> aquarium.cli.min.js
 
 terser --compress -o validator.cli.min.js \
   validator/fetcher.js \

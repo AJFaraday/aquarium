@@ -1,6 +1,9 @@
-Feature idea:
+Next steps:
 
-Snakes leave behind drawables with low alpha. A stationary ghost of it's last position
+Extract 'importer'
+Importer runs validation to check whether or not to import
+dev_menu replaced with packaged menu
+
 
 Scoring system:
 * Eat a food - 1
