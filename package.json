@@ -1,0 +1,26 @@
+{
+  "name": "aquarium",
+  "version": "1.0.0",
+  "description": "Simulation of an imagined ecology where snake-like creatures compete for food and survival based on pre-defined behaviours.",
+  "main": "command_line.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJFaraday/aquarium.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AJFaraday/aquarium/issues"
+  },
+  "homepage": "https://github.com/AJFaraday/aquarium#readme"
+}
