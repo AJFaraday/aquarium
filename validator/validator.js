@@ -1,13 +1,15 @@
+
 var exports = require('./aquarium.cli.min');
-var Game = exports.Game;
-var Config = exports.Config;
-var Configs = exports.Configs;
-var Behaviours = exports.Behaviours;
+Game = exports.Game;
+Config = exports.Config;
+Configs = exports.Configs;
+Behaviours = exports.Behaviours;
 
 class Validator {
-  
-  // TODO pass this a class?
+
   constructor(behaviour_class) {
+    Config.index = Object.keys(Behaviours).indexOf(behaviour_class.name);
+    Game.init(Config.build_config(Configs.grid));
     this.errors = [];
     this.behaviour_class = behaviour_class;
 

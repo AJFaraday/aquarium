@@ -4,6 +4,7 @@ Extract 'importer'
 Importer runs validation to check whether or not to import
 dev_menu replaced with packaged menu
 
+replace console with file logger, to become viewable
 
 Highlight behaviour
 - add change alpha method (see fetcher)

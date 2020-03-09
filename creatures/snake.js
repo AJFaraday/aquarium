@@ -5,7 +5,6 @@ if(typeof Creatures === 'undefined') {
 Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter, Concerns.Eater) {
   constructor(behaviour) {
     super();
-
     this.behaviour = new behaviour(this);
     this.colour = this.behaviour.colour();
 
