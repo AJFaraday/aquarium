@@ -15,11 +15,11 @@ terser -o aquarium.cli.min.js \
 
 echo "module.exports = {Game: Game, Config: Config, Configs: Configs, Behaviours: Behaviours, Behaviour: Behaviour};" >> aquarium.cli.min.js
 
-terser --compress -o validator.cli.min.js \
-  validator/fetcher.js \
-  validator/validator.js \
-  validator/checks/*.js
+terser --compress -o importer.cli.min.js \
+  importer/fetcher.js \
+  importer/validator.js \
+  importer/checks/*.js
 
-echo "module.exports = {Validator: Validator, Fetcher: Fetcher}" >> validator.cli.min.js
+echo "module.exports = {Validator: Validator, Fetcher: Fetcher}" >> importer.cli.min.js
 
-node validate_behaviours.js
+node import_answers.js

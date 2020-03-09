@@ -61,11 +61,14 @@ For now, just run this
 ./run_match.sh
 ```
 
-# Validator
+# Import from SE:
+
+First, you need terser:
 
 ```bash
 sudo npm install terser -g
-sudo npm install -g request@2.81.0
-sudo npm install -g node-html-parser
+```
 
+```bash
+./import_answers.sh
 ```

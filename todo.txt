@@ -1,9 +1,4 @@
-Next steps:
-
-Extract 'importer'
-Importer runs validation to check whether or not to import
-dev_menu replaced with packaged menu
-
+Importer:
 replace console with file logger, to become viewable
 
 Highlight behaviour
@@ -11,7 +6,6 @@ Highlight behaviour
 - highlight attribute to URL
 - set alpha to 0.7 
 - set in menu?
-
 
 Scoring system:
 * Eat a food - 1
@@ -26,7 +20,7 @@ Exit conditions: (part of game mode?)
 * Time limit finished (say, 10 minutes)
 
 Menu
-- Check box for 'standard mode'
+- Check box for 'standard mode' (standard canvas)
 - Match list as table (could include results)
 
 Functions of Strategy class
@@ -60,18 +54,12 @@ Game modes (fixed random seed, fixed board size):
 * parasite mode (snake vs parasite, of parasite dies, another starts)
 * self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
 
-Behaviour validator components
-- Answer importer (gets all answers by id)
-- Code getter (either answer id or file)
-- new Validator(behaviour_class)
-- Writer (adds to behaviours/*.js)
 
 in game
 Link to menu
 When scores are done, table of results 
 
 * Menu as table (can include winner)
-
 
 Fun idea:
 Generate an SVG when running matches (maybe 500 ticks in?)

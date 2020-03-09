@@ -2,7 +2,7 @@ const request = require('request');
 var exports = require('./aquarium.cli.min.js');
 var Behaviour = exports.Behaviour;
 var Behaviours = exports.Behaviours;
-const BehaviourBuilder = require('./validator/behaviour_builder.js');
+const BehaviourBuilder = require('./importer/behaviour_builder.js');
 
 class Fetcher {
 
@@ -19,7 +19,7 @@ class Fetcher {
   validate_defaults() {
     console.log('Checking Behaviours in default_behaviours/')
     Object.keys(Behaviours).forEach(
-      function(behaviour_name){
+      function (behaviour_name) {
         console.log('');
         console.log('-----------------------------------------');
         var validator = new Validator(Behaviours[behaviour_name]);
@@ -65,7 +65,7 @@ class Fetcher {
           Behaviours[title] = klass;
           var validator = new Validator(klass);
           validator.check();
-          if(validator.valid()) {
+          if (validator.valid()) {
             var file_name = title.toLowerCase().replace(' ', '_') + '.js';
             console.log(title + ' is valid, moving to /behaviours/' + file_name);
             fetcher.builder.write_to_file(file_name, code);
@@ -77,7 +77,7 @@ class Fetcher {
         } catch (er) {
           var id = answer.answer_id;
           var user = answer.owner.display_name.toLowerCase().replace(' ', '_');
-          console.log('Error importing answer' + id + ' by ' + user + ': ' + er);
+          console.log('Error importing answer ' + id + ' by ' + user + ': ' + er);
           console.log('-----------------------------------------');
         }
       }
