@@ -5,6 +5,13 @@ Importer runs validation to check whether or not to import
 dev_menu replaced with packaged menu
 
 
+Highlight behaviour
+- add change alpha method (see fetcher)
+- highlight attribute to URL
+- set alpha to 0.7 
+- set in menu?
+
+
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1
@@ -64,3 +71,7 @@ When scores are done, table of results
 
 * Menu as table (can include winner)
 
+
+Fun idea:
+Generate an SVG when running matches (maybe 500 ticks in?)
+Preview matches on hovering. 
