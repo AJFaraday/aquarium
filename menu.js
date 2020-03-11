@@ -22,25 +22,51 @@ class Menu {
     label.innerHTML = 'Select Snake';
     this.form.appendChild(label);
 
-    var select = document.createElement('select');
-    select.addEventListener('change', function (e) {
+    menu.snake_select = document.createElement('select');
+    menu.snake_select.addEventListener('change', function (e) {
       menu.show_snake(this.selectedOptions[0].value);
+      document.cookie = ('snake=' + this.selectedOptions[0].value)
     });
 
     var option = document.createElement('option');
     option.innerHTML = 'All';
     option.value = 'all';
-    select.appendChild(option);
+    menu.snake_select.appendChild(option);
     Object.keys(Behaviours).forEach(
       function (behaviour) {
         var option = document.createElement('option');
         option.innerHTML = new Behaviours[behaviour](0).name();
         option.value = behaviour;
-        select.appendChild(option);
-        menu.form.appendChild(select);
+        menu.snake_select.appendChild(option);
+        menu.form.appendChild(menu.snake_select);
       }
     );
-    this.form.appendChild(select);
+    this.form.appendChild(menu.snake_select);
+
+    if (Utils.cookies().snake) {
+      var selected_index = Object.keys(Behaviours).indexOf(Utils.cookies().snake);
+      if (selected_index == -1) {
+        menu.snake_select.selectedIndex = 0;
+      }else {
+        menu.snake_select.selectedIndex = selected_index + 1;
+      }
+      menu.show_snake(menu.snake_select.selectedOptions[0].value);
+    }
+
+    this.form.appendChild(document.createElement('br'));
+    var label = document.createElement('label');
+    label.innerHTML = 'Standard mode';
+    this.form.appendChild(label);
+
+    this.standard_check = document.createElement('input');
+    this.standard_check.setAttribute('type', 'checkbox');
+    this.standard_check.checked = (Utils.cookies().standard == 'true');
+    menu.standard_check.addEventListener('change', function (e) {
+      document.cookie = ('standard=' + this.checked);
+    });
+
+    this.form.appendChild(this.standard_check);
+
   }
 
   build_versus_items(menu) {
@@ -143,7 +169,7 @@ class Menu {
   }
 
   show_snake(name) {
-    menu.hide_all();
+    this.hide_all();
     if (this.with_snake(name).length > 0) {
       this.with_snake(name).forEach(
         function (link) {

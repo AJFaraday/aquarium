@@ -8,7 +8,7 @@ Static.Ghost = class Ghost {
     this.x = src.x;
     this.y = src.y;
     this.size = src.size;
-    this.colour = src.colour.replace(/0\.[0-9]/, '0.1');
+    this.colour = Utils.change_alpha(src.colour, 0.1);
     Game.drawables.push(this);
   }
 

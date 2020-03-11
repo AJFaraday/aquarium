@@ -50,6 +50,20 @@ class Utils {
     }
   }
 
+  static cookies() {
+    if (typeof this.cached_cookies != 'undefined') {
+      return this.cached_cookies;
+    }
+    var str = document.cookie.split('; ');
+    var result = {};
+    for (var i = 0; i < str.length; i++) {
+      var cur = str[i].split('=');
+      result[cur[0]] = cur[1];
+    }
+    this.cached_cookies = result;
+    return result;
+  }
+
   static pairs_for(n_options) {
     var n1 = 0;
     var n2 = 0;
@@ -63,5 +77,10 @@ class Utils {
       n1++;
     }
     return pairs;
+  }
+
+  // Changes the alpha value of a valid RGBA string
+  static change_alpha(colour, alpha) {
+    return colour.replace(/0\.[0-9]/, alpha);
   }
 }

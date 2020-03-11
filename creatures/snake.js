@@ -6,7 +6,13 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   constructor(behaviour) {
     super();
     this.behaviour = new behaviour(this);
-    this.colour = this.behaviour.colour();
+    console.log(behaviour);
+    console.log(Utils.cookies().snake)
+    if (Utils.cookies().snake == behaviour.name) {
+      this.colour = Utils.change_alpha(this.behaviour.colour(), 0.8);
+    } else {
+      this.colour = this.behaviour.colour();
+    }
 
     this.name = Game.register_snake(this.behaviour.name());
 
