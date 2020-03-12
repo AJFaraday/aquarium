@@ -4,6 +4,13 @@ class Canvas {
     this.ctx = this.canvas.getContext('2d');
 
     this.to_radians = Math.PI / 180;
+
+    this.canvas.addEventListener(
+      'click',
+      function() {
+        window.open('menu.html', '_blank');
+      }
+    )
   }
 
   // source will be an object with x, y, size and colour

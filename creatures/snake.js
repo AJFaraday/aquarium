@@ -9,7 +9,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     console.log(behaviour);
     console.log(Utils.cookies().snake)
     if (Utils.cookies().snake == behaviour.name) {
-      this.colour = Utils.change_alpha(this.behaviour.colour(), 0.8);
+      this.colour = Utils.change_alpha(this.behaviour.colour(), 0.6);
     } else {
       this.colour = this.behaviour.colour();
     }
