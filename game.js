@@ -107,6 +107,7 @@ class Game {
         drawable.draw();
       }
     );
+    Score.draw()
   }
 
   static add_random_snake() {

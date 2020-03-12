@@ -6,13 +6,13 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   constructor(behaviour) {
     super();
     this.behaviour = new behaviour(this);
-    console.log(behaviour);
-    console.log(Utils.cookies().snake)
     if (Utils.cookies().snake == behaviour.name) {
       this.colour = Utils.change_alpha(this.behaviour.colour(), 0.6);
     } else {
       this.colour = this.behaviour.colour();
     }
+
+    this.score = Score.for_behaviour(this.behaviour.name());
 
     this.name = Game.register_snake(this.behaviour.name());
 
@@ -59,6 +59,9 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
       this.behaviour.target_removed();
     }
     this.check_for_starvation();
+    if(Game.tick > 0 && (Game.tick % 1000) == 0) {
+      this.score.increment(1);
+    }
   }
 
   draw() {
@@ -79,6 +82,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     if(this.health <= 0) {
       console.log(Game.tick + ": " + this.name + " died because it's tail was bitten by " + biter.name);
       this.remove();
+      biter.score.increment(1);
     }
   }
 
@@ -87,6 +91,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.speed += snake.speed / 10;
     this.behaviour.bite_tail(snake);
     snake.behaviour.tail_bitten(this);
+    this.score.increment(1);
   }
 
   remove() {

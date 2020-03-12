@@ -21,7 +21,6 @@ Concerns.Catchable = class Catchable {
   };
 
   caught() {
-    //return Utils.touching(this, Player.head);
     var catchable = this;
     var result = false
     Game.snakes.forEach(

@@ -35,6 +35,7 @@ class Fetcher {
       {json: true, gzip: true},
       function (err, res, body) {
         if (err) {
+          console.log('error in get_answers')
           throw err;
         }
         fetcher.data = body;

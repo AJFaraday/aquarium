@@ -51,6 +51,9 @@ class Utils {
   }
 
   static cookies() {
+    if (typeof document == 'undefined') {
+      return {};
+    }
     if (typeof this.cached_cookies != 'undefined') {
       return this.cached_cookies;
     }

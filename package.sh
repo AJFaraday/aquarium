@@ -4,6 +4,7 @@ terser -o aquarium.min.js \
   canvas.js \
   utils.js \
   mix.js \
+  score.js \
   concerns/*.js \
   static/*.js \
   creatures/*.js \

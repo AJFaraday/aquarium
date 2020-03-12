@@ -32,6 +32,7 @@ Concerns.Eater = class Eater {
     this.health += 1;
     this.speed += 0.1;
     this.grow_tail();
+    this.score.increment(1);
     this.behaviour.eat();
     if (food == this.target) {
       this.behaviour.eat_target();
