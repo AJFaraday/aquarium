@@ -107,7 +107,9 @@ class Game {
         drawable.draw();
       }
     );
-    Score.draw()
+    if(Utils.cookies().show_stats == 'true') {
+      Stats.draw()
+    }
   }
 
   static add_random_snake() {

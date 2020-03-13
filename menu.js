@@ -55,7 +55,7 @@ class Menu {
 
     this.form.appendChild(document.createElement('br'));
     var label = document.createElement('label');
-    label.innerHTML = 'Standard mode';
+    label.innerHTML = 'Standard Mode';
     this.form.appendChild(label);
 
     this.standard_check = document.createElement('input');
@@ -64,8 +64,21 @@ class Menu {
     menu.standard_check.addEventListener('change', function (e) {
       document.cookie = ('standard=' + this.checked);
     });
-
     this.form.appendChild(this.standard_check);
+
+
+    this.form.appendChild(document.createElement('br'));
+    var label = document.createElement('label');
+    label.innerHTML = 'Show Stats';
+    this.form.appendChild(label);
+
+    this.stats_check = document.createElement('input');
+    this.stats_check.setAttribute('type', 'checkbox');
+    this.stats_check.checked = (Utils.cookies().standard == 'true');
+    menu.stats_check.addEventListener('change', function (e) {
+      document.cookie = ('show_stats=' + this.checked);
+    });
+    this.form.appendChild(this.stats_check);
 
   }
 

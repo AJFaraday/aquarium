@@ -8,6 +8,12 @@ Scoring system:
 * 10 seconds alive - 1
 * Last snake alive - 1
 
+more advanced stats
+- active snakes
+- max snakes
+- total score
+- average score
+
 Only 3 HTML views
 
 - index.html 'screensaver mode'
@@ -56,8 +62,8 @@ Game modes (fixed random seed, fixed board size):
 
 
 in game
-Link to menu
-When scores are done, table of results 
+(M)enu
+(S)tats
 
 * Menu as table (can include winner)
 
