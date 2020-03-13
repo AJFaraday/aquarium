@@ -13,6 +13,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     }
 
     this.stats = Stats.for_behaviour(this.behaviour.name());
+    this.stats.add_snake(this);
 
     this.name = Game.register_snake(this.behaviour.name());
 

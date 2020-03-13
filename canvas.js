@@ -5,10 +5,21 @@ class Canvas {
 
     this.to_radians = Math.PI / 180;
 
-    this.canvas.addEventListener(
-      'click',
-      function() {
-        window.open('menu.html', '_blank');
+    addEventListener(
+      'keyup',
+      function(e) {
+        console.log('fired key event')
+        if(e.key == 'm') {
+          window.open('menu.html');
+        } else if (e.key == 's') {
+          if(Utils.cookies().show_stats == 'true') {
+            document.cookie = ('show_stats=false');
+            Utils.cookies().show_stats = 'false';
+          } else {
+            document.cookie = ('show_stats=true');
+            Utils.cookies().show_stats = 'true';
+          }
+        }
       }
     )
   }

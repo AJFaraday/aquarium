@@ -41,11 +41,21 @@ class Stats {
     // TODO fill these in accordingly
     this.total_snakes = 0;
     this.current_snakes = 0;
+    this.snakes = {};
   }
 
-  score_points(n) {
+  score_points(n, snake) {
     this.value += n;
   }
 
+  add_snake(snake) {
+    this.total_snakes += 1;
+    this.current_snakes += 1;
+    this.snakes[snake] = 0;
+  }
+
+  remove_snake(snake) {
+    this.current_snakes -= 1;
+  }
 
 }
