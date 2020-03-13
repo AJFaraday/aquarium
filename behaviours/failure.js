@@ -13,7 +13,7 @@ Behaviours.Failure = class Failure extends Behaviour {
   }
 
   name() {
-    return '<failfailfailfailfailfailfail>';
+    return 'failfailfailfailfailfailfail';
   }
 
   colour() {

@@ -8,7 +8,6 @@ class Canvas {
     addEventListener(
       'keyup',
       function(e) {
-        console.log('fired key event')
         if(e.key == 'm') {
           window.open('menu.html');
         } else if (e.key == 's') {

@@ -12,10 +12,10 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
       this.colour = this.behaviour.colour();
     }
 
+    this.name = Game.register_snake(this.behaviour.name());
+
     this.stats = Stats.for_behaviour(this.behaviour.name());
     this.stats.add_snake(this);
-
-    this.name = Game.register_snake(this.behaviour.name());
 
     this.x = Math.random() * Game.width;
     this.y = Math.random() * Game.height;
@@ -40,7 +40,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   }
 
   score_point() {
-    this.stats.score_points(1);
+    this.stats.score_points(1, this);
   }
 
   init_history() {
@@ -108,7 +108,8 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
       function(segment) {
         new Static.Ghost(segment);
       }
-    )
+    );
+    this.stats.remove_snake(this);
   }
 
   //////////////
