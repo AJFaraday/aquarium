@@ -7,17 +7,15 @@ class Canvas {
 
     addEventListener(
       'keyup',
-      function(e) {
-        if(e.key == 'm') {
+      function (e) {
+        if (e.key == 'm') {
           window.open('menu.html');
         } else if (e.key == 's') {
-          if(Utils.cookies().show_stats == 'true') {
-            document.cookie = ('show_stats=false');
-            Utils.cookies().show_stats = 'false';
-          } else {
-            document.cookie = ('show_stats=true');
-            Utils.cookies().show_stats = 'true';
-          }
+          var stat_mode = parseInt((Utils.cookies().stat_mode || 0));
+          stat_mode += 1;
+          stat_mode %= 3;
+          document.cookie = ('stat_mode=' + stat_mode);
+          Utils.cookies().stat_mode = stat_mode;
         }
       }
     )
@@ -44,8 +42,8 @@ class Canvas {
     this.ctx.lineWidth = 5;
     this.ctx.strokeStyle = source.colour;
     this.ctx.strokeRect(
-      (source.x - (source.size/2)),
-      (source.y - (source.size/2)),
+      (source.x - (source.size / 2)),
+      (source.y - (source.size / 2)),
       source.size,
       source.size
     );

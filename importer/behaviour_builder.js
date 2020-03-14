@@ -7,6 +7,12 @@ class BehaviourBuilder {
     this.fs.removeSync('/behaviours/*')
   }
 
+  remove_file(behaviour_name) {
+    var file_name = behaviour_name.toLowerCase().replace(' ', '_') + '.js';
+    console.log('Deleting /behaviours/' + file_name);
+    this.fs.removeSync('./behaviours/' + file_name);
+  }
+
   move_defaults() {
     this.fs.copySync('./default_behaviours', './behaviours');
   }

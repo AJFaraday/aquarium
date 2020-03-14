@@ -17,6 +17,7 @@ class Fetcher {
   }
 
   validate_defaults() {
+    var fetcher = this;
     console.log('Checking Behaviours in default_behaviours/')
     Object.keys(Behaviours).forEach(
       function (behaviour_name) {
@@ -24,6 +25,10 @@ class Fetcher {
         console.log('-----------------------------------------');
         var validator = new Validator(Behaviours[behaviour_name]);
         validator.check();
+        if(!validator.valid()) {
+          console.log("Removing default behaviour: " + validator.behaviour_name);
+          fetcher.builder.remove_file(validator.behaviour_name);
+        }
       }
     )
   }

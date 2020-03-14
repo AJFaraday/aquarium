@@ -72,14 +72,20 @@ class Menu {
     label.innerHTML = 'Show Stats';
     this.form.appendChild(label);
 
-    this.stats_check = document.createElement('input');
-    this.stats_check.setAttribute('type', 'checkbox');
-    this.stats_check.checked = (Utils.cookies().standard == 'true');
-    menu.stats_check.addEventListener('change', function (e) {
-      document.cookie = ('show_stats=' + this.checked);
+    menu.stat_select = document.createElement('select');
+    menu.stat_select.addEventListener('change', function (e) {
+      document.cookie = ('stat_mode=' + this.selectedOptions[0].value)
     });
-    this.form.appendChild(this.stats_check);
-
+    ['None', 'Summary', 'Snakes'].forEach(
+      function(name, index) {
+        var option = document.createElement('option');
+        option.innerHTML = name;
+        option.value = index;
+        menu.stat_select.appendChild(option);
+      }
+    );
+    menu.stat_select.selectedIndex = Utils.cookies().stat_mode;
+    this.form.appendChild(menu.stat_select);
   }
 
   build_versus_items(menu) {

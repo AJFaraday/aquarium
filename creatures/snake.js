@@ -82,6 +82,10 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     return this.speed;
   }
 
+  score() {
+    return this.stats.scores[this.name];
+  }
+
   get_bitten_by(biter) {
     this.speed = 20;
     if(this.health <= 0) {
@@ -96,7 +100,9 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     this.speed += snake.speed / 10;
     this.behaviour.bite_tail(snake);
     snake.behaviour.tail_bitten(this);
-    this.score_point();
+    if (snake != this) {
+      this.score_point();
+    }
   }
 
   remove() {

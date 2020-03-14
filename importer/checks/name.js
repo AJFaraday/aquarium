@@ -11,5 +11,8 @@ Validator.checks.name = function (validator) {
   if (name && name.length > 30) {
     errors.push("Behaviour name() should not be more than 30 characters long")
   }
+  if(!name.match(/^[a-z0-9 ]+$/i)) {
+    errors.push("Behaviour name() can only contain letters, numbers or spaces")
+  }
   return errors;
 };

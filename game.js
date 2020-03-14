@@ -13,7 +13,7 @@ class Game {
       if (Utils.cookies().standard == 'true') {
         this.width = 1024;
         this.height = 768;
-      }else {
+      } else {
         this.width = document.documentElement.clientWidth;
         this.height = document.documentElement.clientHeight;
       }
@@ -47,6 +47,7 @@ class Game {
         Game.add_food_grid(Game.config.grid_size);
     }
 
+    Stats.clear();
     this.snake_registry = {};
     var starting_snakes_left = Game.config.min_starting_snakes;
     Game.config.starting_behaviours.forEach(
@@ -93,7 +94,7 @@ class Game {
       Game.end();
     } else {
       Game.snakes.forEach(
-        function(snake) {
+        function (snake) {
           snake.behaviour.every_tick();
         }
       )
@@ -107,8 +108,10 @@ class Game {
         drawable.draw();
       }
     );
-    if(Utils.cookies().show_stats == 'true') {
-      Stats.draw()
+    if (Utils.cookies().stat_mode == '1' || Utils.cookies().stat_mode == 1) {
+      Stats.draw_summaries();
+    } else if (Utils.cookies().stat_mode == '2' || Utils.cookies().stat_mode == 2) {
+      Stats.draw_snakes();
     }
   }
 
