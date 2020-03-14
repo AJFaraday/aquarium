@@ -31,6 +31,7 @@ class Game {
     Game.last_food_tick = 0;
     Game.food = [];
     Game.snakes = [];
+    Game.ended = false;
 
     this.drawables.push(
       new Static.Text(
@@ -91,6 +92,7 @@ class Game {
       Game.add_random_snake();
     }
     if (Game.snakes.length == 0) {
+      Game.game_over_message('Game over: No snakes remain')
       Game.end();
     } else {
       Game.snakes.forEach(
@@ -99,6 +101,17 @@ class Game {
         }
       )
     }
+    if(Game.tick >= 30000) {
+      Game.game_over_message('Game Over: 5 minute limit has been reached');
+      Game.end();
+    }
+  }
+
+  static game_over_message(text) {
+    console.log(Game.tick + ': ' + text);
+    Game.drawables.push(
+      new Static.Text((text + '(' + Game.tick + ')'), (Game.width - 20), 40, 30, 'right')
+    );
   }
 
   static draw() {
@@ -159,6 +172,7 @@ class Game {
   };
 
   static end() {
+    Game.ended = true;
     clearInterval(Game.draw_loop);
     clearInterval(Game.update_loop);
   }
@@ -167,7 +181,7 @@ class Game {
     if (typeof Game.snake_registry[name] == 'undefined') {
       Game.snake_registry[name] = 0;
     }
-    Game.snake_registry[name]++
+    Game.snake_registry[name]++;
     return name + '[' + Game.snake_registry[name] + ']'
   }
 

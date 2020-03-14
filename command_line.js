@@ -5,16 +5,18 @@ var exports = require('./aquarium.cli.min');
 var Game = exports.Game;
 var Config = exports.Config;
 var Configs = exports.Configs;
+var Stats = exports.Stats;
 
 function run_config(config) {
   require('./lib/seedrandom.min.js')('aquarium', {global: true});
   console.log('===============');
   Game.init(Config.build_config(config));
   Game.config.min_snakes = 0;
-  while (Game.snakes.length > 1) {
+  while (!Game.ended) {
     Game.update();
   }
-  console.log("Winner is: " + Game.snakes[0].name);
+  var stats = Object.values(Stats.stats).sort((a, b) => (a.average_score() < b.average_score()) ? 1 : -1);
+  console.log("Winner is: " + stats[0].behaviour_name);
 }
 
 run_config(Configs.royale);
