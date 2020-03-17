@@ -11,5 +11,6 @@ terser -o aquarium.min.js \
   behaviours/*.js \
   config.js \
   configs/*.js \
-  menu/menu.js
+  menu/menu.js \
+  menu/*.js
 
