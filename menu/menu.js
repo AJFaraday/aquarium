@@ -1,8 +1,9 @@
 class Menu {
 
   constructor() {
-    this.list = document.querySelector('ul#menu');
     this.form = document.querySelector('div#form');
+    this.list = document.querySelector('ul#menu');
+    this.icons = document.querySelector('div#icons');
     this.sections = [];
     this.populate();
     this.build_form();
@@ -47,7 +48,7 @@ class Menu {
       var selected_index = Object.keys(Behaviours).indexOf(Utils.cookies().snake);
       if (selected_index == -1) {
         menu.snake_select.selectedIndex = 0;
-      }else {
+      } else {
         menu.snake_select.selectedIndex = selected_index + 1;
       }
       menu.show_snake(menu.snake_select.selectedOptions[0].value);
@@ -77,7 +78,7 @@ class Menu {
       document.cookie = ('stat_mode=' + this.selectedOptions[0].value)
     });
     ['None', 'Summary', 'Snakes'].forEach(
-      function(name, index) {
+      function (name, index) {
         var option = document.createElement('option');
         option.innerHTML = name;
         option.value = index;
@@ -90,15 +91,26 @@ class Menu {
 
   build_versus_items(menu) {
     Menu.versus_configs().forEach(
-      function (config_name) {
-        var configs = Config.build_config_for_all_pairs(Configs[config_name]);
-        configs.forEach(
-          function (config) {
-            menu.append_to_section('Versus', config);
-          }
-        )
+      function (config) {
+        var configs = Config.build_config_for_all_pairs(Configs[config[0]]);
+        var title = menu.build_element('h1', {});
+        title.innerHTML = config[1];
+        menu.icons.appendChild(title);
+
+        var grid = new VsMatchGrid(configs, Object.keys(Behaviours).length, menu);
+        menu.icons.appendChild(grid.svg);
       }
     )
+  }
+
+  build_element(tag, attrs) {
+    var element = document.createElement(tag);
+    Object.keys(attrs).forEach(
+      function (key) {
+        element.setAttribute(key, attrs[key])
+      }
+    );
+    return element;
   }
 
   build_solo_items(menu) {
@@ -149,7 +161,6 @@ class Menu {
     this.sections[section].append(list_item);
   }
 
-  // TODO just config, one day
   url_from_config(config) {
     switch (config.type) {
       case 'solo':
@@ -217,7 +228,7 @@ class Menu {
 
   static versus_configs() {
     return [
-      'versus'
+      ['versus', '1 Vs 1']
     ]
   }
 

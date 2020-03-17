@@ -73,7 +73,7 @@ Config = {
     Config.reset_indexes();
     configs = [];
     while (!Config.finished()) {
-      Config.opponent_index = Config.index;
+      Config.opponent_index = 0;
       while (Config.opponent_index < (Object.keys(Behaviours).length)) {
         configs.push(Config.build_config(config));
         Config.next_opponent();
