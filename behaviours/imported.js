@@ -9,7 +9,7 @@ Behaviours.Imported = class Imported extends Behaviour {
   }
 
   name() {
-    return 'ImportedImportedImpo';
+    return 'Imported';
   }
 
   colour() {
