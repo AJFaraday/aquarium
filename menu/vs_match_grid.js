@@ -1,14 +1,25 @@
 class VsMatchGrid {
 
   constructor(configs, no_behaviours, menu) {
+    var grid = this;
+    this.behaviour_names = [];
+    Object.keys(Behaviours).forEach(
+      function(key) {
+        var behaviour = new Behaviours[key]();
+        grid.behaviour_names.push(behaviour.name());
+      }
+    );
+    var name_chars = Math.max(...this.behaviour_names.map(function(x) {return x.length}));
+
     this.flag_width = 40;
     this.flag_height = 30;
     this.width = this.flag_width * no_behaviours;
     this.height = this.flag_height * no_behaviours;
     this.title_height = 30;
     this.total_height = this.height + this.title_height;
-    this.title_width = 250;
+    this.title_width = (name_chars * 15);
     this.total_width = this.width + this.title_width;
+
     this.build_svg();
     this.build_labels();
     this.build_flags(configs, no_behaviours, menu);
@@ -25,9 +36,7 @@ class VsMatchGrid {
     var grid = this;
     Object.keys(Behaviours).forEach(
       function (key, index) {
-        var behaviour = new Behaviours[key]();
-        var name = behaviour.name()[0];
-        var colour = Utils.change_alpha(behaviour.colour(), 1);
+        var name = grid.behaviour_names[index][0];
         var text = grid.build_element(
           'text',
           {
@@ -49,9 +58,7 @@ class VsMatchGrid {
     var grid = this;
     Object.keys(Behaviours).forEach(
       function (key, index) {
-        var behaviour = new Behaviours[key]();
-        var name = behaviour.name();
-        var colour = Utils.change_alpha(behaviour.colour(), 1);
+        var name = grid.behaviour_names[index];
         var text = grid.build_element(
           'text',
           {
