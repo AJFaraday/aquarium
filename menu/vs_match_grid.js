@@ -17,7 +17,7 @@ class VsMatchGrid {
     this.height = this.flag_height * no_behaviours;
     this.title_height = 30;
     this.total_height = this.height + this.title_height;
-    this.title_width = (name_chars * 15);
+    this.title_width = (name_chars * 8) + 5;
     this.total_width = this.width + this.title_width;
 
     this.build_svg();
@@ -64,7 +64,7 @@ class VsMatchGrid {
           {
             x: grid.title_width,
             y: (y - 7),
-            style: 'font-size:20px;',
+            style: 'font-size:15px;',
             'text-anchor': 'end'
           }
         );

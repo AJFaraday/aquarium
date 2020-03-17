@@ -28,25 +28,27 @@ class VsMatchFlag {
       {id: this.gradient_id, x1: '0%', y1: '0%', x2: '100%', y2: '100%'}
     );
     gradient.appendChild(
-      this.build_element('stop', {offset: '45%', 'stop-color': this.colour1, 'stop-opacity': 1})
+      this.build_element('stop', {offset: '47%', 'stop-color': this.colour1, 'stop-opacity': 1})
     );
     gradient.appendChild(
-      this.build_element('stop', {offset: '55%', 'stop-color': this.colour2, 'stop-opacity': 1})
+      this.build_element('stop', {offset: '53%', 'stop-color': this.colour2, 'stop-opacity': 1})
     );
     return gradient;
   }
 
   rect_tag() {
-    var link = this.build_element('a', {href: this.url, target: '_blank', title: this.title});
+    var link = this.build_element('a', {href: this.url, target: '_blank'});
     var rect = this.build_element(
       'rect',
       {
         x: this.x, y: this.y,
         width: this.width, height: this.height,
-        fill: 'url(#' + this.gradient_id + ')',
-        title: this.title
+        fill: 'url(#' + this.gradient_id + ')'
       }
     );
+    var title = this.build_element('title', {});
+    title.innerHTML = this.title;
+    rect.append(title);
     link.appendChild(rect);
     return link;
   }

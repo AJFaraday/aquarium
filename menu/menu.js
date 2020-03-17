@@ -228,7 +228,7 @@ class Menu {
 
   static versus_configs() {
     return [
-      ['versus', '1 Vs 1']
+      ['versus', 'Duel']
     ]
   }
 
