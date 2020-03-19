@@ -4,13 +4,12 @@ class VsMatchGrid {
     var grid = this;
     this.behaviour_names = [];
     Object.keys(Behaviours).forEach(
-      function(key) {
+      function (key) {
         var behaviour = new Behaviours[key]();
         grid.behaviour_names.push(behaviour.name());
       }
     );
     var name_chars = Math.max(...this.behaviour_names.map(function(x) {return x.length}));
-
     this.flag_width = 40;
     this.flag_height = 30;
     this.width = this.flag_width * no_behaviours;

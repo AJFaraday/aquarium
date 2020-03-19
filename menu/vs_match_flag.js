@@ -7,8 +7,6 @@ class VsMatchFlag {
     this.index1 = Object.keys(Behaviours).indexOf(behaviour1.name);
     this.index2 = Object.keys(Behaviours).indexOf(behaviour2.name);
 
-    //this.colour1 = Utils.change_alpha(this.behaviour1.colour(), '1');
-    //this.colour2 = Utils.change_alpha(this.behaviour2.colour(), '1');
     this.colour1 = this.behaviour1.colour();
     this.colour2 = this.behaviour2.colour();
 
@@ -28,16 +26,37 @@ class VsMatchFlag {
       {id: this.gradient_id, x1: '0%', y1: '0%', x2: '100%', y2: '100%'}
     );
     gradient.appendChild(
-      this.build_element('stop', {offset: '47%', 'stop-color': this.colour1, 'stop-opacity': 1})
+      this.build_element('stop', {
+        offset: '47%',
+        'stop-color': this.colour1,
+        'stop-opacity': 1,
+        class: 's' + this.index1
+      })
     );
     gradient.appendChild(
-      this.build_element('stop', {offset: '53%', 'stop-color': this.colour2, 'stop-opacity': 1})
+      this.build_element('stop', {
+        offset: '53%',
+        'stop-color': this.colour2,
+        'stop-opacity': 1,
+        class: 's' + this.index2
+      })
     );
     return gradient;
   }
 
   rect_tag() {
-    var link = this.build_element('a', {href: this.url, target: '_blank'});
+    var link = this.build_element(
+      'a',
+      {href: this.url, target: '_blank', class: `s${this.index1} s${this.index2}`}
+    );
+    link.addEventListener(
+      'click',
+      function (event) {
+        if (link.attributes['data-disabled']) {
+          event.preventDefault();
+        }
+      }
+    );
     var rect = this.build_element(
       'rect',
       {

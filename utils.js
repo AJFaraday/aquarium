@@ -84,6 +84,8 @@ class Utils {
 
   // Changes the alpha value of a valid RGBA string
   static change_alpha(colour, alpha) {
-    return colour.replace(/0\.[0-9]/, alpha);
+    var regex = /(rgba\([0-9]+,[0-9]+,[0-9]+,).*(\))/;
+    var matches = colour.match(regex);
+    return `${matches[1]}${alpha}${matches[2]}`;
   }
 }

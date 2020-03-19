@@ -178,12 +178,29 @@ class Menu {
     }
   }
 
+  set_flag_alpha(selector, alpha) {
+    document.querySelectorAll(selector).forEach(
+      function(stop) {
+        stop.setAttribute(
+          'stop-color',
+          Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
+        );
+      }
+    );
+  }
+
   show_all() {
     document.querySelectorAll('a[data-behaviour=match_link]').forEach(
       function (link) {
         link.parentElement.style.display = 'block';
       }
-    )
+    );
+    document.querySelectorAll(`svg a`).forEach(
+      function(link) {
+        link.removeAttribute('data-disabled')
+      }
+    );
+    this.set_flag_alpha('stop', 0.6);
   }
 
   hide_all() {
@@ -191,7 +208,14 @@ class Menu {
       function (link) {
         link.parentElement.style.display = 'none';
       }
-    )
+    );
+    // TODO Disable all flag links
+    document.querySelectorAll('svg a').forEach(
+      function(link) {
+        link.setAttribute('data-disabled', 'true')
+      }
+    );
+    this.set_flag_alpha('stop', 0.2);
   }
 
   with_snake(name) {
@@ -205,7 +229,14 @@ class Menu {
         function (link) {
           link.parentElement.style.display = 'block';
         }
-      )
+      );
+      var index = Object.keys(Behaviours).indexOf(name);
+      document.querySelectorAll(`svg a.s${index}`).forEach(
+        function(link) {
+          link.removeAttribute('data-disabled')
+        }
+      );
+      this.set_flag_alpha(('stop.s' + index) ,1);
     } else {
       this.show_all();
     }
