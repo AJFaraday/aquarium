@@ -1,6 +1,8 @@
-class VsMatchGrid {
+class SoloMatchGrid {
 
   constructor(configs, no_behaviours, menu) {
+    console.log(configs)
+    this.configs = configs;
     var grid = this;
     this.behaviour_names = [];
     Object.keys(Behaviours).forEach(
@@ -9,14 +11,16 @@ class VsMatchGrid {
         grid.behaviour_names.push(behaviour.name());
       }
     );
-    var name_chars = Math.max(...this.behaviour_names.map(function(x) {return x.length}));
+    var name_chars = Math.max(...Object.keys(this.configs).map(function (x) {
+      return Configs[x].title.length
+    }));
     this.flag_width = 40;
     this.flag_height = 30;
     this.width = this.flag_width * no_behaviours;
-    this.height = this.flag_height * no_behaviours;
+    this.height = this.flag_height * Object.keys(configs).length;
     this.title_height = 30;
     this.total_height = this.height + this.title_height;
-    this.title_width = (name_chars * 8) + 5;
+    this.title_width = (name_chars * 9) + 5;
     this.total_width = this.width + this.title_width;
 
     this.build_svg();
@@ -58,9 +62,10 @@ class VsMatchGrid {
   build_side_labels() {
     var y = this.flag_height + this.title_height;
     var grid = this;
-    Object.keys(Behaviours).forEach(
+    Object.keys(grid.configs).forEach(
       function (key, index) {
-        var name = grid.behaviour_names[index];
+        var config = Configs[key];
+        var name = config.title;
         var text = grid.build_element(
           'text',
           {
@@ -79,20 +84,22 @@ class VsMatchGrid {
 
   build_flags(configs, no_behaviours, menu) {
     var grid = this;
-    configs.forEach(
-      function (config, index) {
-        var x = (index % no_behaviours) * grid.flag_width;
-        var y = (Math.floor(index / no_behaviours) * grid.flag_height) + grid.title_height;
-        var flag = new VsMatchFlag(
-          config.starting_behaviours[0],
-          config.starting_behaviours[1],
-          (x + grid.title_width),
-          y,
-          config.name,
-          menu.url_from_config(config)
-        );
-        grid.defs.appendChild(flag.gradient_tag());
-        grid.svg.appendChild(flag.rect_tag());
+    Object.keys(configs).forEach(
+      function (config_name, row_index) {
+        grid.configs[config_name].forEach(
+          function (config, column_index) {
+            var x = (column_index % no_behaviours) * grid.flag_width;
+            var y = (row_index * grid.flag_height) + grid.title_height;
+            var flag = new SoloMatchFlag(
+              config.starting_behaviours[0],
+              (x + grid.title_width),
+              y,
+              config.name,
+              menu.url_from_config(config)
+            );
+            grid.svg.appendChild(flag.rect_tag());
+          }
+        )
       }
     );
   }
@@ -108,8 +115,6 @@ class VsMatchGrid {
         height: this.total_height
       }
     );
-    this.defs = this.build_element('defs', {});
-    this.svg.appendChild(this.defs);
   }
 
   build_element(tag, attrs) {

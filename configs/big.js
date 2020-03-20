@@ -5,6 +5,7 @@ Configs.big = {
   id: 'big',
   type: 'all',
   name: 'Big Swarm Mode - All snakes',
+  title: 'Big Swarm Mode - All snakes',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 200, //initial feast

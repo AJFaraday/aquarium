@@ -8,6 +8,7 @@ Configs.swarm = {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
     return "Swarm mode: 20 x " + dummy_behaviour.name();
   },
+  title: 'Swarm mode: 20x snakes',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 200, //initial feast

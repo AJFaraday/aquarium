@@ -5,6 +5,7 @@ Configs.royale = {
   id: 'royale',
   type: 'all',
   name: 'Battle Royale - All snakes',
+  title: 'Battle Royale - All snakes',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 20, //initial feast

@@ -114,16 +114,17 @@ class Menu {
   }
 
   build_solo_items(menu) {
+    var title = menu.build_element('h1', {});
+    title.innerHTML = 'Solo';
+    menu.icons.appendChild(title);
+    var grid_configs = {};
     Menu.solo_configs().forEach(
       function (config_name) {
-        var configs = Config.build_config_for_all(Configs[config_name]);
-        configs.forEach(
-          function (config) {
-            menu.append_to_section('Solo', config);
-          }
-        )
+        grid_configs[config_name] = Config.build_config_for_all(Configs[config_name]);
       }
-    )
+    );
+    var grid = new SoloMatchGrid(grid_configs, Object.keys(Behaviours).length, menu);
+    menu.icons.appendChild(grid.svg);
   }
 
   build_all_snake_items(menu) {
@@ -180,10 +181,21 @@ class Menu {
 
   set_flag_alpha(selector, alpha) {
     document.querySelectorAll(selector).forEach(
-      function(stop) {
+      function (stop) {
         stop.setAttribute(
           'stop-color',
           Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
+        );
+      }
+    );
+  }
+
+  set_rect_alpha(selector, alpha) {
+    document.querySelectorAll(selector).forEach(
+      function (stop) {
+        stop.setAttribute(
+          'fill',
+          Utils.change_alpha(stop.attributes['fill'].value, alpha)
         );
       }
     );
@@ -196,11 +208,12 @@ class Menu {
       }
     );
     document.querySelectorAll(`svg a`).forEach(
-      function(link) {
+      function (link) {
         link.removeAttribute('data-disabled')
       }
     );
     this.set_flag_alpha('stop', 0.6);
+    this.set_rect_alpha('rect[class^=s]', 0.6);
   }
 
   hide_all() {
@@ -211,11 +224,12 @@ class Menu {
     );
     // TODO Disable all flag links
     document.querySelectorAll('svg a').forEach(
-      function(link) {
+      function (link) {
         link.setAttribute('data-disabled', 'true')
       }
     );
     this.set_flag_alpha('stop', 0.2);
+    this.set_rect_alpha('rect[class^=s]', 0.2);
   }
 
   with_snake(name) {
@@ -232,11 +246,12 @@ class Menu {
       );
       var index = Object.keys(Behaviours).indexOf(name);
       document.querySelectorAll(`svg a.s${index}`).forEach(
-        function(link) {
+        function (link) {
           link.removeAttribute('data-disabled')
         }
       );
-      this.set_flag_alpha(('stop.s' + index) ,1);
+      this.set_flag_alpha(('stop.s' + index), 1);
+      this.set_rect_alpha(('rect.s' + index), 1);
     } else {
       this.show_all();
     }

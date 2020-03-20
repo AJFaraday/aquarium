@@ -1,6 +1,9 @@
 Importer:
 replace console with file logger, to become viewable
 
+Some kind of colour highlighting of snake labels
+click labels to highlight snake
+
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1

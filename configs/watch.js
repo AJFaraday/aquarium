@@ -4,7 +4,8 @@ if (typeof Configs === 'undefined') {Configs = {}}
 Configs.watch = {
   id: 'royale',
   type: 'all',
-  name: 'Battle Royale - All snakes',
+  name: '',
+  title: 'Watch',
   min_snakes: 3,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 30, //initial feast

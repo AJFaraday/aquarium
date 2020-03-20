@@ -9,6 +9,7 @@ Configs.duel = {
     var dummy_opponent = new(Config.current_opponent()[0]);
     return "Duel: " + dummy_behaviour.name() + '  Vs. ' + dummy_opponent.name();
   },
+  title: 'Duel',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 20, //initial feast
@@ -16,7 +17,6 @@ Configs.duel = {
   food_interval: 50, // In ticks
   famine: false,
   starting_behaviours: Config.current_pair,
-  //starting_behaviours: [Behaviours.Random],
   snakes_of_each_behaviour: 1,
   respawn_behaviours: Config.current_pair,
   // Make it higher to start with at least this many

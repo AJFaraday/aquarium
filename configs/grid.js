@@ -8,6 +8,7 @@ Configs.grid = {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
     return "Solo on grid: " + dummy_behaviour.name();
   },
+  title: 'Solo on grid',
   min_snakes: 0,
   starting_food_mode: 'grid', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 20, //initial feast
