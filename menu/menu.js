@@ -92,9 +92,9 @@ class Menu {
   build_versus_items(menu) {
     Menu.versus_configs().forEach(
       function (config) {
-        var configs = Config.build_config_for_all_pairs(Configs[config[0]]);
+        var configs = Config.build_config_for_all_pairs(Configs[config]);
         var title = menu.build_element('h1', {});
-        title.innerHTML = config[1];
+        title.innerHTML = Configs[config].title;
         menu.icons.appendChild(title);
 
         var grid = new VsMatchGrid(configs, Object.keys(Behaviours).length, menu);
@@ -274,7 +274,7 @@ class Menu {
 
   static versus_configs() {
     return [
-      ['duel', 'Duel']
+      'duel'
     ]
   }
 

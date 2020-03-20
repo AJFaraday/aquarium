@@ -1,6 +1,7 @@
-class VsMatchGrid {
+class VsMatchGrid extends Grid {
 
   constructor(configs, no_behaviours, menu) {
+    super();
     var grid = this;
     this.behaviour_names = [];
     Object.keys(Behaviours).forEach(
@@ -9,7 +10,9 @@ class VsMatchGrid {
         grid.behaviour_names.push(behaviour.name());
       }
     );
-    var name_chars = Math.max(...this.behaviour_names.map(function(x) {return x.length}));
+    var name_chars = Math.max(...this.behaviour_names.map(function (x) {
+      return x.length
+    }));
     this.flag_width = 40;
     this.flag_height = 30;
     this.width = this.flag_width * no_behaviours;
@@ -20,39 +23,9 @@ class VsMatchGrid {
     this.total_width = this.width + this.title_width;
 
     this.build_svg();
+    this.build_defs();
     this.build_labels();
     this.build_flags(configs, no_behaviours, menu);
-  }
-
-  build_labels() {
-    this.build_top_labels();
-    this.build_side_labels();
-  }
-
-  build_top_labels() {
-    var x = this.title_width + 15;
-    var y = 20;
-    var grid = this;
-    Object.keys(Behaviours).forEach(
-      function (key, index) {
-        var name = grid.behaviour_names[index][0];
-        var text = grid.build_element(
-          'text',
-          {
-            x: x,
-            y: y,
-            style: 'font-size:20px;',
-            'text-anchor': 'start'
-          }
-        );
-        text.innerHTML = name;
-        var title = grid.build_element('title', {});
-        title.innerHTML = grid.behaviour_names[index];
-        text.appendChild(title);
-        grid.svg.appendChild(text);
-        x += grid.flag_width;
-      }
-    );
   }
 
   build_side_labels() {
@@ -60,6 +33,7 @@ class VsMatchGrid {
     var grid = this;
     Object.keys(Behaviours).forEach(
       function (key, index) {
+        grid.build_side_label_colour(y, key, grid);
         var name = grid.behaviour_names[index];
         var text = grid.build_element(
           'text',
@@ -71,10 +45,38 @@ class VsMatchGrid {
           }
         );
         text.innerHTML = name;
+        text.addEventListener(
+          'click',
+          function() {
+            grid.highlight_snake(key);
+          }
+        );
         grid.svg.appendChild(text);
         y += grid.flag_height;
       }
     );
+  }
+
+  build_side_label_colour(y, behaviour_key, grid) {
+    var behaviour = new Behaviours[behaviour_key]();
+    var colour = behaviour.colour();
+    var rect = grid.build_element(
+      'rect',
+      {
+        x: 0,
+        y: (y - 5),
+        width: grid.title_width,
+        height: 5,
+        fill: colour
+      }
+    );
+    rect.addEventListener(
+      'click',
+      function() {
+        grid.highlight_snake(behaviour_key);
+      }
+    );
+    grid.svg.appendChild(rect);
   }
 
   build_flags(configs, no_behaviours, menu) {
@@ -97,39 +99,10 @@ class VsMatchGrid {
     );
   }
 
-  build_svg() {
-    this.svg = this.build_svg_element(
-      {
-        'xmlns': 'http://www.w3.org/2000/svg',
-        'xmlns:xlink': 'http://www.w3.org/1999/xlink',
-        'viewBox': ('0 0 ' + (this.total_width) + ' ' + this.total_height),
-        'preserveAspectRatio': 'xMin',
-        width: this.total_width,
-        height: this.total_height
-      }
-    );
+  build_defs() {
     this.defs = this.build_element('defs', {});
     this.svg.appendChild(this.defs);
   }
 
-  build_element(tag, attrs) {
-    var element = document.createElementNS('http://www.w3.org/2000/svg', tag);
-    Object.keys(attrs).forEach(
-      function (key) {
-        element.setAttribute(key, attrs[key])
-      }
-    );
-    return element;
-  }
-
-  build_svg_element(attrs) {
-    var element = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    Object.keys(attrs).forEach(
-      function (key) {
-        element.setAttribute(key, attrs[key])
-      }
-    );
-    return element;
-  }
 
 }
