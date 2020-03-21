@@ -68,7 +68,18 @@ class SoloMatchGrid extends Grid {
             );
             grid.svg.appendChild(flag.rect_tag());
           }
-        )
+        );
+        var line = grid.build_element(
+          'rect',
+          {
+            fill: 'white',
+            y: ((row_index + 1) * grid.flag_height),
+            x: grid.title_width,
+            width: (no_behaviours * grid.flag_width),
+            height: 2
+          }
+        );
+        grid.svg.appendChild(line);
       }
     );
   }

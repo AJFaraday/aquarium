@@ -1,8 +1,8 @@
 Importer:
 replace console with file logger, to become viewable
 
-Some kind of colour highlighting of snake labels
-click labels to highlight snake
+Darken labels as well as  flags
+Snazzy -all snakes- wide flag with gradients for all snake games
 
 Scoring system:
 * Eat a food - 1

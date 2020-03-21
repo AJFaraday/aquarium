@@ -64,10 +64,10 @@ class VsMatchGrid extends Grid {
       'rect',
       {
         x: 0,
-        y: (y - 5),
+        y: (y - grid.flag_height),
         width: grid.title_width,
-        height: 5,
-        fill: colour
+        height: grid.flag_height,
+        fill: Utils.change_alpha(colour, 0.2)
       }
     );
     rect.addEventListener(
