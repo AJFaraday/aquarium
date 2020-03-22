@@ -10,16 +10,13 @@ class VsMatchGrid extends Grid {
         grid.behaviour_names.push(behaviour.name());
       }
     );
-    var name_chars = Math.max(...this.behaviour_names.map(function (x) {
-      return x.length
-    }));
     this.flag_width = 40;
     this.flag_height = 30;
     this.width = this.flag_width * no_behaviours;
     this.height = this.flag_height * no_behaviours;
     this.title_height = 30;
     this.total_height = this.height + this.title_height;
-    this.title_width = (name_chars * 8) + 5;
+    this.title_width = menu.title_width;
     this.total_width = this.width + this.title_width;
 
     this.build_svg();
