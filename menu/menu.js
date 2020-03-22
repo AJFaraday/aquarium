@@ -277,7 +277,8 @@ class Menu {
   solo_configs() {
     return [
       'grid',
-      'swarm'
+      'swarm',
+      'solo_famine'
     ]
   }
 
@@ -285,7 +286,8 @@ class Menu {
   all_snake_configs() {
     return [
       'royale',
-      'big'
+      'big',
+      'all_famine'
     ]
   }
 

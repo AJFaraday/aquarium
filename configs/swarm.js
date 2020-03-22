@@ -6,9 +6,9 @@ Configs.swarm = {
   type: 'solo',
   name: function() {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
-    return "Swarm mode: 20 x " + dummy_behaviour.name();
+    return "Swarm Mode: 20 x " + dummy_behaviour.name();
   },
-  title: 'Swarm mode',
+  title: 'Swarm Mode',
   min_snakes: 0,
   starting_food_mode: 'rng', // rng = normal, grid = 1 every 'grid_size' pixels
   starting_food: 200, //initial feast

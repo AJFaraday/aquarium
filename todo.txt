@@ -1,9 +1,6 @@
 Importer:
 replace console with file logger, to become viewable
 
-Darken labels as well as  flags
-Snazzy -all snakes- wide flag with gradients for all snake games
-
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1
@@ -41,7 +38,6 @@ API
 Implement game modes as configs:
 Game modes (fixed random seed, fixed board size):
 * solo survival
-* battle royal (one of each)
 * feast mode (battle royale with LOADs of food)
 * famine mode (battle royale with famine on)
 * swarm mode (10 of each)
