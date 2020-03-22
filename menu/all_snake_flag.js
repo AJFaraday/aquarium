@@ -60,7 +60,8 @@ class AllSnakeFlag {
       {
         'stop-color': colour,
         offset: Math.floor((index + 0.5) * (100 / no_behaviours)) + '%',
-        'stop-opacity': 1
+        'stop-opacity': 1,
+        class: 's' + index
       }
     );
 

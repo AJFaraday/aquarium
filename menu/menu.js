@@ -2,8 +2,7 @@ class Menu {
 
   constructor() {
     this.form = document.querySelector('div#form');
-    this.list = document.querySelector('ul#menu');
-    this.icons = document.querySelector('div#icons');
+    this.menu = document.querySelector('div#menu');
     this.sections = [];
     this.get_title_width();
     this.populate();
@@ -26,7 +25,7 @@ class Menu {
         }
       )
     );
-    this.title_width = (name_chars * 9) + 5;
+    this.title_width = (name_chars * 8) + 5;
   }
 
   populate() {
@@ -40,7 +39,7 @@ class Menu {
     var menu = this;
 
     var label = document.createElement('label');
-    label.innerHTML = 'Select Snake';
+    label.innerHTML = 'Snake';
     this.form.appendChild(label);
 
     menu.snake_select = document.createElement('select');
@@ -76,7 +75,7 @@ class Menu {
 
     this.form.appendChild(document.createElement('br'));
     var label = document.createElement('label');
-    label.innerHTML = 'Standard Mode';
+    label.innerHTML = 'Standard';
     this.form.appendChild(label);
 
     this.standard_check = document.createElement('input');
@@ -90,7 +89,7 @@ class Menu {
 
     this.form.appendChild(document.createElement('br'));
     var label = document.createElement('label');
-    label.innerHTML = 'Show Stats';
+    label.innerHTML = 'Stats';
     this.form.appendChild(label);
 
     menu.stat_select = document.createElement('select');
@@ -115,10 +114,10 @@ class Menu {
         var configs = Config.build_config_for_all_pairs(Configs[config]);
         var title = menu.build_element('h1', {});
         title.innerHTML = Configs[config].title;
-        menu.icons.appendChild(title);
+        menu.menu.appendChild(title);
 
         var grid = new VsMatchGrid(configs, Object.keys(Behaviours).length, menu);
-        menu.icons.appendChild(grid.svg);
+        menu.menu.appendChild(grid.svg);
       }
     )
   }
@@ -136,7 +135,7 @@ class Menu {
   build_solo_items(menu) {
     var title = menu.build_element('h1', {});
     title.innerHTML = 'Solo';
-    menu.icons.appendChild(title);
+    menu.menu.appendChild(title);
     var grid_configs = {};
     Menu.solo_configs().forEach(
       function(config_name) {
@@ -144,7 +143,7 @@ class Menu {
       }
     );
     var grid = new SoloMatchGrid(grid_configs, Object.keys(Behaviours).length, menu);
-    menu.icons.appendChild(grid.svg);
+    menu.menu.appendChild(grid.svg);
   }
 
   build_all_snake_items(menu) {
@@ -152,8 +151,8 @@ class Menu {
       function(config_name) {
         var config = Config.build_config(Configs[config_name]);
         var big_flag = new AllSnakeFlag(config, menu.title_width, menu);
-        menu.icons.appendChild(big_flag.title());
-        menu.icons.appendChild(big_flag.svg);
+        menu.menu.appendChild(big_flag.title());
+        menu.menu.appendChild(big_flag.svg);
       }
     );
   }
@@ -182,6 +181,7 @@ class Menu {
           'stop-color',
           Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
         );
+        /*
         stop.parentNode.childNodes.forEach(
           function(stop) {
             if(stop.attributes['stop-color']) {
@@ -192,6 +192,7 @@ class Menu {
             }
           }
         );
+        */
       }
     );
   }
@@ -199,10 +200,12 @@ class Menu {
   set_rect_alpha(selector, alpha) {
     document.querySelectorAll(selector).forEach(
       function(stop) {
-        stop.setAttribute(
-          'fill',
-          Utils.change_alpha(stop.attributes['fill'].value, alpha)
-        );
+        if(stop.attributes['fill']) {
+          stop.setAttribute(
+            'fill',
+            Utils.change_alpha(stop.attributes['fill'].value, alpha)
+          );
+        }
       }
     );
   }
@@ -244,11 +247,11 @@ class Menu {
 
   show_snake(name) {
     if(this.current_snake == name) {
-      this.current_snake = 'all'
+      this.current_snake = 'all';
       this.show_all();
     } else {
       this.hide_all();
-      if(this.with_snake(name).length > 0) {
+      if(Object.keys(Behaviours).includes(name)) {
         this.current_snake = name;
         this.with_snake(name).forEach(
           function(link) {
@@ -264,7 +267,7 @@ class Menu {
         this.set_flag_alpha(('stop.s' + index), 0.7);
         this.set_rect_alpha(('rect.s' + index), 0.7);
       } else {
-        this.current_snake = 'all'
+        this.current_snake = 'all';
         this.show_all();
       }
     }
