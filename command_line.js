@@ -106,4 +106,4 @@ versus_configs.forEach(
 fs.outputFile('data/matches.js', ('match_data=' + JSON.stringify(matches)));
 
 var final_stats = Object.values(overall_stats).sort((a, b) => (a.score < b.score ? 1 : -1));
-fs.outputFile('data/scores.js', ('stat_data=' + JSON.stringify(final_stats)));
+fs.outputFile('data/scores.js', ('score_data=' + JSON.stringify(final_stats)));
