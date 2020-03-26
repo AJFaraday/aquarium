@@ -248,6 +248,8 @@ class Menu {
   show_snake(name) {
     if(this.current_snake == name) {
       this.current_snake = 'all';
+      this.snake_select.value = 'all';
+      document.cookie = ('snake=All');
       this.show_all();
     } else {
       this.hide_all();

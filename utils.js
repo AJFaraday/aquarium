@@ -89,3 +89,19 @@ class Utils {
     return `${matches[1]}${alpha}${matches[2]}`;
   }
 }
+
+String.prototype.leftJustify = function( length ) {
+  var fill = [];
+  while ( fill.length + this.length < length ) {
+    fill[fill.length] = ' ';
+  }
+  return this + fill.join('') ;
+};
+
+String.prototype.rightJustify = function( length ) {
+  var fill = [];
+  while ( fill.length + this.length < length ) {
+    fill[fill.length] = ' ';
+  }
+  return fill.join('') + this;
+};

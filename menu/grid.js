@@ -9,9 +9,9 @@ class Grid {
   }
 
   highlight_snake(key) {
-    menu.show_snake(key);
     menu.snake_select.value = key;
     document.cookie = ('snake=' + menu.snake_select.selectedOptions[0].value)
+    menu.show_snake(key);
   }
 
   build_top_labels() {

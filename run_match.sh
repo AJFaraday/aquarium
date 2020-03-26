@@ -17,3 +17,4 @@ terser --compress -o aquarium.cli.min.js \
 echo "module.exports = {Game: Game, Config: Config, Configs: Configs, Stats: Stats};" >> aquarium.cli.min.js
 
 node command_line.js
+
