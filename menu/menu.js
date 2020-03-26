@@ -38,6 +38,10 @@ class Menu {
   build_form() {
     var menu = this;
 
+    var title = document.createElement('h2');
+    title.innerHTML = 'Settings';
+    this.form.appendChild(title);
+
     var label = document.createElement('label');
     label.innerHTML = 'Snake';
     this.form.appendChild(label);

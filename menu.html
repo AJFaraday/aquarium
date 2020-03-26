@@ -5,6 +5,9 @@
     <title>Aquarium - MENU</title>
     <link rel="stylesheet" type="text/css" href="menu/menu.css">
     <script src="aquarium.min.js"></script>
+
+    <script src="data/scores.js"></script>
+    <script src="menu/leaderboard.js"></script>
   </head>
 
   <body style="margin:0;">
@@ -12,10 +15,13 @@
 
     <div id="form">
     </div>
+    <div id="leaderboard"></div>
     <div id="menu"></div>
 
     <script type="text/javascript">
       menu = new Menu();
+      leaderboard = new Leaderboard();
+
     </script>
   </body>
 
