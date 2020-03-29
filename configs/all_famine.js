@@ -12,6 +12,7 @@ Configs.all_famine = {
   grid_size: 100,
   food_interval: 50, // In ticks
   famine: true,
+  famine_step:5,
   starting_behaviours: Config.all_behaviours,
   snakes_of_each_behaviour: 1,
   respawn_behaviours: Config.all_behaviours,
