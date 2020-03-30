@@ -50,7 +50,8 @@ class Menu {
     menu.snake_select.setAttribute('id', 'snake_select')
     menu.snake_select.addEventListener('change', function(e) {
       menu.show_snake(this.selectedOptions[0].value);
-      document.cookie = ('snake=' + this.selectedOptions[0].value)
+      document.cookie = ('snake=' + this.selectedOptions[0].value);
+      Utils.cookies.snake = this.selectedOptions[0].value;
     });
 
     var option = document.createElement('option');
@@ -88,6 +89,8 @@ class Menu {
     this.standard_check.checked = (Utils.cookies().standard == 'true');
     menu.standard_check.addEventListener('change', function(e) {
       document.cookie = ('standard=' + this.checked);
+      Utils.cookies.snake = this.checked;
+
     });
     this.form.appendChild(this.standard_check);
 
@@ -187,17 +190,17 @@ class Menu {
           Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
         );
         /*
-        stop.parentNode.childNodes.forEach(
-          function(stop) {
-            if(stop.attributes['stop-color']) {
-              stop.setAttribute(
-                'stop-color',
-                Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
-              );
-            }
-          }
-        );
-        */
+         stop.parentNode.childNodes.forEach(
+         function(stop) {
+         if(stop.attributes['stop-color']) {
+         stop.setAttribute(
+         'stop-color',
+         Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
+         );
+         }
+         }
+         );
+         */
       }
     );
   }
@@ -254,7 +257,8 @@ class Menu {
     if(this.current_snake == name) {
       this.current_snake = 'all';
       this.snake_select.value = 'all';
-      document.cookie = ('snake=All');
+      document.cookie = 'snake=All';
+      Utils.cookies.snake = 'All';
       this.show_all();
     } else {
       this.hide_all();

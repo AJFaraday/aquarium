@@ -33,10 +33,11 @@ class Leaderboard {
         var score = leaderboard.data[behaviour_index];
         var option = snake_options.filter(function(o) {return (o.innerHTML == score.name)})[0];
         tr = document.createElement('tr');
+        tr.setAttribute('class', 'score_row');
         if(option) {
           tr.id = option.value;
         }
-        [score.name, score.score].forEach(
+        [score.name, score.score.toFixed(2)].forEach(
           function(data_point) {
             var td = document.createElement('td');
             td.innerHTML = data_point;
@@ -53,7 +54,14 @@ class Leaderboard {
   }
 
   hide_most() {
-    
+    document.querySelectorAll('.score_row').forEach(
+      function(row,index) {
+        row.style.display = 'none';
+        if((index <= 2) || row.getAttribute('id') == 'TopHugger') {
+          row.style.display = 'table-row';
+        }
+      }
+    )
   }
 
 }

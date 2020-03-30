@@ -103,6 +103,14 @@ versus_configs.forEach(
   }
 );
 
+var versus_configs = Config.build_config_for_all_pairs(Configs.one_vs_five);
+versus_configs.forEach(
+  function(config) {
+    run_config(config);
+  }
+);
+
+
 fs.outputFile('data/matches.js', ('match_data=' + JSON.stringify(matches)));
 
 var final_stats = Object.values(overall_stats).sort((a, b) => (a.score < b.score ? 1 : -1));

@@ -67,6 +67,7 @@ class Utils {
     return result;
   }
 
+
   static pairs_for(n_options) {
     var n1 = 0;
     var n2 = 0;

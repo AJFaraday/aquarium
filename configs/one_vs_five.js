@@ -20,7 +20,8 @@ Configs.one_vs_five = {
     var pair = Config.current_pair();
     return [
       pair[0],
-      pair[1], pair[1], pair[1], pair[1], pair[1]
+      pair[1], pair[1],
+      pair[1], pair[1], pair[1]
     ];
   },
   snakes_of_each_behaviour: 1,
