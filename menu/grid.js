@@ -10,7 +10,7 @@ class Grid {
 
   highlight_snake(key) {
     menu.snake_select.value = key;
-    document.cookie = ('snake=' + menu.snake_select.selectedOptions[0].value)
+    localStorage.setItem('snake', menu.snake_select.selectedOptions[0].value);
     menu.show_snake(key);
   }
 

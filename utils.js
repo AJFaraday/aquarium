@@ -50,23 +50,6 @@ class Utils {
     }
   }
 
-  static cookies() {
-    if (typeof document == 'undefined') {
-      return {};
-    }
-    if (typeof this.cached_cookies != 'undefined') {
-      return this.cached_cookies;
-    }
-    var str = document.cookie.split('; ');
-    var result = {};
-    for (var i = 0; i < str.length; i++) {
-      var cur = str[i].split('=');
-      result[cur[0]] = cur[1];
-    }
-    this.cached_cookies = result;
-    return result;
-  }
-
 
   static pairs_for(n_options) {
     var n1 = 0;

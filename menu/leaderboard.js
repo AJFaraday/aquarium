@@ -4,6 +4,7 @@ class Leaderboard {
     this.data = score_data;
     this.div = document.getElementById('leaderboard');
     this.build_content();
+    this.hide_most();
   }
 
   build_content() {
@@ -16,7 +17,7 @@ class Leaderboard {
     var table = document.createElement('table');
     var thead = document.createElement('thead');
     var tr = document.createElement('tr');
-    ['Behaviour', 'Score'].forEach(
+    ['Pos.', 'Behaviour', 'Score'].forEach(
       function(header) {
         var th = document.createElement('th');
         th.innerHTML = header;
@@ -29,7 +30,7 @@ class Leaderboard {
     var tbody = document.createElement('tbody');
     var snake_options = Array.from(document.querySelectorAll('#snake_select option'));
     Object.keys(this.data).forEach(
-      function(behaviour_index) {
+      function(behaviour_index, index) {
         var score = leaderboard.data[behaviour_index];
         var option = snake_options.filter(function(o) {return (o.innerHTML == score.name)})[0];
         tr = document.createElement('tr');
@@ -37,7 +38,7 @@ class Leaderboard {
         if(option) {
           tr.id = option.value;
         }
-        [score.name, score.score.toFixed(2)].forEach(
+        [(index + 1), score.name, score.score.toFixed(2)].forEach(
           function(data_point) {
             var td = document.createElement('td');
             td.innerHTML = data_point;
@@ -57,7 +58,7 @@ class Leaderboard {
     document.querySelectorAll('.score_row').forEach(
       function(row,index) {
         row.style.display = 'none';
-        if((index <= 2) || row.getAttribute('id') == 'TopHugger') {
+        if((index <= 2) || row.getAttribute('id') == localStorage.getItem('snake')) {
           row.style.display = 'table-row';
         }
       }

@@ -10,7 +10,7 @@ class Game {
       this.width = 1024;
       this.height = 768;
     } else {
-      if (Utils.cookies().standard == 'true') {
+      if (localStorage.getItem('standard') == 'true') {
         this.width = 1024;
         this.height = 768;
       } else {
@@ -121,9 +121,10 @@ class Game {
         drawable.draw();
       }
     );
-    if (Utils.cookies().stat_mode == '1' || Utils.cookies().stat_mode == 1) {
+    var stat_mode = localStorage.getItem('stat_mode');
+    if (stat_mode == '1' || stat_mode == 1) {
       Stats.draw_summaries();
-    } else if (Utils.cookies().stat_mode == '2' || Utils.cookies().stat_mode == 2) {
+    } else if (stat_mode == '2' || stat_mode == 2) {
       Stats.draw_snakes();
     }
   }

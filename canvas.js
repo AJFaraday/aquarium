@@ -11,11 +11,10 @@ class Canvas {
         if (e.key == 'm') {
           window.open('menu.html');
         } else if (e.key == 's') {
-          var stat_mode = parseInt((Utils.cookies().stat_mode || 0));
+          var stat_mode = parseInt((localStorage.getItem('stat_mode') || 0));
           stat_mode += 1;
           stat_mode %= 3;
-          document.cookie = ('stat_mode=' + stat_mode);
-          Utils.cookies().stat_mode = stat_mode;
+          localStorage.setItem('stat_mode', stat_mode);
         }
       }
     )

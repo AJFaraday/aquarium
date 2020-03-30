@@ -20,6 +20,11 @@ h2 {
   flaot: left;
 }
 
+tr.score_row td {
+  text-align: center;
+  padding-right: 6px;
+}
+
 label {
   display: inline-block;
   width: 115px;

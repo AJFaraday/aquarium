@@ -6,7 +6,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   constructor(behaviour) {
     super();
     this.behaviour = new behaviour(this);
-    if (Utils.cookies().snake == behaviour.name) {
+    if (localStorage.getItem('snake') == behaviour.name) {
       this.colour = Utils.change_alpha(this.behaviour.colour(), 0.6);
     } else {
       this.colour = this.behaviour.colour();

@@ -49,9 +49,8 @@ class Menu {
     menu.snake_select = document.createElement('select');
     menu.snake_select.setAttribute('id', 'snake_select')
     menu.snake_select.addEventListener('change', function(e) {
+      localStorage.setItem('snake', this.selectedOptions[0].value);
       menu.show_snake(this.selectedOptions[0].value);
-      document.cookie = ('snake=' + this.selectedOptions[0].value);
-      Utils.cookies.snake = this.selectedOptions[0].value;
     });
 
     var option = document.createElement('option');
@@ -69,8 +68,8 @@ class Menu {
     );
     this.form.appendChild(menu.snake_select);
 
-    if(Utils.cookies().snake) {
-      var selected_index = Object.keys(Behaviours).indexOf(Utils.cookies().snake);
+    if(localStorage.getItem('snake')) {
+      var selected_index = Object.keys(Behaviours).indexOf(localStorage.getItem('snake'));
       if(selected_index == -1) {
         menu.snake_select.selectedIndex = 0;
       } else {
@@ -86,11 +85,9 @@ class Menu {
 
     this.standard_check = document.createElement('input');
     this.standard_check.setAttribute('type', 'checkbox');
-    this.standard_check.checked = (Utils.cookies().standard == 'true');
+    this.standard_check.checked = (localStorage.getItem('standard') == 'true');
     menu.standard_check.addEventListener('change', function(e) {
-      document.cookie = ('standard=' + this.checked);
-      Utils.cookies.snake = this.checked;
-
+      localStorage.setItem('standard', this.checked);
     });
     this.form.appendChild(this.standard_check);
 
@@ -102,7 +99,7 @@ class Menu {
 
     menu.stat_select = document.createElement('select');
     menu.stat_select.addEventListener('change', function(e) {
-      document.cookie = ('stat_mode=' + this.selectedOptions[0].value)
+      localStorage.setItem('stat_mode', this.selectedOptions[0].value);
     });
     ['None', 'Summary', 'Snakes'].forEach(
       function(name, index) {
@@ -112,7 +109,7 @@ class Menu {
         menu.stat_select.appendChild(option);
       }
     );
-    menu.stat_select.selectedIndex = Utils.cookies().stat_mode;
+    menu.stat_select.selectedIndex = localStorage.getItem('stat_mode');
     this.form.appendChild(menu.stat_select);
   }
 
@@ -257,8 +254,7 @@ class Menu {
     if(this.current_snake == name) {
       this.current_snake = 'all';
       this.snake_select.value = 'all';
-      document.cookie = 'snake=All';
-      Utils.cookies.snake = 'All';
+      localStorage.setItem('snake', 'All');
       this.show_all();
     } else {
       this.hide_all();
@@ -281,6 +277,9 @@ class Menu {
         this.current_snake = 'all';
         this.show_all();
       }
+    }
+    if (typeof leaderboard.hide_most == 'function') {
+      leaderboard.hide_most();
     }
   }
 
