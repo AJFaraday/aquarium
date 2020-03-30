@@ -4,7 +4,11 @@ body {
 }
 
 h1 {
-  margin: 5px;
+  margin: 2px;
+}
+
+h2 {
+  margin: 2px;
 }
 
 #form {

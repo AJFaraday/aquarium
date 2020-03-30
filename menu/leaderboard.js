@@ -27,10 +27,15 @@ class Leaderboard {
     table.appendChild(thead);
 
     var tbody = document.createElement('tbody');
+    var snake_options = Array.from(document.querySelectorAll('#snake_select option'));
     Object.keys(this.data).forEach(
-      function(behaviour_name) {
-        var score = leaderboard.data[behaviour_name];
+      function(behaviour_index) {
+        var score = leaderboard.data[behaviour_index];
+        var option = snake_options.filter(function(o) {return (o.innerHTML == score.name)})[0];
         tr = document.createElement('tr');
+        if(option) {
+          tr.id = option.value;
+        }
         [score.name, score.score].forEach(
           function(data_point) {
             var td = document.createElement('td');
@@ -45,6 +50,10 @@ class Leaderboard {
     );
     table.appendChild(tbody);
     leaderboard.div.append(table);
+  }
+
+  hide_most() {
+    
   }
 
 }

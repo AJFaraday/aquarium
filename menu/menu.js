@@ -47,6 +47,7 @@ class Menu {
     this.form.appendChild(label);
 
     menu.snake_select = document.createElement('select');
+    menu.snake_select.setAttribute('id', 'snake_select')
     menu.snake_select.addEventListener('change', function(e) {
       menu.show_snake(this.selectedOptions[0].value);
       document.cookie = ('snake=' + this.selectedOptions[0].value)
