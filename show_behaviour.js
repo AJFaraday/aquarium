@@ -23,15 +23,15 @@ class ShowBehaviour {
             return score == show.name;
           }
         )[0];
-        var value = match.scores[score_name].value;
+        var value = match.scores[score_name].average;
 
         var other_score_name = Object.keys(other.scores).filter(
           function (score) {
             return score == show.name;
           }
         )[0];
-        var other_value = other.scores[score_name].value;
-        return value - other_value;
+        var other_value = other.scores[score_name].average;
+        return other_value - value;
       }
     );
 
@@ -39,6 +39,7 @@ class ShowBehaviour {
   }
 
   build_table() {
+    var show = this;
     this.table = document.getElementById('match_table');
 
     var table = document.createElement('table');
@@ -59,7 +60,17 @@ class ShowBehaviour {
     this.matches.forEach(
       function (match) {
         var tr = document.createElement('tr');
-        [].forEach( // TODO these, all of these
+        var score_name = Object.keys(match.scores).filter(
+          function (score) {
+            return score == show.name;
+          }
+        )[0];
+        var score = match.scores[score_name];
+        [
+          match.name,
+          score.average.toFixed(2),
+          ((Object.keys(match.scores).indexOf(score_name) + 1) + '/' + Object.keys(match.scores).length)
+        ].forEach( // TODO these, all of these
           function (cell) {
             var td = document.createElement('td');
             td.innerHTML = cell;
