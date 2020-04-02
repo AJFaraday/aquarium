@@ -1,13 +1,13 @@
 class Stats {
 
-  static for_behaviour(behaviour_name) {
+  static for_behaviour(behaviour) {
     if (typeof Stats.stats == 'undefined') {
       Stats.stats = {}
     }
-    if (typeof Stats.stats[behaviour_name] == 'undefined') {
-      Stats.stats[behaviour_name] = new Stats(behaviour_name);
+    if (typeof Stats.stats[behaviour.name()] == 'undefined') {
+      Stats.stats[behaviour.name()] = new Stats(behaviour);
     }
-    return Stats.stats[behaviour_name]
+    return Stats.stats[behaviour.name()]
   }
 
   static clear() {
@@ -140,9 +140,10 @@ class Stats {
     return this.cached_avg;
   }
 
-  constructor(behaviour_name) {
+  constructor(behaviour) {
     Stats.dead_snakes = [];
-    this.behaviour_name = behaviour_name;
+    this.behaviour_name = behaviour.name();
+    this.behaviour_key = behaviour.constructor.name;
     this.total_score = 0;
     this.total_snakes = 0;
     this.current_snakes = 0;

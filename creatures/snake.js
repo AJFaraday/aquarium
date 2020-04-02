@@ -6,7 +6,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
   constructor(behaviour) {
     super();
     this.behaviour = new behaviour(this);
-    if (localStorage.getItem('snake') == behaviour.name) {
+    if ((typeof localStorage != 'undefined') && localStorage.getItem('snake') == behaviour.name) {
       this.colour = Utils.change_alpha(this.behaviour.colour(), 0.6);
     } else {
       this.colour = this.behaviour.colour();
@@ -14,7 +14,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
 
     this.name = Game.register_snake(this.behaviour.name());
 
-    this.stats = Stats.for_behaviour(this.behaviour.name());
+    this.stats = Stats.for_behaviour(this.behaviour);
     this.stats.add_snake(this);
 
     this.x = Math.random() * Game.width;

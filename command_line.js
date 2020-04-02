@@ -22,7 +22,10 @@ var matches = [
         snakes: 0,
         average: 0
       }
-    }
+    },
+    config: config.id,
+    snake: Config.current_behaviour()[0].name
+    opponent: Config.current_opponent()[0].name
   }
 ];
 */
@@ -51,7 +54,14 @@ function run_config(config) {
   while(!Game.ended) {
     Game.update();
   }
-  var match = {name: config.name, logs: console.lines, scores: {}};
+  var match = {
+    name: config.name, 
+    config: config.id,
+    snake: config.snake,
+    opponent: config.opponent,
+    logs: console.lines, 
+    scores: {}
+  };
   console = old_console;
   var stats = Object.values(Stats.stats).sort((a, b) => (a.average_score() < b.average_score()) ? 1 : -1);
   stats.forEach(
@@ -69,7 +79,7 @@ function run_config(config) {
         average: stat.average_score()
       };
       if (typeof overall_stats[stat.behaviour_name] == 'undefined') {
-        overall_stats[stat.behaviour_name] = {name: stat.behaviour_name, wins: [], score: 0};
+        overall_stats[stat.behaviour_name] = {name: stat.behaviour_name, behaviour_key: stat.behaviour_key, wins: [], score: 0};
       }
       overall_stats[stat.behaviour_name].score += stat.average_score();
     }
@@ -103,13 +113,12 @@ versus_configs.forEach(
   }
 );
 
-var versus_configs = Config.build_config_for_all_pairs(Configs.one_vs_five);
+versus_configs = Config.build_config_for_all_pairs(Configs.one_vs_five);
 versus_configs.forEach(
   function(config) {
     run_config(config);
   }
 );
-
 
 fs.outputFile('data/matches.js', ('match_data=' + JSON.stringify(matches)));
 

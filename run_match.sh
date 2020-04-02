@@ -1,6 +1,6 @@
 export NODE_PATH=/usr/lib/node_modules
 
-terser --compress -o aquarium.cli.min.js \
+terser -o aquarium.cli.min.js \
   lib/*.js \
   game.js \
   canvas.js \

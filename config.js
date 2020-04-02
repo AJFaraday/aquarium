@@ -4,77 +4,93 @@ Config = {
   index: 0,
   opponent_index: 0,
 
-  all_behaviours: function () {
+  all_behaviours: function() {
     return Object.values(Behaviours);
   },
 
-  single_behaviour: function (index) {
+  single_behaviour: function(index) {
     return [Object.values(Behaviours)[index]];
   },
 
-  current_behaviour: function () {
+  current_behaviour: function() {
     return Config.single_behaviour(Config.index);
   },
 
-  current_opponent: function () {
+  current_opponent: function() {
     return Config.single_behaviour(Config.opponent_index);
   },
 
-  current_pair: function () {
+  current_pair: function() {
     return Config.current_behaviour().concat(Config.current_opponent());
   },
 
-  next_behaviour: function () {
+  next_behaviour: function() {
     var current = Config.current_behaviour();
     Config.index++;
     return current;
   },
 
-  next_opponent: function () {
+  next_opponent: function() {
     var current = Config.current_opponent();
     Config.opponent_index++;
     return current;
   },
 
-  finished: function () {
+  finished: function() {
     return Config.index >= (Object.keys(Behaviours).length);
   },
 
-  reset_indexes: function () {
+  reset_indexes: function() {
     Config.index = 0;
     Config.opponent_index = 0;
   },
 
-  build_config: function (config) {
+  build_config: function(config) {
     var new_config = {};
     Object.keys(config).forEach(
-      function (key) {
-        if (typeof config[key] == 'function') {
+      function(key) {
+        if(typeof config[key] == 'function') {
           new_config[key] = config[key]();
         } else {
           new_config[key] = config[key];
         }
       }
     );
+    switch(config.type) {
+      case 'solo':
+        if(new_config.snake) {
+          break;
+        } else {
+          new_config.snake = Config.current_behaviour()[0].name;
+          break;
+        }
+      case 'versus':
+        if(new_config.snake) {
+          break;
+        } else {
+          new_config.snake = Config.current_behaviour()[0].name;
+          new_config.opponent = Config.current_opponent()[0].name;
+        }
+    }
     return new_config;
   },
 
-  build_config_for_all: function (config) {
+  build_config_for_all: function(config) {
     Config.reset_indexes();
     configs = [];
-    while (!Config.finished()) {
+    while(!Config.finished()) {
       configs.push(Config.build_config(config));
       Config.next_behaviour();
     }
     return configs;
   },
 
-  build_config_for_all_pairs: function (config) {
+  build_config_for_all_pairs: function(config) {
     Config.reset_indexes();
     configs = [];
-    while (!Config.finished()) {
+    while(!Config.finished()) {
       Config.opponent_index = 0;
-      while (Config.opponent_index < (Object.keys(Behaviours).length)) {
+      while(Config.opponent_index < (Object.keys(Behaviours).length)) {
         configs.push(Config.build_config(config));
         Config.next_opponent();
       }
@@ -83,29 +99,29 @@ Config = {
     return configs;
   },
 
-  from_url: function () {
-    if (typeof window != 'undefined') {
+  from_url: function() {
+    if(typeof window != 'undefined') {
       var url = window.location.href;
       var attrs = {};
-      url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+      url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
         attrs[key] = value;
       });
-      if (attrs.snake) {
+      if(attrs.snake) {
         Config.index = Object.keys(Behaviours).indexOf(attrs.snake);
-        if (Config.index == -1) {
+        if(Config.index == -1) {
           throw "Unknown snake: " + attrs.snake
         }
       }
 
-      if (attrs.opponent) {
+      if(attrs.opponent) {
         Config.opponent_index = Object.keys(Behaviours).indexOf(attrs.opponent);
-        if (Config.index == -1) {
+        if(Config.index == -1) {
           throw "Unknown snake: " + attrs.snake
         }
       }
 
       var config = Configs[attrs.config];
-      if (typeof config == 'undefined') {
+      if(typeof config == 'undefined') {
         throw "Unknown config: " + attrs.config
       }
       return Config.build_config(config);

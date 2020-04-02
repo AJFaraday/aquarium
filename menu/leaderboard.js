@@ -2,6 +2,7 @@ class Leaderboard {
 
   constructor() {
     this.data = score_data;
+    this.full = false;
     this.div = document.getElementById('leaderboard');
     this.build_content();
     this.hide_most();
@@ -38,10 +39,20 @@ class Leaderboard {
         if(option) {
           tr.id = option.value;
         }
-        [(index + 1), score.name, score.score.toFixed(2)].forEach(
+
+        var link = document.createElement('a');
+        link.href = 'show_behaviour.html?behaviour=' + score.behaviour_key;
+        link.setAttribute('target', '_blank');
+        link.innerHTML = score.name;
+
+        [(index + 1), link, score.score.toFixed(2)].forEach(
           function(data_point) {
             var td = document.createElement('td');
-            td.innerHTML = data_point;
+            if(typeof data_point == 'object') {
+              td.appendChild(data_point);
+            } else {
+              td.innerHTML = data_point;
+            }
             td.title = score.name + ' wins:\n' + score.wins.join('\n');
             tr.appendChild(td);
           }
@@ -50,15 +61,51 @@ class Leaderboard {
 
       }
     );
+    tr = document.createElement('tr');
+    tr.id = 'link_row';
+    tr.appendChild(document.createElement('td'));
+    var td = document.createElement('td');
+    td.setAttribute('colspan', '2');
+    leaderboard.show_hide_link = document.createElement('a');
+    leaderboard.show_hide_link.href = '#';
+    leaderboard.show_hide_link.innerHTML = 'Show All';
+    leaderboard.show_hide_link.onclick = function(e) {
+      e.preventDefault();
+      leaderboard.toggle();
+    };
+    td.appendChild(leaderboard.show_hide_link);
+    tr.appendChild(td);
+    tbody.appendChild(tr);
+
     table.appendChild(tbody);
     leaderboard.div.append(table);
   }
 
+  toggle() {
+    if(this.full) {
+      this.full = false;
+      this.show_hide_link.innerHTML = 'Show All';
+      this.hide_most();
+    } else {
+      this.full = true;
+      this.show_hide_link.innerHTML = 'Hide Most';
+      this.show_all();
+    }
+  }
+
+  show_all() {
+    document.querySelectorAll('tr').forEach(
+      function(row) {
+        row.style.display = 'table-row';
+      }
+    )
+  }
+
   hide_most() {
     document.querySelectorAll('.score_row').forEach(
-      function(row,index) {
+      function(row, index) {
         row.style.display = 'none';
-        if((index <= 2) || row.getAttribute('id') == localStorage.getItem('snake')) {
+        if((index <= 2) || row.getAttribute('id') == localStorage.getItem('snake') || row.id == 'link_row') {
           row.style.display = 'table-row';
         }
       }
