@@ -1,6 +1,22 @@
 Importer:
 replace console with file logger, to become viewable
 
+Widget on question grabbing score data.
+
+Page of stats on the game:
+- tick
+- no snakes
+- no food
+- food interval
+
+Duel modes:
+- grid
+
+Make validator available for file i.e.
+
+node validator.js behaviours/entry.js
+
+
 Scoring system:
 * Eat a food - 1
 * bite a snake - 1
@@ -10,9 +26,6 @@ Scoring system:
 Exit conditions:
 * 0 snakes left
 * Time limit finished (5 minutes)
-
-Menu
-- Match list as table (could include results)
 
 Functions of Strategy class
 
@@ -34,15 +47,6 @@ eat_target
 API
 - Proxies to prevent modification
 - present tail segment positions
-
-Implement game modes as configs:
-Game modes (fixed random seed, fixed board size):
-* solo survival
-* feast mode (battle royale with LOADs of food)
-* famine mode (battle royale with famine on)
-* swarm mode (10 of each)
-* parasite mode (snake vs parasite, of parasite dies, another starts)
-* self rivalry (10, 50, 100 of the same. Report highest?, lowest?)
 
 in game
 (M)enu

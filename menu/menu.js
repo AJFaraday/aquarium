@@ -305,7 +305,8 @@ class Menu {
   versus_configs() {
     return [
       'duel',
-      'one_vs_five'
+      'one_vs_five',
+      'vs_famine'
     ]
   }
 

@@ -6,7 +6,7 @@ Configs.grid = {
   type: 'solo',
   name: function() {
     var dummy_behaviour = new(Config.current_behaviour()[0]);
-    return "Solo on grid: " + dummy_behaviour.name();
+    return "Solo on Grid: " + dummy_behaviour.name();
   },
   title: 'Solo on Grid',
   min_snakes: 0,
