@@ -50,7 +50,6 @@ function run_config(config) {
   Game.init(Config.build_config(config));
   Game.config.min_snakes = 0;
   console.clear();
-  require('./lib/seedrandom.min.js')('aquarium', {global: true});
   while(!Game.ended) {
     Game.update();
   }

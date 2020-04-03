@@ -76,6 +76,7 @@ class Game {
         },
         10
       );
+      Math.seedrandom('aquarium', {global: true});
       Game.update_loop = setInterval(Game.update, 10);
     }
   }
