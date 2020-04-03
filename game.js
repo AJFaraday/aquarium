@@ -2,6 +2,13 @@ class Game {
 
   static init(config) {
 
+    if (typeof Math.seedrandom == 'function') {
+      Math.seedrandom('aquarium', {global: true});
+    } else {
+      var seedrandom = require('seedrandom');
+      seedrandom('aquarium', {global: true});
+    }
+
     this.config = config;
     console.log('Running Config: ' + config.name);
 
@@ -76,7 +83,6 @@ class Game {
         },
         10
       );
-      Math.seedrandom('aquarium', {global: true});
       Game.update_loop = setInterval(Game.update, 10);
     }
   }
