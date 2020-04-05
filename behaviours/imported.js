@@ -1,8 +1,4 @@
-if (typeof Behaviours === 'undefined') {
-  Behaviours = {}
-}
-
-Behaviours.Failure = class Failure extends Behaviour {
+Behaviours.Imported = class Imported extends Behaviour {
 
   constructor(snake) {
     super(snake);
@@ -13,7 +9,7 @@ Behaviours.Failure = class Failure extends Behaviour {
   }
 
   name() {
-    return '<failfailfailfailfailfailfail>';
+    return 'Imported';
   }
 
   colour() {

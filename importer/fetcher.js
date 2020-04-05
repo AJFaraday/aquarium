@@ -26,8 +26,10 @@ class Fetcher {
         var validator = new Validator(Behaviours[behaviour_name]);
         validator.check();
         if(!validator.valid()) {
-          console.log("Removing default behaviour: " + validator.behaviour_name);
-          fetcher.builder.remove_file(validator.behaviour_name);
+          if (validator.behaviour_name) {
+            console.log("Removing default behaviour: " + validator.behaviour_name);
+            fetcher.builder.remove_file(validator.behaviour_name);
+          }
         }
       }
     )

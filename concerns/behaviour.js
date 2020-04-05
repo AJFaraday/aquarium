@@ -88,7 +88,7 @@ class Behaviour {
   }
 
   snakes() {
-    return Game.snakes;
+    return Game.snakes.map(function(s){Behaviour.snake_proxy(s)});
   }
 
   tick() {
@@ -128,5 +128,32 @@ class Behaviour {
       throw this.snake.name + ": Invalid target object";
     }
   }
+
+  ////////////////////////////////////
+
+
+  static snake_proxy(snake) {
+    return {
+      x: snake.x,
+      y: snake.y,
+      size: snake.size,
+      speed: snake.speed,
+      angle: snake.angle,
+      tail_segments: snake.tail_segments.map(
+        function(segment) {
+          return Behaviour.tail_segment_proxy(segment)
+        }
+      )
+    }
+  };
+
+  static tail_segment_proxy(tail_segment) {
+    return {
+      x: tail_segment.x,
+      y: tail_segment.y,
+      size: tail_segment.size
+    }
+  }
+
 
 }
