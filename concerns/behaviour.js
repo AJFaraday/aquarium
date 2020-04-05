@@ -1,7 +1,7 @@
 class Behaviour {
 
   constructor(snake) {
-    this.snake = snake;
+    this.real_snake = snake;
   }
 
   //////////////////////
@@ -25,13 +25,13 @@ class Behaviour {
   }
 
   // Called when this snake bites a snake's tail
-  // victim is the snake that was bitten (can be this.snake)
+  // victim is the snake that was bitten (can be this.real_snake)
   bite_tail(victim) {
 
   }
 
   // Called when this snake's tail get's bitten
-  // bitten_by is the snake that did it (can be this.snake)
+  // bitten_by is the snake that did it (can be this.real_snake)
   tail_bitten(bitten_by) {
 
   }
@@ -67,7 +67,7 @@ class Behaviour {
     }
     if((this.tick() - this.idle_target_tick) > this.idle_interval) {
       this.idle_target_tick = Game.tick;
-      this.snake.target = {x: (Math.random() * Game.width), y: (Math.random() * Game.height)};
+      this.real_snake.target = {x: (Math.random() * Game.width), y: (Math.random() * Game.height)};
     }
   }
 
@@ -76,19 +76,26 @@ class Behaviour {
   //////////////////////
 
   x() {
-    return this.snake.x;
+    return this.real_snake.x;
   }
 
   y() {
-    return this.snake.y;
+    return this.real_snake.y;
   }
 
   food() {
     return Game.food;
   }
 
+  snake() {
+    return Behaviour.snake_proxy(this.real_snake);
+  }
+  
   snakes() {
-    return Game.snakes.map(function(s){Behaviour.snake_proxy(s)});
+    var behaviour = this;
+    return Game.snakes
+      .filter(function(s) {return s != behaviour.real_snake})
+      .map(function(s){ return Behaviour.snake_proxy(s)});
   }
 
   tick() {
@@ -100,7 +107,7 @@ class Behaviour {
   }
 
   last_ate_tick() {
-    return this.snake.last_ate_tick();
+    return this.real_snake.last_ate_tick();
   }
 
   utils() {
@@ -116,16 +123,16 @@ class Behaviour {
   }
 
   angle() {
-    return this.snake.get_angle();
+    return this.real_snake.get_angle();
   }
 
   target(object) {
     if ((typeof object != 'undefined') && (typeof object.x == 'number') && (typeof object.y == 'number')) {
-      this.snake.target = object
+      this.real_snake.target = object
     } else {
-      console.log(this.snake.name + ": Invalid target object");
+      console.log(this.real_snake.name + ": Invalid target object");
       console.log(object);
-      throw this.snake.name + ": Invalid target object";
+      throw this.real_snake.name + ": Invalid target object";
     }
   }
 

@@ -6,7 +6,7 @@ Validator.checks.no_game_access = function (validator) {
   var errors = [];
   var code = validator.behaviour_class.toString();
 
-  var forbidden_objects = ['Game', 'Config', 'Configs', 'Behaviours', 'Concerns','Static', 'Canvas'];
+  var forbidden_objects = ['Game', 'Config', 'Configs', 'Behaviours', 'Concerns','Static', 'Canvas', 'this.real_snake'];
   forbidden_objects.forEach(
     function(forbidden) {
       if (code.includes(forbidden)) {
