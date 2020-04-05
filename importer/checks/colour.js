@@ -19,6 +19,11 @@ Validator.checks.colour = function (validator) {
         }
       );
 
+      var colour_total = colours.reduce(function(a,b) {return a + b});
+      if(colour_total > 638) {
+        errors.push('colour(): Resulting colour is too light and might not be seen. The total of R, G and B values must be less than 638');
+      }
+
       var alpha = parts[4];
       if (alpha < 0.3 || alpha > 0.5) {
         errors.push("colour(): Alpha value should be between 0.3 and 0.5, currently it's " + alpha);

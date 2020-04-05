@@ -7,68 +7,15 @@ compete for food and survival based on pre-defined behaviours.
 
 The live version of the app is running at https://ajfaraday.github.io/aquarium/
 
+Press m to open the menu instead.
+
 Currently it allows no configuration changes. 
 
 # Install
 
+Before installation, you will need npm installed.
+
 * `git clone https://github.com/AJFaraday/aquarium.git`
+* `sudo npm install terser -g`
+* Open menu.html in a browser
 
-# To use
-
-Just open index.html
-
-You can play with the config.js file to define a scenario. 
-Then just hard-refresh the page.
-
-# To develop
-
-You can change any js files in place and instantly
-see their result by opening dev_index.html
-
-# To deploy
-
-First, you need terser:
-
-```bash
-sudo npm install terser -g
-```
-
-Minify the code into aquarium.min.js
-
-```bash
-./package.sh
-```
-
-If you're me, push to master.
-
-If you're not me, put in a PR.
-
-Currently, the master branch is available at
-
-https://ajfaraday.github.io/aquarium/
-
-# Run in command line
-
-First, you need terser:
-
-```bash
-sudo npm install terser -g
-```
-
-For now, just run this 
-
-```bash
-./run_match.sh
-```
-
-# Import from SE:
-
-First, you need terser:
-
-```bash
-sudo npm install terser -g
-```
-
-```bash
-./import_answers.sh
-```

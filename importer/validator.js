@@ -56,4 +56,14 @@ class Validator {
     return (this.errors.length == 0);
   }
 
+  static build_class(title, code) {
+    eval(code);
+    var klass = Behaviours[title];
+    if (typeof klass == 'function') {
+      return klass;
+    } else {
+      throw title + " can not be imported, it does not add a class to Behaviours with the key " + title;
+    }
+  }
+
 }

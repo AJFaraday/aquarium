@@ -18,7 +18,7 @@ class Fetcher {
 
   validate_defaults() {
     var fetcher = this;
-    console.log('Checking Behaviours in default_behaviours/')
+    console.log('Checking Behaviours in default_behaviours/');
     Object.keys(Behaviours).forEach(
       function (behaviour_name) {
         console.log('');

@@ -89,3 +89,11 @@ String.prototype.rightJustify = function( length ) {
   }
   return fill.join('') + this;
 };
+
+String.prototype.toCamelCase = function(str) {
+  var camel = this.replace('_', ' ').replace(/\W+(.)/g, function(match, chr)
+  {
+    return chr.toUpperCase();
+  });
+  return camel.charAt(0).toUpperCase() + camel.slice(1)
+};
