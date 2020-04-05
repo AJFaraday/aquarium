@@ -74,7 +74,7 @@ class Grid {
         'xmlns': 'http://www.w3.org/2000/svg',
         'xmlns:xlink': 'http://www.w3.org/1999/xlink',
         'viewBox': ('0 0 ' + (this.total_width) + ' ' + this.total_height),
-        'preserveAspectRatio': 'xMin',
+        'preserveAspectRatio': 'xMinYMin',
         width: this.total_width,
         height: this.total_height
       }

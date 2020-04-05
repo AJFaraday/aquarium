@@ -3,6 +3,11 @@ body {
   padding-top: 20px;
 }
 
+.menu_holder{
+  width: 750px;
+  margin: 0 auto;
+}
+
 h1 {
   margin: 2px;
 }

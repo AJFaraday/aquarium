@@ -1,8 +1,9 @@
 class Menu {
 
-  constructor() {
+  constructor(dev_mode) {
     this.form = document.querySelector('div#form');
     this.menu = document.querySelector('div#menu');
+    this.dev_mode = dev_mode;
     this.sections = [];
     this.get_title_width();
     this.populate();
@@ -163,18 +164,24 @@ class Menu {
   }
 
   url_from_config(config) {
+    var file;
+    if (this.dev_mode) {
+      file = 'dev_config.html'
+    } else {
+      file = 'config.html'
+    }
     switch(config.type) {
       case 'solo':
-        return 'config.html?config=' + config.id +
+        return file + '?config=' + config.id +
           '&snake=' + config.starting_behaviours[0].name;
         break;
       case 'versus':
-        return 'config.html?config=' + config.id +
+        return file + '?config=' + config.id +
           '&snake=' + config.starting_behaviours[0].name +
           '&opponent=' + config.starting_behaviours[1].name;
         break;
       case 'all':
-        return 'config.html?config=' + config.id;
+        return file + '?config=' + config.id;
         break;
     }
   }
@@ -306,7 +313,8 @@ class Menu {
     return [
       'duel',
       'one_vs_five',
-      'vs_famine'
+      'vs_famine',
+      'vs_grid'
     ]
   }
 

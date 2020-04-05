@@ -11,16 +11,17 @@
   </head>
 
   <body style="margin:0;">
-    <h1>Aquarium - Match Menu</h1>
 
-    <div id="form">
+    <div class="menu_holder">
+      <h1>Aquarium - Match Menu</h1>
+      <div id="form">
+      </div>
+      <div id="leaderboard"></div>
+      <br clear="both"/>
+      <div id="menu"></div>
     </div>
-    <div id="leaderboard"></div>
-    <br clear="both"/>
-    <div id="menu"></div>
-
     <script type="text/javascript">
-      menu = new Menu();
+      menu = new Menu(false);
       leaderboard = new Leaderboard();
 
     </script>
