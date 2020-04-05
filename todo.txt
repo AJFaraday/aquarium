@@ -3,19 +3,21 @@ replace console with file logger, to become viewable
 
 Widget on question grabbing score data.
 
+API: food proxy
+
 Page of stats on the game:
 - tick
 - no snakes
 - no food
 - food interval
 
-Duel modes:
-- grid
+Write up:
+- API
+- Guide to entering 
 
-Make validator available for file i.e.
+#####################
 
-node validator.js behaviours/entry.js
-
+The anatomy is so good and it's surprisingly good and it's a good thing.
 
 Scoring system:
 * Eat a food - 1
@@ -26,6 +28,7 @@ Scoring system:
 Exit conditions:
 * 0 snakes left
 * Time limit finished (5 minutes)
+
 
 Functions of Strategy class
 
@@ -44,9 +47,6 @@ starve
 eat
 eat_target
 
-API
-- Proxies to prevent modification
-- present tail segment positions
 
 in game
 (M)enu
