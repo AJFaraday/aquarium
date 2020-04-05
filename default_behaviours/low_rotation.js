@@ -22,7 +22,7 @@ Behaviours.LowRotation = class LowRotation extends Behaviour {
       this.idle();
     } else {
       var angles = this.food().map(function (food) {
-        var angle = behaviour.utils().angleBetweenPoints(food, behaviour.snake);
+        var angle = behaviour.utils().angleBetweenPoints(food, behaviour.snake());
         return Math.abs(behaviour.utils().angleDifference(angle, behaviour.angle()));
       });
       var min_angle = Math.max(...angles);

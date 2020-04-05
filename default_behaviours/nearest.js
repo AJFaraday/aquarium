@@ -22,7 +22,7 @@ Behaviours.Nearest = class Nearest extends Behaviour {
       this.idle()
     } else {
       var distances = this.food().map(function (food) {
-        return behaviour.utils().distanceBetweenPoints(behaviour.snake, food);
+        return behaviour.utils().distanceBetweenPoints(behaviour.snake(), food);
       });
       var min_distance = Math.min(...distances);
       this.target(this.food()[distances.indexOf(min_distance)]);

@@ -22,7 +22,7 @@ Behaviours.Farthest = class Farthest extends Behaviour {
       this.idle()
     } else {
       var distances = this.food().map(function (food) {
-        return behaviour.utils().distanceBetweenPoints(behaviour.snake, food);
+        return behaviour.utils().distanceBetweenPoints(behaviour.snake(), food);
       });
       var max_distance = Math.max(...distances);
       this.target(this.food()[distances.indexOf(max_distance)]);

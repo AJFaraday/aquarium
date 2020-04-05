@@ -1,4 +1,4 @@
-if (typeof Behaviours === 'undefined') {
+if(typeof Behaviours === 'undefined') {
   Behaviours = {}
 }
 
@@ -18,12 +18,12 @@ Behaviours.Parasite = class Parasite extends Behaviour {
 
   set_target() {
     var behaviour = this;
-    if (this.snakes().length == 0) {
+    if(this.snakes().length == 0) {
       this.idle()
     } else {
-      var parasite = this.snake;
-      var distances = this.snakes().map(function (snake) {
-        if (snake == parasite) {
+      var parasite = this.snake();
+      var distances = this.snakes().map(function(snake) {
+        if(snake == parasite) {
           return 99999;
         }
         var length = snake.tail_segments.length;
@@ -31,11 +31,7 @@ Behaviours.Parasite = class Parasite extends Behaviour {
       });
       var min_distance = Math.min(...distances);
       var target = this.snakes()[distances.indexOf(min_distance)];
-      if (target == this.snake) {
-        this.target = {x: (this.game_width() / 2), y: (this.game_height() / 2)}
-      } else {
-        this.target(target);
-      }
+      this.target(target);
     }
   }
 
