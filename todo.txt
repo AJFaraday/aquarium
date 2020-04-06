@@ -3,7 +3,10 @@ replace console with file logger, to become viewable
 
 Widget on question grabbing score data.
 
-API: food proxy
+API: 
+food proxy
+
+In game: click to switch between stat pages 
 
 Page of stats on the game:
 - tick
