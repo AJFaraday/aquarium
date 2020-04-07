@@ -6,6 +6,8 @@ Widget on question grabbing score data.
 API: 
 food proxy
 
+Menu: scores in titles for flags
+
 In game: click to switch between stat pages 
 
 Page of stats on the game:
