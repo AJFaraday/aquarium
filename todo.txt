@@ -1,11 +1,3 @@
-Importer:
-replace console with file logger, to become viewable
-
-Widget on question grabbing score data.
-
-API: 
-food proxy
-
 Menu: scores in titles for flags
 
 In game: click to switch between stat pages 
@@ -21,6 +13,9 @@ Write up:
 - Guide to entering 
 
 Sandbox post
+
+
+Widget on question grabbing score data.
 
 #####################
 

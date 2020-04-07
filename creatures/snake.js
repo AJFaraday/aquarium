@@ -60,7 +60,7 @@ Creatures.Snake = class Snake extends mix(Concerns.Follower, Concerns.TailBiter,
     }
     if(Game.food.length == 0) {
       this.behaviour.idle();
-    } else if(!Game.food.includes(this.target) && !Game.snakes.includes(this.target)) {
+    } else if(!Game.food_at(this.target) && !Game.snake_at(this.target)) {
       this.behaviour.target_removed();
     }
     this.check_for_starvation();

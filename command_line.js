@@ -90,6 +90,7 @@ function run_config(config) {
 
 run_config(Configs.royale);
 run_config(Configs.big);
+run_config(Configs.all_famine);
 
 var grid_configs = Config.build_config_for_all(Configs.grid);
 grid_configs.forEach(
@@ -99,6 +100,13 @@ grid_configs.forEach(
 );
 
 var swarm_configs = Config.build_config_for_all(Configs.swarm);
+swarm_configs.forEach(
+  function(config) {
+    run_config(config);
+  }
+);
+
+var swarm_configs = Config.build_config_for_all(Configs.solo_famine);
 swarm_configs.forEach(
   function(config) {
     run_config(config);

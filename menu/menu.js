@@ -14,14 +14,14 @@ class Menu {
     var names = Object.keys(Behaviours);
     names = names.concat(
       Menu.solo_configs().map(
-        function(config_name) {
+        function (config_name) {
           return Configs[config_name].title;
         }
       )
     );
     var name_chars = Math.max(
       ...names.map(
-        function(x) {
+        function (x) {
           return x.length;
         }
       )
@@ -49,7 +49,7 @@ class Menu {
 
     menu.snake_select = document.createElement('select');
     menu.snake_select.setAttribute('id', 'snake_select')
-    menu.snake_select.addEventListener('change', function(e) {
+    menu.snake_select.addEventListener('change', function (e) {
       localStorage.setItem('snake', this.selectedOptions[0].value);
       menu.show_snake(this.selectedOptions[0].value);
     });
@@ -59,7 +59,7 @@ class Menu {
     option.value = 'all';
     menu.snake_select.appendChild(option);
     Object.keys(Behaviours).forEach(
-      function(behaviour) {
+      function (behaviour) {
         var option = document.createElement('option');
         option.innerHTML = new Behaviours[behaviour](0).name();
         option.value = behaviour;
@@ -69,9 +69,9 @@ class Menu {
     );
     this.form.appendChild(menu.snake_select);
 
-    if(localStorage.getItem('snake')) {
+    if (localStorage.getItem('snake')) {
       var selected_index = Object.keys(Behaviours).indexOf(localStorage.getItem('snake'));
-      if(selected_index == -1) {
+      if (selected_index == -1) {
         menu.snake_select.selectedIndex = 0;
       } else {
         menu.snake_select.selectedIndex = selected_index + 1;
@@ -87,7 +87,7 @@ class Menu {
     this.standard_check = document.createElement('input');
     this.standard_check.setAttribute('type', 'checkbox');
     this.standard_check.checked = (localStorage.getItem('standard') == 'true');
-    menu.standard_check.addEventListener('change', function(e) {
+    menu.standard_check.addEventListener('change', function (e) {
       localStorage.setItem('standard', this.checked);
     });
     this.form.appendChild(this.standard_check);
@@ -99,11 +99,11 @@ class Menu {
     this.form.appendChild(label);
 
     menu.stat_select = document.createElement('select');
-    menu.stat_select.addEventListener('change', function(e) {
+    menu.stat_select.addEventListener('change', function (e) {
       localStorage.setItem('stat_mode', this.selectedOptions[0].value);
     });
     ['None', 'Summary', 'Snakes'].forEach(
-      function(name, index) {
+      function (name, index) {
         var option = document.createElement('option');
         option.innerHTML = name;
         option.value = index;
@@ -116,7 +116,7 @@ class Menu {
 
   build_versus_items(menu) {
     Menu.versus_configs().forEach(
-      function(config) {
+      function (config) {
         var configs = Config.build_config_for_all_pairs(Configs[config]);
         var title = menu.build_element('h1', {});
         title.innerHTML = Configs[config].title;
@@ -131,7 +131,7 @@ class Menu {
   build_element(tag, attrs) {
     var element = document.createElement(tag);
     Object.keys(attrs).forEach(
-      function(key) {
+      function (key) {
         element.setAttribute(key, attrs[key])
       }
     );
@@ -144,7 +144,7 @@ class Menu {
     menu.menu.appendChild(title);
     var grid_configs = {};
     Menu.solo_configs().forEach(
-      function(config_name) {
+      function (config_name) {
         grid_configs[config_name] = Config.build_config_for_all(Configs[config_name]);
       }
     );
@@ -154,7 +154,7 @@ class Menu {
 
   build_all_snake_items(menu) {
     Menu.all_snake_configs().forEach(
-      function(config_name) {
+      function (config_name) {
         var config = Config.build_config(Configs[config_name]);
         var big_flag = new AllSnakeFlag(config, menu.title_width, menu);
         menu.menu.appendChild(big_flag.title());
@@ -170,7 +170,7 @@ class Menu {
     } else {
       file = 'config.html'
     }
-    switch(config.type) {
+    switch (config.type) {
       case 'solo':
         return file + '?config=' + config.id +
           '&snake=' + config.starting_behaviours[0].name;
@@ -188,7 +188,7 @@ class Menu {
 
   set_flag_alpha(selector, alpha) {
     document.querySelectorAll(selector).forEach(
-      function(stop) {
+      function (stop) {
         stop.setAttribute(
           'stop-color',
           Utils.change_alpha(stop.attributes['stop-color'].value, alpha)
@@ -211,8 +211,8 @@ class Menu {
 
   set_rect_alpha(selector, alpha) {
     document.querySelectorAll(selector).forEach(
-      function(stop) {
-        if(stop.attributes['fill']) {
+      function (stop) {
+        if (stop.attributes['fill']) {
           stop.setAttribute(
             'fill',
             Utils.change_alpha(stop.attributes['fill'].value, alpha)
@@ -224,12 +224,12 @@ class Menu {
 
   show_all() {
     document.querySelectorAll('a[data-behaviour=match_link]').forEach(
-      function(link) {
+      function (link) {
         link.parentElement.style.display = 'block';
       }
     );
     document.querySelectorAll(`svg a`).forEach(
-      function(link) {
+      function (link) {
         link.removeAttribute('data-disabled')
       }
     );
@@ -239,13 +239,13 @@ class Menu {
 
   hide_all() {
     document.querySelectorAll('a[data-behaviour=match_link]').forEach(
-      function(link) {
+      function (link) {
         link.parentElement.style.display = 'none';
       }
     );
     // TODO Disable all flag links
     document.querySelectorAll('svg a').forEach(
-      function(link) {
+      function (link) {
         link.setAttribute('data-disabled', 'true')
       }
     );
@@ -258,23 +258,23 @@ class Menu {
   }
 
   show_snake(name) {
-    if(this.current_snake == name) {
+    if (this.current_snake == name) {
       this.current_snake = 'all';
       this.snake_select.value = 'all';
       localStorage.setItem('snake', 'All');
       this.show_all();
     } else {
       this.hide_all();
-      if(Object.keys(Behaviours).includes(name)) {
+      if (Object.keys(Behaviours).includes(name)) {
         this.current_snake = name;
         this.with_snake(name).forEach(
-          function(link) {
+          function (link) {
             link.parentElement.style.display = 'block';
           }
         );
         var index = Object.keys(Behaviours).indexOf(name);
         document.querySelectorAll(`svg a.s${index}`).forEach(
-          function(link) {
+          function (link) {
             link.removeAttribute('data-disabled')
           }
         );
@@ -290,8 +290,7 @@ class Menu {
     }
   }
 
-  static
-  solo_configs() {
+  static solo_configs() {
     return [
       'grid',
       'swarm',
@@ -299,8 +298,7 @@ class Menu {
     ]
   }
 
-  static
-  all_snake_configs() {
+  static all_snake_configs() {
     return [
       'royale',
       'big',
@@ -308,14 +306,31 @@ class Menu {
     ]
   }
 
-  static
-  versus_configs() {
+  static versus_configs() {
     return [
       'duel',
       'one_vs_five',
       'vs_famine',
       'vs_grid'
     ]
+  }
+
+  static find_match(name) {
+    return match_data.find(function (m) {
+      return m.name == name
+    });
+  }
+
+  static scores_for_match(name) {
+    var match = Menu.find_match(name);
+    var str = `${name}\n`;
+    Object.keys(match.scores).forEach(
+      function(name, ){
+        var score = match.scores[name];
+        str = str.concat(`${score.name}: ${score.total} / ${score.snakes} = ${score.average}\n`)
+      }
+    );
+    return str;
   }
 
 }

@@ -86,7 +86,7 @@ class AllSnakeFlag {
       }
     );
     var title = this.build_element('title', {});
-    title.innerHTML = this.config.title;
+    title.innerHTML = Menu.scores_for_match(this.config.title);
     rect.appendChild(title);
     link.appendChild(rect);
     this.svg.appendChild(link)

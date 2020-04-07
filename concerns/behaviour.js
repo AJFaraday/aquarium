@@ -59,13 +59,13 @@ class Behaviour {
   // Called every tick when there's no food in the game
   idle() {
     // Default 'milling about' behaviour, can be overridden
-    if(typeof this.idle_target_tick == 'undefined') {
+    if (typeof this.idle_target_tick == 'undefined') {
       this.idle_target_tick = 0;
     }
-    if(typeof this.idle_inteval == 'undefined') {
+    if (typeof this.idle_inteval == 'undefined') {
       this.idle_interval = (Math.random() * 400) + 100;
     }
-    if((this.tick() - this.idle_target_tick) > this.idle_interval) {
+    if ((this.tick() - this.idle_target_tick) > this.idle_interval) {
       this.idle_target_tick = Game.tick;
       this.real_snake.target = {x: (Math.random() * Game.width), y: (Math.random() * Game.height)};
     }
@@ -84,18 +84,22 @@ class Behaviour {
   }
 
   food() {
-    return Game.food;
+    return Game.food.map(function (food) {return Behaviour.food_proxy(food)});
   }
 
   snake() {
     return Behaviour.snake_proxy(this.real_snake);
   }
-  
+
   snakes() {
     var behaviour = this;
     return Game.snakes
-      .filter(function(s) {return s != behaviour.real_snake})
-      .map(function(s){ return Behaviour.snake_proxy(s)});
+      .filter(function (s) {
+        return s != behaviour.real_snake
+      })
+      .map(function (s) {
+        return Behaviour.snake_proxy(s)
+      });
   }
 
   tick() {
@@ -147,7 +151,7 @@ class Behaviour {
       speed: snake.speed,
       angle: snake.angle,
       tail_segments: snake.tail_segments.map(
-        function(segment) {
+        function (segment) {
           return Behaviour.tail_segment_proxy(segment)
         }
       )
@@ -159,6 +163,14 @@ class Behaviour {
       x: tail_segment.x,
       y: tail_segment.y,
       size: tail_segment.size
+    }
+  }
+
+  static food_proxy(food) {
+    return {
+      x: food.x,
+      y: food.y,
+      size: food.size
     }
   }
 

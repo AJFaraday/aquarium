@@ -34,7 +34,7 @@ Behaviours.HighRotation = class HighRotation extends Behaviour {
     this.set_target();
   }
 
-  eat() {
+  eat_target() {
     this.set_target();
   }
 

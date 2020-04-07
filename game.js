@@ -108,7 +108,7 @@ class Game {
         }
       )
     }
-    if(Game.tick >= 30000) {
+    if (Game.tick >= 30000) {
       Game.game_over_message('Game Over: 5 minute limit has been reached');
       Game.end();
     }
@@ -191,6 +191,18 @@ class Game {
     }
     Game.snake_registry[name]++;
     return name + '[' + Game.snake_registry[name] + ']'
+  }
+
+  static food_at(object) {
+    return Game.food.some(function (f) {
+      return (f.x == object.x && f.y == object.y)
+    });
+  }
+
+  static snake_at(object) {
+    return Game.snakes.some(function (s) {
+      return (s.x == object.x && s.y == object.y)
+    });
   }
 
 }

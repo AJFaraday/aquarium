@@ -66,7 +66,7 @@ class VsMatchFlag {
       }
     );
     var title = this.build_element('title', {});
-    title.innerHTML = this.title;
+    title.innerHTML = Menu.scores_for_match(this.title);
     rect.append(title);
     link.appendChild(rect);
     return link;
