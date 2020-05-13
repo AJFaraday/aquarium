@@ -18,6 +18,50 @@ class Stats {
     return 20;
   }
 
+  static draw_game_stats() {
+    if (Game.canvas) {
+      var y = 70;
+      Game.canvas.draw_text(
+        'Tick',
+        50, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      Game.canvas.draw_text(
+        Game.tick,
+        200, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      y += Stats.font_size();
+      Game.canvas.draw_text(
+        'No. Snakes',
+        50, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      var total_snakes = Object.values(Game.snake_registry).reduce((a,b) => a + b, 0)
+      Game.canvas.draw_text(
+        `${Game.snakes.length}/${total_snakes}`,
+        200, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      y += Stats.font_size();
+      Game.canvas.draw_text(
+        'No. Food',
+        50, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      var total_snakes = Object.values(Game.snake_registry).reduce((a,b) => a + b, 0)
+      Game.canvas.draw_text(
+        Game.food.length,
+        200, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      y += Stats.font_size();
+      Game.canvas.draw_text(
+        'Food int.',
+        50, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+      var total_snakes = Object.values(Game.snake_registry).reduce((a,b) => a + b, 0)
+      Game.canvas.draw_text(
+        Game.config.food_interval,
+        200, y, 'rgba(0,0,0,1)', 'left', Stats.font_size()
+      );
+    }
+  }
+
   static draw_summaries() {
     if (Game.canvas) {
       var x = 50;
@@ -43,7 +87,7 @@ class Stats {
       stats.forEach(
         function (stat) {
           Game.canvas.draw_square(
-            {x: (x - 10), y: (y - 8), size: 10,colour: stat.colour}
+            {x: (x - 10), y: (y - 8), size: 10, colour: stat.colour}
           );
           Game.canvas.draw_text(
             stat.behaviour_name,
@@ -105,7 +149,7 @@ class Stats {
           colour = 'rgba(128,0,0,1)';
         }
         Game.canvas.draw_square(
-          {x: (x - 10), y: (y - 8), size: 10,colour: snake.colour}
+          {x: (x - 10), y: (y - 8), size: 10, colour: snake.colour}
         );
         Game.canvas.draw_text(
           snake.name,

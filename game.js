@@ -133,76 +133,97 @@ class Game {
       Stats.draw_summaries();
     } else if (stat_mode == '2' || stat_mode == 2) {
       Stats.draw_snakes();
+    } else if (stat_mode == '3' || stat_mode == 3) {
+      Stats.draw_game_stats()
     }
-  }
+    }
 
-  static add_random_snake() {
-    var behaviour = Game.config.respawn_behaviours[Math.floor(Math.random() * Game.config.respawn_behaviours.length)];
-    Game.add_snake(behaviour);
-  }
+    static
+    add_random_snake()
+    {
+      var behaviour = Game.config.respawn_behaviours[Math.floor(Math.random() * Game.config.respawn_behaviours.length)];
+      Game.add_snake(behaviour);
+    }
 
-  static add_random_foods(n) {
+    static
+    add_random_foods(n)
+    {
 
-    [...Array(n)].forEach(
-      function (_) {
+      [...Array(n)].forEach(
+        function (_) {
+          new Static.Food();
+        }
+      );
+    }
+
+    static
+    add_food_grid(size)
+    {
+      var grid_width = Math.floor(Game.width / size);
+      var grid_height = Math.floor(Game.height / size);
+      var row = 0;
+      var col = 0;
+      while (row <= grid_height) {
+        col = 0;
+        while (col <= grid_width) {
+          var food = new Static.Food();
+          food.x = col * size;
+          food.y = row * size;
+          col++;
+        }
+        row++;
+      }
+    }
+
+    static
+    add_food()
+    {
+      if ((Game.tick - Game.last_food_tick) >= Game.config.food_interval) {
+        Game.last_food_tick = Game.tick;
         new Static.Food();
       }
-    );
-  }
+    }
 
-  static add_food_grid(size) {
-    var grid_width = Math.floor(Game.width / size);
-    var grid_height = Math.floor(Game.height / size);
-    var row = 0;
-    var col = 0;
-    while (row <= grid_height) {
-      col = 0;
-      while (col <= grid_width) {
-        var food = new Static.Food();
-        food.x = col * size;
-        food.y = row * size;
-        col++;
+    static
+    add_snake(behaviour)
+    {
+      var snake = new Creatures.Snake(behaviour);
+      return snake;
+    }
+    ;
+
+    static
+    end()
+    {
+      Game.ended = true;
+      clearInterval(Game.draw_loop);
+      clearInterval(Game.update_loop);
+    }
+
+    static
+    register_snake(name)
+    {
+      if (typeof Game.snake_registry[name] == 'undefined') {
+        Game.snake_registry[name] = 0;
       }
-      row++;
+      Game.snake_registry[name]++;
+      return name + '[' + Game.snake_registry[name] + ']'
     }
-  }
 
-  static add_food() {
-    if ((Game.tick - Game.last_food_tick) >= Game.config.food_interval) {
-      Game.last_food_tick = Game.tick;
-      new Static.Food();
+    static
+    food_at(object)
+    {
+      return Game.food.some(function (f) {
+        return (f.x == object.x && f.y == object.y)
+      });
     }
-  }
 
-  static add_snake(behaviour) {
-    var snake = new Creatures.Snake(behaviour);
-    return snake;
-  };
-
-  static end() {
-    Game.ended = true;
-    clearInterval(Game.draw_loop);
-    clearInterval(Game.update_loop);
-  }
-
-  static register_snake(name) {
-    if (typeof Game.snake_registry[name] == 'undefined') {
-      Game.snake_registry[name] = 0;
+    static
+    snake_at(object)
+    {
+      return Game.snakes.some(function (s) {
+        return (s.x == object.x && s.y == object.y)
+      });
     }
-    Game.snake_registry[name]++;
-    return name + '[' + Game.snake_registry[name] + ']'
-  }
 
-  static food_at(object) {
-    return Game.food.some(function (f) {
-      return (f.x == object.x && f.y == object.y)
-    });
   }
-
-  static snake_at(object) {
-    return Game.snakes.some(function (s) {
-      return (s.x == object.x && s.y == object.y)
-    });
-  }
-
-}

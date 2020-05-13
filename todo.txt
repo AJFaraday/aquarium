@@ -1,18 +1,9 @@
-In game: click to switch between stat pages
-
-Page of stats on the game:
-- tick
-- no snakes
-- no food
-- food interval
 
 Write up:
 - API
 - Guide to entering 
 
 Sandbox post
-
-Widget on question grabbing score data.
 
 #####################
 

@@ -6,6 +6,16 @@ class Canvas {
     this.to_radians = Math.PI / 180;
 
     addEventListener(
+      'click',
+      function(e) {
+        var stat_mode = parseInt((localStorage.getItem('stat_mode') || 0));
+        stat_mode += 1;
+        stat_mode %= 4;
+        localStorage.setItem('stat_mode', stat_mode);
+      }
+    )
+
+    addEventListener(
       'keyup',
       function (e) {
         if (e.key == 'm') {
@@ -13,7 +23,7 @@ class Canvas {
         } else if (e.key == 's') {
           var stat_mode = parseInt((localStorage.getItem('stat_mode') || 0));
           stat_mode += 1;
-          stat_mode %= 3;
+          stat_mode %= 4;
           localStorage.setItem('stat_mode', stat_mode);
         }
       }
